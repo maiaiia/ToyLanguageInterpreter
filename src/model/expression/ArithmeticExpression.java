@@ -18,19 +18,18 @@ public class ArithmeticExpression implements IExpression {
         this.operator = operator;
     }
 
+    private int getIntValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException {
+        IValue value = expression.evaluate(symbolTable);
+        if (value.getType() != Type.INTEGER) {
+            throw new InvalidOperandTypeException();
+        }
+        return ((IntegerValue) value).getValue();
+    }
+
     @Override
     public IValue evaluate(ISymbolTable symbolTable) {
-        IValue leftValue = left.evaluate(symbolTable);
-        IValue rightValue = right.evaluate(symbolTable);
-        if (! (leftValue.getType() == Type.INTEGER)) {
-            throw new InvalidOperandTypeException();
-        }
-        int leftIntValue = ((IntegerValue) leftValue).getValue();
-
-        if (! (rightValue.getType() == Type.INTEGER)) {
-            throw new InvalidOperandTypeException();
-        }
-        int rightIntValue = ((IntegerValue) rightValue).getValue();
+        int leftIntValue = getIntValue(left, symbolTable);
+        int rightIntValue = getIntValue(right, symbolTable);
         int result = switch (operator){
             case '+' -> leftIntValue + rightIntValue;
             case '-' -> leftIntValue - rightIntValue;

@@ -5,7 +5,6 @@ import exception.InvalidOperatorException;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.Type;
-import state.IExecutionStack;
 import state.ISymbolTable;
 
 public class LogicalExpression implements IExpression {
@@ -13,7 +12,7 @@ public class LogicalExpression implements IExpression {
     IExpression right;
     String operator;
 
-    boolean getBoolValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException{
+    private boolean getBoolValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException{
         IValue value = expression.evaluate(symbolTable);
         if(! (value.getType() == Type.BOOLEAN)){
             throw new InvalidOperandTypeException();
