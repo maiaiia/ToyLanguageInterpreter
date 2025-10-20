@@ -1,4 +1,20 @@
 package model.statement;
 
-public class CompoundStatement {
+import state.ProgramState;
+
+public class CompoundStatement implements IStatement {
+    private final IStatement statement1;
+    private final IStatement statement2;
+
+    public CompoundStatement(IStatement statement2, IStatement statement1) {
+        this.statement2 = statement2;
+        this.statement1 = statement1;
+    }
+
+    @Override
+    public ProgramState execute(ProgramState programState) {
+        programState.getExecutionStack().push(statement2);
+        programState.getExecutionStack().push(statement1);
+        return programState;
+    }
 }

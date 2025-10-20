@@ -1,7 +1,7 @@
 package exception;
 
 public class ExecutionStackEmptyException extends RuntimeException {
-    public ExecutionStackEmptyException(String message) {
-        super(message);
+    public ExecutionStackEmptyException() {
+        super("Execution stack is empty");
     }
 }
