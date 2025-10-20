@@ -1,6 +1,5 @@
 package model.value;
 
-
 public class IntegerValue implements IValue {
     private final int value;
     public IntegerValue(int value) {

@@ -5,6 +5,8 @@ import state.IExecutionStack;
 import state.ISymbolTable;
 
 public class LogicalExpression implements IExpression {
+    IExpression lhs;
+    IExpression rhs;
 
     @Override
     public IValue evaluate(ISymbolTable symbolTable) {
