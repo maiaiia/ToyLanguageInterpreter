@@ -1,5 +1,6 @@
 package model.expression;
 
+import exception.DivisionByZeroException;
 import exception.InvalidOperandTypeException;
 import exception.InvalidOperatorException;
 import model.value.IValue;
@@ -27,16 +28,25 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(ISymbolTable symbolTable) {
+    public IValue evaluate(ISymbolTable symbolTable) throws InvalidOperandTypeException, DivisionByZeroException {
         int leftIntValue = getIntValue(left, symbolTable);
         int rightIntValue = getIntValue(right, symbolTable);
         int result = switch (operator){
             case '+' -> leftIntValue + rightIntValue;
             case '-' -> leftIntValue - rightIntValue;
             case '*' -> leftIntValue * rightIntValue;
-            case '/' -> leftIntValue / rightIntValue;
+            case '/' -> getDivisionResult(leftIntValue, rightIntValue);
             default -> throw new InvalidOperatorException();
         };
         return new IntegerValue(result);
+    }
+
+    private static int getDivisionResult(int leftIntValue, int rightIntValue) throws DivisionByZeroException {
+        try{
+            return leftIntValue / rightIntValue;
+        }
+        catch (Exception e){
+            throw new DivisionByZeroException();
+        }
     }
 }
