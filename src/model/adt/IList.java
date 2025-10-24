@@ -1,0 +1,11 @@
+package model.adt;
+
+public interface IList<T> {
+    int size();
+    boolean isEmpty();
+    T get(int index);
+    void append(T value);
+    void insert(int index, T value);
+    T remove(int index);
+    int find(T value);
+}

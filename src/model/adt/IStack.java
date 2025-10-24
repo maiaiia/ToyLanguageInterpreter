@@ -1,5 +1,4 @@
-package adt;
-
+package model.adt;
 
 public interface IStack<T> {
     void  push(T element);

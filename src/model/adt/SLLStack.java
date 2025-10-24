@@ -1,4 +1,4 @@
-package adt;
+package model.adt;
 
 import exception.StackEmptyException;
 
