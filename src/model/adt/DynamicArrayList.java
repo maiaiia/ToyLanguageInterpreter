@@ -1,104 +1,77 @@
 package model.adt;
 
+import exception.OutOfBoundsIndexException;
 import exception.ValueNotFoundException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //TODO question - should i implement these using IValue or a generic class T
 public class DynamicArrayList<T> implements  IList<T> {
-    static final int DEFAULT_CAPACITY = 10;
+    List<T> list =  new ArrayList<T>();
 
-    private T[] data;
-    private int capacity;
-    private int size;
-
-    public DynamicArrayList(int initialCapacity) {
-        this.data = (T[]) new Object[initialCapacity]; //downcasting, but is it ok?
-        this.capacity = initialCapacity;
-        this.size = 0;
-    }
-    public DynamicArrayList() {
-        this(DEFAULT_CAPACITY);
-    }
-    private void checkIndex(int index) throws IndexOutOfBoundsException {
-        if (index < 0 || index > size) {
+    void checkIndex(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index > size()) {
             throw new IndexOutOfBoundsException();
         }
     }
 
     @Override
     public int size() {
-        return this.size;
+        return list.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return list.isEmpty();
     }
 
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        checkIndex(index);
-        return data[index];
+        try {
+            return list.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new OutOfBoundsIndexException();
+        }
+    }
+
+    @Override
+    public T set(int index, T value) {
+        try {
+            return list.set(index, value);
+        } catch (IndexOutOfBoundsException e) {
+            throw new OutOfBoundsIndexException();
+        }
     }
 
     @Override
     public void append(T value) {
-        if (this.size() == this.capacity)
-            this.grow();
-        this.data[size++] = value;
+        this.list.addLast(value);
     }
 
     @Override
     public void insert(int index, T value) throws IndexOutOfBoundsException {
         checkIndex(index);
-        if (size == this.capacity) {
-            this.grow();
-        }
-        for (int i = size; i > index; i--) {
-            this.data[i] = data[i - 1];
-        }
-        this.data[index] = value;
+        list.add(index, value);
     }
 
     @Override
     public T remove(int index) {
-        checkIndex(index);
-        T removed = this.data[index];
-        for (int i = index; i < size - 1; i++) {
-            this.data[i] = this.data[i + 1];
+        try {
+            return list.remove(index);
         }
-        this.size--;
-        if (size >= DEFAULT_CAPACITY * 2 && size < this.capacity / 2) {
-            shrink();
+        catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException();
         }
-        return removed;
     }
 
     @Override
     public int find(T value) throws ValueNotFoundException {
-        for (int i = 0; i < size; i++) {
-            if (data[i] == value) {
-                return i;
-            }
+        int indexOf = list.indexOf(value);
+        if (indexOf == -1) {
+            throw new ValueNotFoundException();
         }
-        throw new ValueNotFoundException();
-    }
-
-    // -----------
-    void grow() {
-        T[] newData = (T[]) new Object[this.capacity * 2];
-        for (int i = 0; i < this.capacity; i++) {
-            newData[i] = this.data[i];
-        }
-        this.data = newData;
-        this.capacity = this.capacity * 2;
-    }
-    void shrink() {
-        T[] newData = (T[]) new Object[this.capacity / 2];
-        for (int i = 0; i < this.size; i++) {
-            newData[i] = this.data[i];
-        }
-        this.data = newData;
-        this.capacity = this.capacity / 2;
+        return indexOf;
     }
 
 }
