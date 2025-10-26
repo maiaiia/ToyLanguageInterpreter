@@ -1,7 +1,7 @@
 package model.expression;
 
 import exception.InvalidOperandTypeException;
-import exception.InvalidOperatorException;
+import exception.UnknownOperatorException;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.Type;
@@ -12,7 +12,7 @@ public class LogicalExpression implements IExpression {
     IExpression right;
     String operator;
 
-    private boolean getBoolValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException{
+    private boolean getBoolValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
         if(! (value.getType() == Type.BOOLEAN)){
             throw new InvalidOperandTypeException();
@@ -26,10 +26,9 @@ public class LogicalExpression implements IExpression {
         boolean rightBoolValue = getBoolValue(right, symbolTable);
 
         boolean result = switch (operator) {
-            case "and" -> leftBoolValue && rightBoolValue;
-            case "or" -> leftBoolValue || rightBoolValue;
-            case "xor" -> leftBoolValue ^ rightBoolValue;
-            default -> throw new InvalidOperatorException();
+            case "&&" -> leftBoolValue && rightBoolValue;
+            case "||" -> leftBoolValue || rightBoolValue;
+            default -> throw new UnknownOperatorException();
         };
         return new BooleanValue(result);
     }
