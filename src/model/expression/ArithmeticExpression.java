@@ -2,7 +2,7 @@ package model.expression;
 
 import exception.DivisionByZeroException;
 import exception.InvalidOperandTypeException;
-import exception.InvalidOperatorException;
+import exception.UnknownOperatorException;
 import model.value.IValue;
 import model.value.IntegerValue;
 import model.value.Type;
@@ -36,7 +36,7 @@ public class ArithmeticExpression implements IExpression {
             case '-' -> leftIntValue - rightIntValue;
             case '*' -> leftIntValue * rightIntValue;
             case '/' -> getDivisionResult(leftIntValue, rightIntValue);
-            default -> throw new InvalidOperatorException();
+            default -> throw new UnknownOperatorException();
         };
         return new IntegerValue(result);
     }
