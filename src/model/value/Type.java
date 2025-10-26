@@ -4,7 +4,7 @@ public enum Type {
     INTEGER,
     BOOLEAN;
 
-    IValue getDefaultValue(){
+    public IValue getDefaultValue(){
         if (this.equals(INTEGER)){
             return new IntegerValue(0);
         }
