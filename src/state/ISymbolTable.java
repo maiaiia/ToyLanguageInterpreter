@@ -8,5 +8,5 @@ public interface ISymbolTable {
     Type getSymbolType(String symbolName);
     void declareVariable(Type variableType, String variableName);
     void assignVariable(String variableName, IValue value);
-
+    IValue getVariableValue(String variableName);
 }
