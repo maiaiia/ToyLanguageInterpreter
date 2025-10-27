@@ -3,10 +3,10 @@ package model.expression;
 import exception.DivisionByZeroException;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
-import model.adt.IDictionary;
-import model.value.IValue;
 import model.value.IntegerValue;
 import model.value.Type;
+import model.adt.IDictionary;
+import model.value.IValue;
 
 public class ArithmeticExpression implements IExpression {
     private final IExpression left;

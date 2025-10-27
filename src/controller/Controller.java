@@ -2,14 +2,13 @@ package controller;
 
 import exception.ExecutionStackEmptyException;
 import model.statement.IStatement;
-import state.IExecutionStack;
 import state.ProgramState;
 
 public class Controller implements IController {
 
     @Override
     public ProgramState executeOneStep(ProgramState programState) {
-        IExecutionStack executionStack = programState.getExecutionStack();
+        var executionStack = programState.getExecutionStack();
         if (executionStack.isEmpty()) {
             throw new ExecutionStackEmptyException();
         }
