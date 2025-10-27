@@ -28,4 +28,9 @@ public class IfStatement implements IStatement {
         programState.getExecutionStack().push(chosenStatement);
         return programState;
     }
+
+    @Override
+    public String toString(){
+        return "If " +  condition.toString() + " Then " + thenStatement.toString() + " Else " + elseStatement.toString() + ";";
+    }
 }

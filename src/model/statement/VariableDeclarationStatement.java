@@ -26,4 +26,9 @@ public class VariableDeclarationStatement implements IStatement {
         symbolTable.declareVariable(variableType, variableName);
         return programState;
     }
+
+    @Override
+    public String toString(){
+        return variableType.toString() + " " + variableName + ";";
+    }
 }

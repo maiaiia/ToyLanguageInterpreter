@@ -16,4 +16,9 @@ public class ListExecutionStack implements IExecutionStack {
     public IStatement pop() {
         return statements.removeFirst();
     }
+
+    @Override
+    public boolean isEmpty() {
+        return statements.isEmpty();
+    }
 }

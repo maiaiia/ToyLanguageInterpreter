@@ -28,4 +28,9 @@ public class AssignmentStatement implements IStatement {
         programState.getSymbolTable().assignVariable(symbolName, expressionResult);
         return programState;
     }
+
+    @Override
+    public String toString() {
+        return symbolName + " = " + expression + ";";
+    }
 }
