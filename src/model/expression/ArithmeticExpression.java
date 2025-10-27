@@ -49,4 +49,8 @@ public class ArithmeticExpression implements IExpression {
             throw new DivisionByZeroException();
         }
     }
+    @Override
+    public String toString() {
+        return left.toString() + operator + right.toString();
+    }
 }

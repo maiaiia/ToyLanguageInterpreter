@@ -15,4 +15,10 @@ public class ValueExpression implements IExpression {
     public IValue evaluate(ISymbolTable symbolTable) {
         return value;
     }
+
+    @Override
+    public String toString()
+    {
+        return value.toString();
+    }
 }

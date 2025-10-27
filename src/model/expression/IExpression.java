@@ -6,4 +6,5 @@ import state.ISymbolTable;
 
 public interface IExpression {
     IValue evaluate(ISymbolTable symbolTable);
+    String toString();
 }

@@ -32,4 +32,10 @@ public class LogicalExpression implements IExpression {
         };
         return new BooleanValue(result);
     }
+
+    @Override
+    public String toString()
+    {
+        return left.toString() + " " + operator + " " + right.toString();
+    }
 }

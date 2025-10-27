@@ -16,4 +16,10 @@ public class VariableExpression implements IExpression {
         }
         return symbolTable.getVariableValue(variableName);
     }
+
+    @Override
+    public String toString()
+    {
+        return variableName;
+    }
 }
