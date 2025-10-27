@@ -1,10 +1,10 @@
 package model.expression;
 
 
+import model.adt.IDictionary;
 import model.value.IValue;
-import state.ISymbolTable;
 
 public interface IExpression {
-    IValue evaluate(ISymbolTable symbolTable);
+    IValue evaluate(IDictionary<String, IValue> symbolTable);
     String toString();
 }

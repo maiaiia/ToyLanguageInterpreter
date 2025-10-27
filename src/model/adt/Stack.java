@@ -22,15 +22,6 @@ public class Stack<T> implements IStack<T> {
     }
 
     @Override
-    public T topElement() {
-        try{
-            return stack.peek();
-        } catch (EmptyStackException e) {
-            throw new StackEmptyException();
-        }
-    }
-
-    @Override
     public boolean isEmpty() {
         return stack.isEmpty();
     }

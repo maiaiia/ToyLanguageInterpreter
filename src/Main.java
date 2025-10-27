@@ -1,4 +1,3 @@
-// TODO - to string methods for all
 // TODO - operator enum?
 // TODO - parsing ew
 

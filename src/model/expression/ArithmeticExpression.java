@@ -3,10 +3,10 @@ package model.expression;
 import exception.DivisionByZeroException;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
+import model.adt.IDictionary;
 import model.value.IValue;
 import model.value.IntegerValue;
 import model.value.Type;
-import state.ISymbolTable;
 
 public class ArithmeticExpression implements IExpression {
     private final IExpression left;
@@ -19,7 +19,7 @@ public class ArithmeticExpression implements IExpression {
         this.operator = operator;
     }
 
-    private int getIntValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException {
+    private int getIntValue(IExpression expression, IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
         if (value.getType() != Type.INTEGER) {
             throw new InvalidOperandTypeException();
@@ -28,7 +28,7 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(ISymbolTable symbolTable) throws InvalidOperandTypeException, DivisionByZeroException {
+    public IValue evaluate(IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException, DivisionByZeroException {
         int leftIntValue = getIntValue(left, symbolTable);
         int rightIntValue = getIntValue(right, symbolTable);
         int result = switch (operator){

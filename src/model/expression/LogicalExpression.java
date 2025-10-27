@@ -2,17 +2,17 @@ package model.expression;
 
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
+import model.adt.IDictionary;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.Type;
-import state.ISymbolTable;
 
 public class LogicalExpression implements IExpression {
     IExpression left;
     IExpression right;
     String operator;
 
-    private boolean getBoolValue(IExpression expression, ISymbolTable symbolTable) throws InvalidOperandTypeException {
+    private boolean getBoolValue(IExpression expression, IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
         if(! (value.getType() == Type.BOOLEAN)){
             throw new InvalidOperandTypeException();
@@ -21,7 +21,7 @@ public class LogicalExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(ISymbolTable symbolTable) throws InvalidOperandTypeException {
+    public IValue evaluate(IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         boolean leftBoolValue = getBoolValue(left, symbolTable);
         boolean rightBoolValue = getBoolValue(right, symbolTable);
 

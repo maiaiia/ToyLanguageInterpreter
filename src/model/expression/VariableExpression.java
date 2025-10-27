@@ -1,8 +1,8 @@
 package model.expression;
 
 import exception.VariableNotDefinedException;
+import model.adt.IDictionary;
 import model.value.IValue;
-import state.ISymbolTable;
 
 public class VariableExpression implements IExpression {
     private final String variableName;
@@ -10,11 +10,11 @@ public class VariableExpression implements IExpression {
         this.variableName = variableName;
     }
     @Override
-    public IValue evaluate(ISymbolTable symbolTable) {
-        if (!symbolTable.symbolIsDefined(variableName)) {
+    public IValue evaluate(IDictionary<String, IValue> symbolTable) {
+        if (!symbolTable.contains(variableName)) {
             throw new VariableNotDefinedException(variableName);
         }
-        return symbolTable.getVariableValue(variableName);
+        return symbolTable.get(variableName);
     }
 
     @Override

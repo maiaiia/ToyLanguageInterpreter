@@ -1,25 +1,31 @@
 package state;
 
-public class ProgramState {
-    IExecutionStack executionStack;
-    ISymbolTable symbolTable;
-    IOutput output;
+import model.adt.IDictionary;
+import model.adt.IList;
+import model.adt.IStack;
+import model.statement.IStatement;
+import model.value.IValue;
 
-    public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output) {
+public class ProgramState {
+    IStack<IStatement> executionStack;
+    IDictionary<String, IValue> symbolTable;
+    IList<String> output;
+
+    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
     }
 
-    public IExecutionStack getExecutionStack() {
+    public IStack<IStatement> getExecutionStack() {
         return executionStack;
     }
 
-    public ISymbolTable getSymbolTable() {
+    public IDictionary<String, IValue> getSymbolTable() {
         return symbolTable;
     }
 
-    public IOutput getOutput() {
+    public IList<String> getOutput() {
         return output;
     }
 }

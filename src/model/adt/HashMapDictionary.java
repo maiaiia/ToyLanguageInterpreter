@@ -35,6 +35,11 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     }
 
     @Override
+    public V get(K key) {
+        return map.get(key);
+    }
+
+    @Override
     public int size() {
         return map.size();
     }

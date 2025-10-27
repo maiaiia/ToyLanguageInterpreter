@@ -18,14 +18,14 @@ public class AssignmentStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
         var symbolTable = programState.getSymbolTable();
-        if (! symbolTable.symbolIsDefined(symbolName)) {
+        if (! symbolTable.contains(symbolName)) {
             throw new VariableNotDefinedException();
         }
         IValue expressionResult = expression.evaluate(programState.getSymbolTable());
-        if (symbolTable.getSymbolType(symbolName) != expressionResult.getType()) {
+        if (symbolTable.get(symbolName).getType() != expressionResult.getType()) {
             throw new InvalidVariableTypeException();
         }
-        programState.getSymbolTable().assignVariable(symbolName, expressionResult);
+        programState.getSymbolTable().add(symbolName, expressionResult);
         return programState;
     }
 
