@@ -31,6 +31,6 @@ public class AssignmentStatement implements IStatement {
 
     @Override
     public String toString() {
-        return symbolName + " = " + expression + ";";
+        return symbolName + " = " + expression;
     }
 }

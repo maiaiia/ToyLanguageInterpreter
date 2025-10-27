@@ -5,7 +5,6 @@ import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntegerValue;
 import model.value.Type;
-import state.ISymbolTable;
 import state.ProgramState;
 
 public class VariableDeclarationStatement implements IStatement {
@@ -19,16 +18,16 @@ public class VariableDeclarationStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        ISymbolTable symbolTable =  programState.getSymbolTable();
-        if (symbolTable.symbolIsDefined(variableName)) {
+        var symbolTable =  programState.getSymbolTable();
+        if (symbolTable.contains(variableName)) {
             throw new VariableAlreadyDeclaredException();
         }
-        symbolTable.declareVariable(variableType, variableName);
+        symbolTable.add(variableName, variableType.getDefaultValue());
         return programState;
     }
 
     @Override
     public String toString(){
-        return variableType.toString() + " " + variableName + ";";
+        return variableType.toString() + " " + variableName;
     }
 }

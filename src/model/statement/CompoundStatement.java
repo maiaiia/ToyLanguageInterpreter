@@ -19,7 +19,7 @@ public class CompoundStatement implements IStatement {
     }
 
     @Override
-    public String toString(){ //TODO may need to change this to be between parentheses
-        return statement1.toString() + statement2.toString();
+    public String toString(){
+        return "("+statement1.toString() + "; " +statement2.toString() + ")";
     }
 }

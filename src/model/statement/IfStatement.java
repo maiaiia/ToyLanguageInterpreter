@@ -31,6 +31,6 @@ public class IfStatement implements IStatement {
 
     @Override
     public String toString(){
-        return "If " +  condition.toString() + " Then " + thenStatement.toString() + " Else " + elseStatement.toString() + ";";
+        return "(If " +  condition.toString() + " Then " + thenStatement.toString() + " Else " + elseStatement.toString() + ");";
     }
 }
