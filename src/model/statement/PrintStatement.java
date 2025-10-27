@@ -1,24 +1,27 @@
 package model.statement;
 
+import model.expression.IExpression;
 import model.value.IValue;
 import state.ProgramState;
 
-// TODO this needs an EXPRESSION as an argument!!!
+//TODO - exception is thrown for wrong expression? or would that be caught before the print statement is created
 public class PrintStatement implements IStatement {
-    private final IValue value;
+    private final IExpression expression;
 
-    public PrintStatement(IValue value) {
-        this.value = value;
+    public PrintStatement(IExpression expression) {
+        this.expression = expression;
     }
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        programState.getOutput().append(value);
+        IValue result = expression.evaluate(programState.getSymbolTable());
+        //may throw an exception if the expression is not correct
+        programState.getOutput().append(result.toString());
         return programState;
     }
 
     @Override
     public String toString(){
-        return "Print(" +  value.toString() + ");";
+        return "Print(" +  expression.toString() + ");";
     }
 }
