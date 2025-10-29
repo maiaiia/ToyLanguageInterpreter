@@ -6,9 +6,8 @@ import exception.ValueNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO question - should i implement these using IValue or a generic class T
 public class DynamicArrayList<T> implements  IList<T> {
-    List<T> list =  new ArrayList<T>();
+    private final List<T> list =  new ArrayList<T>();
 
     void checkIndex(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index > size()) {
@@ -74,4 +73,8 @@ public class DynamicArrayList<T> implements  IList<T> {
         return indexOf;
     }
 
+    @Override
+    public String toString(){
+        return list.toString();
+    }
 }

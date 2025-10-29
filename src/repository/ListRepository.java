@@ -1,21 +1,41 @@
 package repository;
 
-import model.adt.DynamicArrayList;
-import model.adt.IList;
+import exception.OutOfBoundsIndexException;
 import state.ProgramState;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListRepository implements IRepository {
-    IList<ProgramState> programStates = new DynamicArrayList<>();
+    List<ProgramState> programStates = new ArrayList<>();
     int currentIndex = 0;
 
-    @Override
-    public void addState(ProgramState programState) {
-        programStates.append(programState);
+    public ListRepository() {}
+    public ListRepository(List<ProgramState> programStates) {
+        this.programStates = programStates;
     }
 
     @Override
-    public ProgramState getCurrentProgramState() {
-        return programStates.get(currentIndex);
+    public void addState(ProgramState programState) {
+        programStates.addLast(programState);
+    }
+
+    @Override
+    public ProgramState getCurrentProgramState() throws OutOfBoundsIndexException {
+        try {
+            return programStates.get(currentIndex);
+        } catch(IndexOutOfBoundsException e) {
+            throw new OutOfBoundsIndexException("Index out of bounds");
+        }
+    }
+
+    @Override
+    public ProgramState getNextProgramState() throws OutOfBoundsIndexException {
+        try {
+            return programStates.get(currentIndex++);
+        } catch (IndexOutOfBoundsException e) {
+            throw new OutOfBoundsIndexException("Index out of bounds!");
+        }
     }
 
 }

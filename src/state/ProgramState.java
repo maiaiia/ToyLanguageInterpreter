@@ -28,4 +28,10 @@ public class ProgramState {
     public IList<String> getOutput() {
         return output;
     }
+
+    public String toString() {
+        return "Execution Stack:\n" + executionStack.toString() +
+                "\nSymbol Table:\n" + symbolTable.toString() +
+                "\nOutput:\n" + output.toString();
+    }
 }

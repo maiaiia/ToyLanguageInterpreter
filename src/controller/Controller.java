@@ -1,10 +1,17 @@
 package controller;
 
 import exception.ExecutionStackEmptyException;
+import exception.OutOfBoundsIndexException;
 import model.statement.IStatement;
+import repository.IRepository;
 import state.ProgramState;
 
 public class Controller implements IController {
+    private final IRepository repository;
+    public Controller(IRepository repository) {
+        this.repository = repository;
+    }
+
 
     @Override
     public ProgramState executeOneStep(ProgramState programState) {
@@ -22,12 +29,31 @@ public class Controller implements IController {
     }
 
     @Override
+    public ProgramState executeCurrentProgram() {
+        ProgramState programState = getCurrentProgramState();
+        while (true){
+            try {
+                programState = executeOneStep(programState);
+            } catch (ExecutionStackEmptyException e) {
+                break;
+            }
+        }
+        moveToNextProgramState();
+        return programState;
+    }
+
+    @Override
     public ProgramState executeAll() {
         return null;
     }
 
     @Override
-    public void displayCurrentProgramState() {
+    public ProgramState getCurrentProgramState() {
+        return repository.getCurrentProgramState();
+    }
 
+    @Override
+    public ProgramState moveToNextProgramState() throws RuntimeException { //TODO generic exception is bad :(
+        return repository.getNextProgramState();
     }
 }

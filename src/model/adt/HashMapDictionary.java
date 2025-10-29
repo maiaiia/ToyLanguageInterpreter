@@ -5,7 +5,7 @@ import exception.KeyNotInDictionaryException;
 import java.util.HashMap;
 
 public class HashMapDictionary<K, V> implements IDictionary<K, V> {
-    HashMap<K, V> map = new HashMap<K, V>();
+    private final HashMap<K, V> map = new HashMap<K, V>();
 
     @Override
     public void add(K key, V value) {
@@ -48,4 +48,10 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     public boolean isEmpty() {
         return map.isEmpty();
     }
+
+    @Override
+    public String toString(){
+        return map.toString();
+    }
+
 }

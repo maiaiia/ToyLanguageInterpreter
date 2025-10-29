@@ -8,4 +8,5 @@ public interface IDictionary<K, V> {
     boolean contains(K key);
     int size();
     boolean isEmpty();
+    String toString();
 }

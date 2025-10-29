@@ -9,4 +9,5 @@ public interface IList<T> {
     void insert(int index, T value);
     T remove(int index);
     int find(T value);
+    String toString();
 }
