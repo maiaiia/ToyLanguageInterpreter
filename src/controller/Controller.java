@@ -25,12 +25,6 @@ public class Controller implements IController {
 
     @Override
     public ProgramState executeProgramState(ProgramState programState) {
-        return null;
-    }
-
-    @Override
-    public ProgramState executeCurrentProgram() {
-        ProgramState programState = getCurrentProgramState();
         while (true){
             try {
                 programState = executeOneStep(programState);
@@ -38,13 +32,27 @@ public class Controller implements IController {
                 break;
             }
         }
+        return programState;
+    }
+
+    @Override
+    public ProgramState executeCurrentProgram() {
+        ProgramState programState = getCurrentProgramState();
+        programState = executeProgramState(programState);
         moveToNextProgramState();
         return programState;
     }
 
     @Override
     public ProgramState executeAll() {
-        return null;
+        ProgramState programState = null;
+        try{
+            programState = getCurrentProgramState();
+            while(true){
+                programState = this.executeCurrentProgram();
+            }
+        } catch (OutOfBoundsIndexException _) {}
+        return programState;
     }
 
     @Override

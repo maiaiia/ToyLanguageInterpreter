@@ -1,6 +1,5 @@
 import model.adt.DynamicArrayList;
 import model.adt.HashMapDictionary;
-import model.adt.IDictionary;
 import model.adt.Stack;
 import model.expression.ArithmeticExpression;
 import model.expression.ValueExpression;
