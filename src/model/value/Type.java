@@ -2,7 +2,8 @@ package model.value;
 
 public enum Type {
     INTEGER,
-    BOOLEAN;
+    BOOLEAN,
+    STRING;
 
     public IValue getDefaultValue(){
         if (this.equals(INTEGER)){
@@ -10,6 +11,9 @@ public enum Type {
         }
         else if (this.equals(BOOLEAN)){
             return new BooleanValue(false);
+        }
+        else if (this.equals(STRING)){
+            return new StringValue("");
         }
         return null;
     }
