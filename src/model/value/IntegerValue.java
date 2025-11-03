@@ -19,4 +19,15 @@ public class IntegerValue implements IValue {
     public String toString() {
         return String.valueOf(value);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof IntegerValue) {
+            return value == ((IntegerValue) o).value;
+        }
+        if (o instanceof Integer) {
+            return value == (Integer) o;
+        }
+        return false;
+    }
 }

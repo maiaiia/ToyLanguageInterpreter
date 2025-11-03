@@ -20,4 +20,15 @@ public class BooleanValue implements IValue {
     public String toString() {
         return String.valueOf(value);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof BooleanValue) {
+            return value == ((BooleanValue) o).value;
+        }
+        if (o instanceof boolean) {
+            return o.equals(value);
+        }
+        return false;
+    }
 }

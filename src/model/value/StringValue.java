@@ -17,4 +17,14 @@ public class StringValue implements IValue {
         return value;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof StringValue) {
+            return value.equals(((StringValue) o).value);
+        }
+        if (o instanceof String) {
+            return value.equals(o);
+        }
+        return false;
+    }
 }
