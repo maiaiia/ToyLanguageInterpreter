@@ -12,7 +12,6 @@ import programState.HashMapFileTable;
 import programState.ProgramState;
 import view.*;
 
-//TODO - intreaba execution stack
 
 List<ProgramState> getHardcodedExpressionsList(){
     List<ProgramState> hardCodedProgramStates = new ArrayList<>();
@@ -77,13 +76,13 @@ List<ProgramState> getHardcodedExpressionsList(){
 
     var stk1 = new Stack<IStatement>();
     stk1.push(ex1);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable()));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex1.txt"));
     var stk2 = new Stack<IStatement>();
     stk2.push(ex2);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable()));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex2.txt"));
     var stk3 = new Stack<IStatement>();
     stk3.push(ex3);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable()));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex3.txt"));
 
     return hardCodedProgramStates;
 }

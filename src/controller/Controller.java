@@ -20,7 +20,9 @@ public class Controller implements IController {
             throw new ExecutionStackEmptyException();
         }
         IStatement statement = executionStack.pop();
-        return statement.execute(programState);
+        var ret =  statement.execute(programState);
+        programState.logCurrentState();
+        return ret;
     }
 
     @Override
