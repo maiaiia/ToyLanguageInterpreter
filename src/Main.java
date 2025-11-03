@@ -13,7 +13,8 @@ import view.*;
 
 List<ProgramState> getHardcodedExpressionsList(){
     List<ProgramState> hardCodedProgramStates = new ArrayList<>();
-    var ex1 = new CompoundStatement(
+    var ex1 =
+            new CompoundStatement(
             new VariableDeclarationStatement("v", Type.INTEGER),
             new CompoundStatement(
                     new AssignmentStatement("v", new ValueExpression(new IntegerValue(2))),

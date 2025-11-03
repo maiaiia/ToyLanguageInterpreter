@@ -11,4 +11,10 @@ public class StringValue implements IValue {
     public Type getType() {
         return Type.STRING;
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
 }

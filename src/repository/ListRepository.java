@@ -3,6 +3,7 @@ package repository;
 import exception.OutOfBoundsIndexException;
 import state.ProgramState;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,11 @@ public class ListRepository implements IRepository {
         } catch (IndexOutOfBoundsException e) {
             throw new OutOfBoundsIndexException("Index out of bounds!");
         }
+    }
+
+    @Override
+    public void logProgramStateExecution() {
+        return;
     }
 
 }
