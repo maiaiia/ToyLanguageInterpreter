@@ -5,7 +5,7 @@ import exception.FileNotFoundException;
 import java.io.BufferedReader;
 
 public interface IFileTable {
-    boolean isOpened(String fileName) throws FileNotFoundException;
+    boolean isOpened(String fileName);
 
     void add(String fileName, BufferedReader bufferedReader);
 

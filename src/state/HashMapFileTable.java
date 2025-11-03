@@ -9,9 +9,7 @@ public class HashMapFileTable implements IFileTable {
     HashMap<String, BufferedReader> fileTable = new HashMap<>();
 
     @Override
-    public boolean isOpened(String fileName) throws FileNotFoundException {
-        if (!fileTable.containsKey(fileName))
-            throw new FileNotFoundException();
+    public boolean isOpened(String fileName){
         return fileTable.get(fileName) != null;
     }
 

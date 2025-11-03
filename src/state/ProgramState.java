@@ -7,14 +7,16 @@ import model.statement.IStatement;
 import model.value.IValue;
 
 public class ProgramState {
-    IStack<IStatement> executionStack;
-    IDictionary<String, IValue> symbolTable;
-    IList<String> output;
+    private final IStack<IStatement> executionStack;
+    private final IDictionary<String, IValue> symbolTable;
+    private final IList<String> output;
+    private final IFileTable fileTable;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
+        this.fileTable = fileTable;
     }
 
     public IStack<IStatement> getExecutionStack() {
@@ -28,6 +30,8 @@ public class ProgramState {
     public IList<String> getOutput() {
         return output;
     }
+
+    public IFileTable getFileTable() {return fileTable;}
 
     public String toString() {
         return "Execution Stack:\n" + executionStack.toString() +
