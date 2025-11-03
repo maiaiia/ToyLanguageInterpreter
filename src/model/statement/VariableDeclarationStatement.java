@@ -1,11 +1,8 @@
 package model.statement;
 
 import exception.VariableAlreadyDeclaredException;
-import model.value.BooleanValue;
-import model.value.IValue;
-import model.value.IntegerValue;
 import model.value.Type;
-import state.ProgramState;
+import programState.ProgramState;
 
 public class VariableDeclarationStatement implements IStatement {
     private final String variableName;

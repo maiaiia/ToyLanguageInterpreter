@@ -1,7 +1,7 @@
 package repository;
 
 import exception.OutOfBoundsIndexException;
-import state.ProgramState;
+import programState.ProgramState;
 
 public interface IRepository {
     void addState(ProgramState programState);

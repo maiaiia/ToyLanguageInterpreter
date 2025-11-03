@@ -4,7 +4,7 @@ import exception.ExecutionStackEmptyException;
 import exception.OutOfBoundsIndexException;
 import model.statement.IStatement;
 import repository.IRepository;
-import state.ProgramState;
+import programState.ProgramState;
 
 public class Controller implements IController {
     private final IRepository repository;

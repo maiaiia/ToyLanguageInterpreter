@@ -1,6 +1,6 @@
 package model.statement;
 
-import state.ProgramState;
+import programState.ProgramState;
 
 public class CompoundStatement implements IStatement {
     private final IStatement statement1;

@@ -1,7 +1,7 @@
 package controller;
 
 import exception.OutOfBoundsIndexException;
-import state.ProgramState;
+import programState.ProgramState;
 
 public interface IController {
     ProgramState executeOneStep(ProgramState programState);

@@ -8,8 +8,8 @@ import model.statement.*;
 import model.value.*;
 import controller.*;
 import repository.*;
-import state.HashMapFileTable;
-import state.ProgramState;
+import programState.HashMapFileTable;
+import programState.ProgramState;
 import view.*;
 
 //TODO - intreaba execution stack

@@ -1,12 +1,12 @@
-package model.statement;
+package model.statement.file_statements;
 
 import exception.*;
 import model.expression.IExpression;
+import model.statement.IStatement;
 import model.value.Type;
-import state.ProgramState;
+import programState.ProgramState;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
