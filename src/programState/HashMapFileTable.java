@@ -1,6 +1,7 @@
 package programState;
 
 import exception.FileNotFoundException;
+import exception.FileOperationException;
 
 import java.io.BufferedReader;
 import java.util.HashMap;
@@ -24,5 +25,16 @@ public class HashMapFileTable implements IFileTable {
         if (bufferedReader == null)
             throw new FileNotFoundException();
         return bufferedReader;
+    }
+
+    @Override
+    public void remove(String fileName) {
+        if (!fileTable.containsKey(fileName)){
+            throw new FileOperationException("File does not exist");
+        }
+        if (isOpened(fileName)) {
+            throw new FileOperationException("Close file before removing it: " + fileName);
+        }
+        fileTable.remove(fileName);
     }
 }

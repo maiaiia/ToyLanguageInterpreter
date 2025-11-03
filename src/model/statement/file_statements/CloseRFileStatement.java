@@ -27,6 +27,7 @@ public class CloseRFileStatement implements IStatement {
         try {
             BufferedReader file = programState.getFileTable().getFile(fileName);
             file.close();
+            programState.getFileTable().remove(fileName);
         } catch (IOException e) {
             throw new FileOperationException(e);
         }
