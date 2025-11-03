@@ -37,4 +37,14 @@ public class HashMapFileTable implements IFileTable {
         }
         fileTable.remove(fileName);
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (String fileName : fileTable.keySet()) {
+            result += fileName + "\n";
+        }
+        return result;
+    }
+
 }

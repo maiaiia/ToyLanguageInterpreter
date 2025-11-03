@@ -28,6 +28,11 @@ public class Stack<T> implements IStack<T> {
 
     @Override
     public String toString(){
-        return stack.toString();
+        String result = "";
+        for (T element : stack.reversed()) {
+            result += element.toString() + "\n";
+        }
+        if (result.length() != 0) {result = result.substring(0, result.length()-1);}
+        return result;
     }
 }

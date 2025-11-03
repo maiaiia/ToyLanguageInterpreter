@@ -75,6 +75,11 @@ public class DynamicArrayList<T> implements  IList<T> {
 
     @Override
     public String toString(){
-        return list.toString();
+        String result = "";
+        for (T item : list){
+            result += item.toString() + "\n";
+        }
+        if (result.length() != 0) {result = result.substring(0, result.length()-1);}
+        return result;
     }
 }

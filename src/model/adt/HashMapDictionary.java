@@ -51,7 +51,12 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
 
     @Override
     public String toString(){
-        return map.toString();
+        String result = "";
+        for (K key : map.keySet()){
+            result += key.toString() + " --> " + map.get(key) + "\n";
+        }
+        if (result.length() != 0) {result = result.substring(0, result.length()-1);}
+        return result;
     }
 
 }
