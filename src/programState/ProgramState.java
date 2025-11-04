@@ -2,6 +2,7 @@ package programState;
 
 import exception.FileOperationException;
 import model.adt.IDictionary;
+import model.adt.IFileTable;
 import model.adt.IList;
 import model.adt.IStack;
 import model.statement.IStatement;

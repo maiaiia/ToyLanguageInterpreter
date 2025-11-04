@@ -1,10 +1,12 @@
-package programState;
+package model.adt;
 
 import exception.FileNotFoundException;
 import exception.FileOperationException;
 
 import java.io.BufferedReader;
 import java.util.HashMap;
+
+//TODO might have to change file table to just implement IDictionary<String, BufferedReader> instead (but I don't like that)
 
 public class HashMapFileTable implements IFileTable {
     HashMap<String, BufferedReader> fileTable = new HashMap<>();

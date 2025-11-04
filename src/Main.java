@@ -11,7 +11,7 @@ import model.statement.file_statements.ReadFileStatement;
 import model.value.*;
 import controller.*;
 import repository.*;
-import programState.HashMapFileTable;
+import model.adt.HashMapFileTable;
 import programState.ProgramState;
 import view.*;
 
