@@ -33,4 +33,9 @@ public class CloseRFileStatement implements IStatement {
         }
         return programState;
     }
+
+    @Override
+    public String toString() {
+        return "CloseRFile(" + expression.toString() + ")";
+    }
 }
