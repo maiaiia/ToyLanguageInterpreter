@@ -40,4 +40,9 @@ public class OpenRFileStatement implements IStatement {
 
         return programState;
     }
+
+    @Override
+    public String toString() {
+        return "OpenRFile(" + expression.toString() + ")";
+    }
 }

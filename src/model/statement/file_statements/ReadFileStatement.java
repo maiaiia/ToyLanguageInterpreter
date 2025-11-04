@@ -12,11 +12,11 @@ import programState.ProgramState;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class readFileStatement implements IStatement {
+public class ReadFileStatement implements IStatement {
     private final IExpression fileNameExpression;
     private final String variableName;
 
-    public readFileStatement(IExpression expression, String variableName) {
+    public ReadFileStatement(IExpression expression, String variableName) {
         this.fileNameExpression = expression;
         this.variableName = variableName;
     }
@@ -56,4 +56,10 @@ public class readFileStatement implements IStatement {
         }
         return programState;
     }
+
+    @Override
+    public String toString() {
+        return "ReadFile(" + fileNameExpression.toString() + ", " + variableName + ")";
+    }
 }
+

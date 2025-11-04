@@ -5,6 +5,9 @@ import model.expression.ArithmeticExpression;
 import model.expression.ValueExpression;
 import model.expression.VariableExpression;
 import model.statement.*;
+import model.statement.file_statements.CloseRFileStatement;
+import model.statement.file_statements.OpenRFileStatement;
+import model.statement.file_statements.ReadFileStatement;
 import model.value.*;
 import controller.*;
 import repository.*;
@@ -12,6 +15,7 @@ import programState.HashMapFileTable;
 import programState.ProgramState;
 import view.*;
 
+//TODO - close doesn't work
 
 List<ProgramState> getHardcodedExpressionsList(){
     List<ProgramState> hardCodedProgramStates = new ArrayList<>();
@@ -71,7 +75,31 @@ List<ProgramState> getHardcodedExpressionsList(){
                     )
             )
     );
-
+    var ex4 = new CompoundStatement(
+            new VariableDeclarationStatement("varf", Type.STRING),
+            new CompoundStatement(
+                    new AssignmentStatement("varf", new ValueExpression(new StringValue("test_files/test.in"))),
+                    new CompoundStatement(
+                            new OpenRFileStatement(new VariableExpression("varf")),
+                            new CompoundStatement(
+                                    new VariableDeclarationStatement("varc", Type.INTEGER),
+                                    new CompoundStatement(
+                                            new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                                            new CompoundStatement(
+                                                    new PrintStatement(new VariableExpression("varc")),
+                                                    new CompoundStatement(
+                                                            new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                                                            new CompoundStatement(
+                                                                    new PrintStatement(new VariableExpression("varc")),
+                                                                    new CloseRFileStatement(new VariableExpression("varf"))
+                                                            )
+                                                    )
+                                            )
+                                    )
+                            )
+                    )
+            )
+    );
 
 
     var stk1 = new Stack<IStatement>();
@@ -84,10 +112,28 @@ List<ProgramState> getHardcodedExpressionsList(){
     stk3.push(ex3);
     hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex3.txt"));
 
+    var stk4 = new Stack<IStatement>();
+    stk4.push(ex4);
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapFileTable(), "log_ex4.txt"));
+
     return hardCodedProgramStates;
 }
 
+void cleanUpLogFiles(){
+    String FILES_DIRECTORY = "log_files/";
+    String[] logFiles = new String[]{"log_ex1.txt", "log_ex2.txt", "log_ex3.txt", "log_ex4.txt"};
+    for(String logFile : logFiles){
+        // clean up files
+        PrintWriter file;
+        try{
+            file = new PrintWriter(new BufferedWriter(new FileWriter(FILES_DIRECTORY + logFile, false)));
+            file.println();
+        } catch (IOException _) {}
+    }
+}
+
 IRepository getRepository(boolean hardcodedData){
+    if (hardcodedData){cleanUpLogFiles();}
     return switch (hardcodedData){
         case true -> new ListRepository(getHardcodedExpressionsList());
         case false -> new ListRepository();

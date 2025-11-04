@@ -32,9 +32,9 @@ public class HashMapFileTable implements IFileTable {
         if (!fileTable.containsKey(fileName)){
             throw new FileOperationException("File does not exist");
         }
-        if (isOpened(fileName)) {
+        /*if (isOpened(fileName)) {
             throw new FileOperationException("Close file before removing it: " + fileName);
-        }
+        }*/
         fileTable.remove(fileName);
     }
 

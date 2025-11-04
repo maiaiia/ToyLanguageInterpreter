@@ -18,14 +18,14 @@ public class ProgramState {
     private final IList<String> output;
     private final IFileTable fileTable;
     private final String logFileName;
-
+    private final String LOG_FILES_PATH = "log_files/";
 
     public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable, String logFileName) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
         this.fileTable = fileTable;
-        this.logFileName = "test_files/" + logFileName;
+        this.logFileName = LOG_FILES_PATH + logFileName;
     }
 
     public IStack<IStatement> getExecutionStack() {
@@ -45,7 +45,8 @@ public class ProgramState {
     public String toString() {
         return "Execution Stack:\n" + executionStack.toString() +
                 "\nSymbol Table:\n" + symbolTable.toString() +
-                "\nOutput:\n" + output.toString();
+                "\nOutput:\n" + output.toString() +
+                "\nFile Table:\n" + fileTable.toString();
     }
 
     public void logCurrentState(){
@@ -55,6 +56,8 @@ public class ProgramState {
         } catch (IOException e) {
             throw new FileOperationException(e);
         }
+        logFile.println(this);
+        /*
         // ----- Execution Stack -----
         logFile.println("Execution Stack:");
         logFile.println(executionStack);
@@ -70,6 +73,8 @@ public class ProgramState {
         // -------- FileTable --------
         logFile.println("File Table:");
         logFile.println(fileTable);
+        */
+
         logFile.println("***************************");
 
         logFile.close();
