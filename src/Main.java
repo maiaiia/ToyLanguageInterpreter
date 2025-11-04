@@ -15,8 +15,6 @@ import model.adt.HashMapFileTable;
 import programState.ProgramState;
 import view.*;
 
-//TODO - close doesn't work
-
 List<ProgramState> getHardcodedExpressionsList(){
     List<ProgramState> hardCodedProgramStates = new ArrayList<>();
     var ex1 =

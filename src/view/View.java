@@ -2,46 +2,30 @@ package view;
 
 import controller.IController;
 import exception.StopExecutionException;
+import view.command.Command;
+import view.command.ExitCommand;
+import view.command.RunProgramCommand;
 
 import java.util.*;
 
 public class View implements IView {
-    // -------------- CONSTANTS ----------------
-    private final String DISPLAY_MENU = "1", ADD_PROGRAM = "2", EXECUTE_PROGRAM = "3", EXIT = "0";
-    private final List<String> menuOptions = new ArrayList<>(){{
-        add(DISPLAY_MENU);
-        add(ADD_PROGRAM);
-        add(EXECUTE_PROGRAM);
-        add(EXIT);
-    }};
-    private final Dictionary<String, String> menuDisplay = new Hashtable<>(){{
-        put(DISPLAY_MENU, "Display Menu");
-        put(ADD_PROGRAM, "Add Program");
-        put(EXECUTE_PROGRAM, "Execute Program");
-        put(EXIT, "Exit");
-    }};
-
     // ----------- PRIVATE ATTRIBUTES -------------
     private final IController controller;
+    private final TextMenu textMenu;
 
     // ------------ METHODS ---------------
     public View(IController controller) {
         this.controller = controller;
+        this.textMenu = new TextMenu();
+        textMenu.addCommand(new ExitCommand("0", "Exit"));
+        textMenu.addCommand(new RunProgramCommand("1", "Run current program", controller));
     }
-    @Override
-    public void displayMenu() {
-        for (String option : menuOptions) {
-            IO.println(option + ". " + menuDisplay.get(option));
-        }
-    }
-
 
     private void addProgram() {
         IO.println("Add Program called");
     }
     private void executeProgram() { //will execute current program
-        var currentState = controller.getCurrentProgramState();
-        var finalState = controller.executeCurrentProgram();
+        controller.executeCurrentProgram();
         IO.println("Program executed successfully");
     }
 
@@ -49,15 +33,17 @@ public class View implements IView {
     public void start(){
         while(true){
             try {
-                displayMenu();
+                textMenu.displayMenu();
                 String userInput = IO.readln("Enter Command: ").strip();
-                switch(userInput){
-                    case DISPLAY_MENU -> displayMenu();
-                    case ADD_PROGRAM -> addProgram();
-                    case EXECUTE_PROGRAM -> executeProgram();
-                    case EXIT -> throw new StopExecutionException();
-                    default -> IO.println("Invalid Command. Try again.");
+                Command command = textMenu.getCommand(userInput);
+                if (command == null) {
+                    IO.println("Invalid Command");
                 }
+                else {
+                    command.execute();
+                    IO.println(command.getDescription() + " executed successfully");
+                }
+
             } catch (StopExecutionException e) {
                 break;
             }
