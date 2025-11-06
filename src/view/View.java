@@ -1,36 +1,44 @@
 package view;
 
+import controller.Controller;
 import controller.IController;
-import exception.StopExecutionException;
+import model.adt.DynamicArrayList;
+import model.adt.HashMapDictionary;
+import model.adt.Stack;
+import repository.IRepository;
+import repository.ListRepository;
+import state.ProgramState;
+import utils.HardCodedStatements;
 import view.command.Command;
 import view.command.ExitCommand;
 import view.command.RunProgramCommand;
 
+import java.io.*;
 import java.util.*;
 
-public class View implements IView {
-    // ----------- PRIVATE ATTRIBUTES -------------
-    private final IController controller;
-    private final TextMenu textMenu;
+public class View  {
+    static void main(String[] args) {
+        TextMenu textMenu = new TextMenu();
+        var statements = new HardCodedStatements().getStatements();
 
-    // ------------ METHODS ---------------
-    public View(IController controller) {
-        this.controller = controller;
-        this.textMenu = new TextMenu();
+        for (int i = 0; i < statements.size(); i++) {
+            ProgramState p = new ProgramState(new HashMapDictionary<>(), new Stack<>(), new DynamicArrayList<>(), new HashMapDictionary<>(), statements.get(i));
+            IRepository repository = new ListRepository(new ArrayList<>(),"log" + Integer.toString(i + 1) + ".txt" );
+            repository.addState(p);
+            IController controller = new Controller(repository);
+            textMenu.addCommand(new RunProgramCommand(Integer.toString(i + 1), statements.get(i).toString(), controller));
+
+            try { //clear log files for hard coded programs
+                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("log" + Integer.toString(i + 1) + ".txt", false)));
+                writer.println();
+                writer.close();
+            } catch (IOException _){
+
+            }
+        }
+
         textMenu.addCommand(new ExitCommand("0", "Exit"));
-        textMenu.addCommand(new RunProgramCommand("1", "Run current program", controller));
-    }
 
-    private void addProgram() {
-        IO.println("Add Program called");
-    }
-    private void executeProgram() { //will execute current program
-        controller.executeCurrentProgram();
-        IO.println("Program executed successfully");
-    }
-
-    @Override
-    public void start(){
         while(true){
             try {
                 textMenu.displayMenu();
@@ -44,11 +52,9 @@ public class View implements IView {
                     IO.println(command.getDescription() + " executed successfully");
                 }
 
-            } catch (StopExecutionException e) {
-                break;
             }
             catch (Exception e) {
-                IO.println(e.getMessage()); //TODO - either make exceptions more specific or print exception tree
+                IO.println(e.getMessage());
             }
         }
     }

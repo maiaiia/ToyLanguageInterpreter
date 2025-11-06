@@ -22,6 +22,8 @@ public class Controller implements IController {
         IStatement statement = executionStack.pop();
         var ret =  statement.execute(programState);
         repository.logCurrentState();
+        // I know we're supposed to call this from executeProgramState, but it makes more sense to me to do it here,
+        // since we want every single step to be logged, whenever this function is called
         return ret;
     }
 

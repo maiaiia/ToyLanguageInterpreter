@@ -54,11 +54,6 @@ public class ListRepository implements IRepository {
     }
 
     @Override
-    public void logProgramStateExecution() {
-        return;
-    }
-
-    @Override
     public void logCurrentState() {
         PrintWriter logFile;
         try {
@@ -67,28 +62,30 @@ public class ListRepository implements IRepository {
             throw new FileOperationException(e);
         }
         logFile.println(this.getCurrentProgramState());
-        /*
-        // ----- Execution Stack -----
-        logFile.println("Execution Stack:");
-        logFile.println(executionStack);
 
-        // ------- SymbolTable -------
-        logFile.println("Symbol Table:");
-        logFile.println(symbolTable);
-
-        // --------- Out -----------
-        logFile.println("Output:");
-        logFile.println(output);
-
-        // -------- FileTable --------
-        logFile.println("File Table:");
-        logFile.println(fileTable);
-        */
-
-        logFile.println("***************************");
+        //logFile.println("***************************");
 
         logFile.close();
     }
+
+    @Override
+    public void logAllPrograms() {
+        PrintWriter logFile;
+        try {
+            logFile = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILES_PATH + logFileName, true)));
+        } catch (IOException e) {
+            throw new FileOperationException(e);
+        }
+
+        for (int i = 0; i < programStates.size(); i++) {
+            logFile.println("Program " + i);
+            logFile.println(programStates.get(i).toString());
+        }
+        logFile.println("***************************");
+        logFile.close();
+    }
+
+
 }
 
 
