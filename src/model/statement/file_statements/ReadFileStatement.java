@@ -8,8 +8,7 @@ import model.type.IntegerType;
 import model.type.StringType;
 import model.value.IValue;
 import model.value.IntegerValue;
-import model.type.IType;
-import programState.ProgramState;
+import state.ProgramState;
 
 import java.io.BufferedReader;
 import java.io.IOException;

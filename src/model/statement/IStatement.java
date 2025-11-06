@@ -1,6 +1,6 @@
 package model.statement;
 
-import programState.ProgramState;
+import state.ProgramState;
 
 public interface IStatement {
     ProgramState execute(ProgramState programState);

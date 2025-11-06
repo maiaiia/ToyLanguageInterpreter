@@ -2,7 +2,7 @@ package model.statement;
 
 import exception.VariableAlreadyDeclaredException;
 import model.type.IType;
-import programState.ProgramState;
+import state.ProgramState;
 
 public class VariableDeclarationStatement implements IStatement {
     private final String variableName;

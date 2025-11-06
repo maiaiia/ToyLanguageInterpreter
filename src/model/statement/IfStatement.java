@@ -4,7 +4,7 @@ import exception.ConditionNotBooleanException;
 import model.expression.IExpression;
 import model.value.BooleanValue;
 import model.value.IValue;
-import programState.ProgramState;
+import state.ProgramState;
 
 public class IfStatement implements IStatement {
     private final IExpression condition;

@@ -4,9 +4,8 @@ import exception.FileOperationException;
 import exception.InvalidOperandTypeException;
 import model.expression.IExpression;
 import model.statement.IStatement;
-import model.type.IType;
 import model.type.StringType;
-import programState.ProgramState;
+import state.ProgramState;
 
 import java.io.BufferedReader;
 import java.io.IOException;

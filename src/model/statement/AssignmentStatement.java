@@ -4,7 +4,7 @@ import exception.InvalidVariableTypeException;
 import exception.VariableNotDefinedException;
 import model.expression.IExpression;
 import model.value.IValue;
-import programState.ProgramState;
+import state.ProgramState;
 
 public class AssignmentStatement implements IStatement {
     private final String symbolName;

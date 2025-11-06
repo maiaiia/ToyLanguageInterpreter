@@ -2,7 +2,7 @@ package model.statement;
 
 import model.expression.IExpression;
 import model.value.IValue;
-import programState.ProgramState;
+import state.ProgramState;
 
 public class PrintStatement implements IStatement {
     private final IExpression expression;

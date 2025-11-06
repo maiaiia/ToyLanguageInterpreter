@@ -1,4 +1,4 @@
-package programState;
+package state;
 
 import exception.FileOperationException;
 import model.adt.IDictionary;
