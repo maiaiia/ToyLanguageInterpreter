@@ -8,10 +8,10 @@ import state.ProgramState;
 
 public class Controller implements IController {
     private final IRepository repository;
+    private boolean displayFlag = false;
     public Controller(IRepository repository) {
         this.repository = repository;
     }
-
 
     @Override
     public ProgramState executeOneStep(ProgramState programState) {
@@ -46,18 +46,6 @@ public class Controller implements IController {
     }
 
     @Override
-    public ProgramState executeAll() {
-        ProgramState programState = null;
-        try{
-            programState = getCurrentProgramState();
-            while(true){
-                programState = this.executeCurrentProgram();
-            }
-        } catch (OutOfBoundsIndexException _) {}
-        return programState;
-    }
-
-    @Override
     public ProgramState getCurrentProgramState() {
         return repository.getCurrentProgramState();
     }
@@ -65,5 +53,20 @@ public class Controller implements IController {
     @Override
     public ProgramState moveToNextProgramState() throws OutOfBoundsIndexException { //TODO generic exception is bad :(
         return repository.getNextProgramState();
+    }
+
+    @Override
+    public void setDisplayFlag() {
+        displayFlag = true;
+    }
+
+    @Override
+    public void resetDisplayFlag() {
+        displayFlag = false;
+    }
+
+    @Override
+    public boolean getDisplayFlag() {
+        return displayFlag;
     }
 }
