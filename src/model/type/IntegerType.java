@@ -10,9 +10,7 @@ public class IntegerType implements IType {
     }
 
     @Override
-    public boolean equals(IType other) {
-        return other instanceof IntegerType;
-    }
+    public boolean equals(Object other) { return other instanceof IntegerType; }
 
     @Override
     public IType deepCopy() {

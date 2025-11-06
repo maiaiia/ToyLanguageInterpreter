@@ -4,6 +4,6 @@ import model.value.IValue;
 
 public interface IType {
     IValue getDefaultValue();
-    boolean equals(IType other);
+    boolean equals(Object other);
     IType deepCopy();
 }

@@ -11,7 +11,7 @@ public class BooleanType implements IType {
     }
 
     @Override
-    public boolean equals(IType other) {
+    public boolean equals(Object other) {
         return other instanceof BooleanType;
     }
 
