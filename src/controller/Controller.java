@@ -19,8 +19,6 @@ public class Controller implements IController {
     @Override
     public void resetDisplayFlag() {displayFlag = 0;}
     @Override
-    public void setDisplayFlag(int displayFlag) {this.displayFlag = displayFlag;}
-    @Override
     public int getDisplayFlag() {return displayFlag;}
 
 
@@ -51,18 +49,6 @@ public class Controller implements IController {
         ProgramState programState = getCurrentProgramState();
         programState = executeProgramState(programState);
         moveToNextProgramState();
-        return programState;
-    }
-
-    @Override
-    public ProgramState executeAll() {
-        ProgramState programState = null;
-        try{
-            programState = getCurrentProgramState();
-            while(true){
-                programState = this.executeCurrentProgram();
-            }
-        } catch (OutOfBoundsIndexException _) {}
         return programState;
     }
 
