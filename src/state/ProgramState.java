@@ -7,14 +7,17 @@ import model.statement.IStatement;
 import model.value.IValue;
 
 public class ProgramState {
-    IStack<IStatement> executionStack;
-    IDictionary<String, IValue> symbolTable;
-    IList<String> output;
+    private final IStack<IStatement> executionStack;
+    private final IDictionary<String, IValue> symbolTable;
+    private final IList<String> output;
+    private final IStatement originalProgram;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
+        this.originalProgram = originalProgram.deepCopy();
+        this.executionStack.push(this.originalProgram);
     }
 
     public IStack<IStatement> getExecutionStack() {

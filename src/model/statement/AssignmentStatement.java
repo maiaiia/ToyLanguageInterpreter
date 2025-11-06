@@ -33,4 +33,9 @@ public class AssignmentStatement implements IStatement {
     public String toString() {
         return symbolName + " = " + expression;
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new AssignmentStatement(symbolName, expression);
+    }
 }
