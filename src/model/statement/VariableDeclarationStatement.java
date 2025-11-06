@@ -30,6 +30,6 @@ public class VariableDeclarationStatement implements IStatement {
 
     @Override
     public IStatement deepCopy() {
-        return new VariableDeclarationStatement(variableName, variableType);
+        return new VariableDeclarationStatement(variableName, variableType.deepCopy());
     }
 }

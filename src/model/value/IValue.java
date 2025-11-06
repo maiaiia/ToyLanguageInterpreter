@@ -5,5 +5,6 @@ import model.type.IType;
 public interface IValue {
     public IType getType();
     public String toString();
+    IValue deepCopy();
 
 }

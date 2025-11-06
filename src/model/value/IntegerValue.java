@@ -22,4 +22,9 @@ public class IntegerValue implements IValue {
     public String toString() {
         return String.valueOf(value);
     }
+
+    @Override
+    public IValue deepCopy() {
+        return new  IntegerValue(value);
+    }
 }

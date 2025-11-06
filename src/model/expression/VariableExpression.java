@@ -22,4 +22,9 @@ public class VariableExpression implements IExpression {
     {
         return variableName;
     }
+
+    @Override
+    public IExpression deepCopy() {
+        return new VariableExpression(variableName);
+    }
 }

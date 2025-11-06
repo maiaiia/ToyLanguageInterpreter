@@ -15,6 +15,11 @@ public class IntegerType implements IType {
     }
 
     @Override
+    public IType deepCopy() {
+        return new  IntegerType();
+    }
+
+    @Override
     public String toString() {
         return "int";
     }

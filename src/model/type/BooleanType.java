@@ -16,6 +16,11 @@ public class BooleanType implements IType {
     }
 
     @Override
+    public IType deepCopy() {
+        return new  BooleanType();
+    }
+
+    @Override
     public String toString() {
         return "bool";
     }
