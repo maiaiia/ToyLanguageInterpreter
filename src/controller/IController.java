@@ -10,4 +10,9 @@ public interface IController {
     ProgramState executeAll();
     ProgramState getCurrentProgramState();
     ProgramState moveToNextProgramState() throws OutOfBoundsIndexException;
+
+    void setDisplayFlag();
+    void resetDisplayFlag();
+    void setDisplayFlag(int displayFlag);
+    int getDisplayFlag();
 }

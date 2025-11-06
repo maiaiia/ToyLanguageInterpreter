@@ -8,9 +8,20 @@ import state.ProgramState;
 
 public class Controller implements IController {
     private final IRepository repository;
+    private int displayFlag = 0;
+
     public Controller(IRepository repository) {
         this.repository = repository;
+
     }
+    @Override
+    public void setDisplayFlag() {displayFlag = 1;}
+    @Override
+    public void resetDisplayFlag() {displayFlag = 0;}
+    @Override
+    public void setDisplayFlag(int displayFlag) {this.displayFlag = displayFlag;}
+    @Override
+    public int getDisplayFlag() {return displayFlag;}
 
 
     @Override
