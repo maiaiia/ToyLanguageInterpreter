@@ -102,18 +102,14 @@ List<ProgramState> getHardcodedExpressionsList(){
 
 
     var stk1 = new Stack<IStatement>();
-    stk1.push(ex1);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex1.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable(), ex1, "log_ex1.txt"));
     var stk2 = new Stack<IStatement>();
-    stk2.push(ex2);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex2.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable(), ex2, "log_ex2.txt"));
     var stk3 = new Stack<IStatement>();
-    stk3.push(ex3);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), "log_ex3.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), ex3, "log_ex3.txt"));
 
     var stk4 = new Stack<IStatement>();
-    stk4.push(ex4);
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapFileTable(), "log_ex4.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapFileTable(), ex4,"log_ex4.txt"));
 
     return hardCodedProgramStates;
 }

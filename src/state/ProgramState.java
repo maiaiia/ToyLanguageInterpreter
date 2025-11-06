@@ -18,15 +18,18 @@ public class ProgramState {
     private final IDictionary<String, IValue> symbolTable;
     private final IList<String> output;
     private final IFileTable fileTable;
+    private final IStatement originalProgram;
     private final String logFileName;
     private final String LOG_FILES_PATH = "log_files/";
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable, String logFileName) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable, IStatement originalProgram, String logFileName) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
         this.fileTable = fileTable;
         this.logFileName = LOG_FILES_PATH + logFileName;
+        this.originalProgram = originalProgram.deepCopy();
+        this.executionStack.push(originalProgram);
     }
 
     public IStack<IStatement> getExecutionStack() {
