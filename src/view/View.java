@@ -9,19 +9,19 @@ import java.util.*;
 
 public class View implements IView {
     // -------------- CONSTANTS ----------------
-    private final String DISPLAY_MENU = "1", ADD_PROGRAM = "2", EXECUTE_FULL_PROGRAM = "3", EXECUTE_STEP_BY_STEP = "4", EXIT = "0";
+    private final String DISPLAY_MENU = "1", ADD_PROGRAM = "2", SET_DISPLAY_FLAG = "3", EXECUTE_PROGRAM = "4",  EXIT = "0";
     private final List<String> menuOptions = new ArrayList<>(){{
         add(DISPLAY_MENU);
         add(ADD_PROGRAM);
-        add(EXECUTE_FULL_PROGRAM);
-        add(EXECUTE_STEP_BY_STEP);
+        add(SET_DISPLAY_FLAG);
+        add(EXECUTE_PROGRAM);
         add(EXIT);
     }};
     private final Dictionary<String, String> menuDisplay = new Hashtable<>(){{
         put(DISPLAY_MENU, "Display Menu");
         put(ADD_PROGRAM, "Add Program");
-        put(EXECUTE_FULL_PROGRAM, "Execute Full Program");
-        put(EXECUTE_STEP_BY_STEP, "Execute Program Step By Step");
+        put(SET_DISPLAY_FLAG, "Set the Display Flag of the Current Program");
+        put(EXECUTE_PROGRAM, "Execute Program");
         put(EXIT, "Exit");
     }};
 
@@ -73,6 +73,14 @@ public class View implements IView {
         catch (OutOfBoundsIndexException _) {}
     }
 
+    private void executeProgram() {
+        var displayFlag = controller.getCurrentProgramState().getDisplayFlag();
+        if (displayFlag == 1) {
+            executeStepByStep();
+        } else {
+            executeFullProgram();
+        }
+    }
 
     @Override
     public void start(){
@@ -83,8 +91,8 @@ public class View implements IView {
                 switch(userInput){
                     case DISPLAY_MENU -> displayMenu();
                     case ADD_PROGRAM -> addProgram();
-                    case EXECUTE_FULL_PROGRAM -> executeFullProgram();
-                    case EXECUTE_STEP_BY_STEP -> executeStepByStep();
+                    case SET_DISPLAY_FLAG -> setDisplayFlag();
+                    case EXECUTE_PROGRAM -> executeProgram();
                     case EXIT -> throw new StopExecutionException();
                     default -> IO.println("Invalid Command. Try again.");
                 }
@@ -95,5 +103,9 @@ public class View implements IView {
                 IO.println(e.getMessage()); //TODO - either make exceptions more specific or print exception tree
             }
         }
+    }
+
+    private void setDisplayFlag() {
+        controller.getCurrentProgramState().setDisplayFlag();
     }
 }

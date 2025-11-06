@@ -11,6 +11,7 @@ public class ProgramState {
     private final IDictionary<String, IValue> symbolTable;
     private final IList<String> output;
     private final IStatement originalProgram;
+    private int displayFlag = 0;
 
     public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IStatement originalProgram) {
         this.symbolTable = symbolTable;
@@ -19,6 +20,11 @@ public class ProgramState {
         this.originalProgram = originalProgram.deepCopy();
         this.executionStack.push(this.originalProgram);
     }
+
+    public void setDisplayFlag() {displayFlag = 1;}
+    public void resetDisplayFlag() {displayFlag = 0;}
+    public void setDisplayFlag(int displayFlag) {this.displayFlag = displayFlag;}
+    public int getDisplayFlag() {return displayFlag;}
 
     public IStack<IStatement> getExecutionStack() {
         return executionStack;
