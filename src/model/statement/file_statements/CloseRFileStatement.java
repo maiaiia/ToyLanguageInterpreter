@@ -4,7 +4,8 @@ import exception.FileOperationException;
 import exception.InvalidOperandTypeException;
 import model.expression.IExpression;
 import model.statement.IStatement;
-import model.value.Type;
+import model.type.IType;
+import model.type.StringType;
 import programState.ProgramState;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ public class CloseRFileStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
         var fileNameIValue = expression.evaluate(programState.getSymbolTable());
-        if (fileNameIValue.getType() != Type.STRING)
+        if (!fileNameIValue.getType().equals(new StringType()))
             throw new InvalidOperandTypeException();
         String fileName = fileNameIValue.toString();
 

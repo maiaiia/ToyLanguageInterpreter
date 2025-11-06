@@ -3,10 +3,10 @@ package model.expression;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
 import model.adt.IDictionary;
+import model.type.IntegerType;
 import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntegerValue;
-import model.value.Type;
 
 public class RelationalExpression implements IExpression {
     private final IExpression left;
@@ -21,7 +21,7 @@ public class RelationalExpression implements IExpression {
 
     private int getIntValue(IExpression expression, IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
-        if (value.getType() != Type.INTEGER) {
+        if (! value.getType().equals(new IntegerType())) {
             throw new InvalidOperandTypeException();
         }
         return ((IntegerValue) value).getValue();

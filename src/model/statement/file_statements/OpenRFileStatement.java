@@ -3,7 +3,8 @@ package model.statement.file_statements;
 import exception.*;
 import model.expression.IExpression;
 import model.statement.IStatement;
-import model.value.Type;
+import model.type.IType;
+import model.type.StringType;
 import programState.ProgramState;
 
 import java.io.BufferedReader;
@@ -22,8 +23,9 @@ public class OpenRFileStatement implements IStatement {
             throws InvalidOperandTypeException, FileAlreadyOpenedException, FileOperationException
     {
         var fileName = expression.evaluate(programState.getSymbolTable());
-        if (fileName.getType() != Type.STRING)
+        if (! fileName.getType().equals(new StringType())) {
             throw new InvalidOperandTypeException();
+        }
         String fileNameString = fileName.toString();
 
         var fileTable = programState.getFileTable();

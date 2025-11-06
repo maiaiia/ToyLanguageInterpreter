@@ -4,9 +4,11 @@ import exception.*;
 import model.adt.IDictionary;
 import model.expression.IExpression;
 import model.statement.IStatement;
+import model.type.IntegerType;
+import model.type.StringType;
 import model.value.IValue;
 import model.value.IntegerValue;
-import model.value.Type;
+import model.type.IType;
 import programState.ProgramState;
 
 import java.io.BufferedReader;
@@ -29,12 +31,12 @@ public class ReadFileStatement implements IStatement {
         if (!symbolTable.contains(variableName)) {
             throw new VariableNotDefinedException(variableName);
         }
-        if (symbolTable.get(variableName).getType() != Type.INTEGER) {
-            throw new InvalidVariableTypeException(variableName, Type.INTEGER);
+        if (! symbolTable.get(variableName).getType().equals(new IntegerType())) {
+            throw new InvalidVariableTypeException(variableName, new IntegerType());
         }
         var expressionResult = fileNameExpression.evaluate(symbolTable);
-        if (expressionResult.getType() != Type.STRING) {
-            throw new InvalidExpressionTypeException(Type.STRING);
+        if (!expressionResult.getType().equals(new StringType())) {
+            throw new InvalidExpressionTypeException(new StringType());
         }
         String fileName = expressionResult.toString();
 

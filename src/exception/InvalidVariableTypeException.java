@@ -1,9 +1,9 @@
 package exception;
 
-import model.value.Type;
+import model.type.IType;
 
 public class InvalidVariableTypeException extends RuntimeException {
-    public InvalidVariableTypeException(String variableName, Type type) {super("Variable " + variableName + " should be of type " + type.toString());}
+    public InvalidVariableTypeException(String variableName, IType type) {super("Variable " + variableName + " should be of type " + type.toString());}
     public InvalidVariableTypeException() {
         super("Invalid variable type");
     }

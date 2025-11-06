@@ -1,6 +1,9 @@
 package model.value;
 
 
+import model.type.BooleanType;
+import model.type.IType;
+
 public class BooleanValue implements IValue {
     private final boolean value;
     public BooleanValue(boolean value) {
@@ -12,8 +15,8 @@ public class BooleanValue implements IValue {
     }
 
     @Override
-    public Type getType() {
-        return Type.BOOLEAN;
+    public IType getType() {
+        return new BooleanType();
     }
 
     @Override

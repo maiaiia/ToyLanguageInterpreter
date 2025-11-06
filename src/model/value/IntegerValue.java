@@ -1,5 +1,8 @@
 package model.value;
 
+import model.type.IType;
+import model.type.IntegerType;
+
 public class IntegerValue implements IValue {
     private final int value;
     public IntegerValue(int value) {
@@ -11,8 +14,8 @@ public class IntegerValue implements IValue {
     }
 
     @Override
-    public Type getType() {
-        return Type.INTEGER;
+    public IType getType() {
+        return new IntegerType();
     }
 
     @Override

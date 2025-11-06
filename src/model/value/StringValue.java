@@ -1,6 +1,9 @@
 package model.value;
 
 
+import model.type.IType;
+import model.type.StringType;
+
 public class StringValue implements IValue {
     private final String value;
     public StringValue(String value) {
@@ -8,8 +11,8 @@ public class StringValue implements IValue {
     }
 
     @Override
-    public Type getType() {
-        return Type.STRING;
+    public IType getType() {
+        return new StringType();
     }
 
     @Override

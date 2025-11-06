@@ -3,24 +3,18 @@ package model.expression;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
 import model.adt.IDictionary;
+import model.type.BooleanType;
 import model.value.BooleanValue;
 import model.value.IValue;
-import model.value.Type;
 
 public class LogicalExpression implements IExpression {
-    private final IExpression left;
-    private final IExpression right;
-    private final String operator;
-
-    public LogicalExpression(IExpression left, IExpression right, String operator) {
-        this.left = left;
-        this.right = right;
-        this.operator = operator;
-    }
+    IExpression left;
+    IExpression right;
+    String operator;
 
     private boolean getBoolValue(IExpression expression, IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
-        if(! (value.getType() == Type.BOOLEAN)){
+        if(! (value.getType().equals(new BooleanType()))) {
             throw new InvalidOperandTypeException();
         }
         return ((BooleanValue)value).getValue();

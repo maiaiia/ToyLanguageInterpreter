@@ -8,6 +8,7 @@ import model.statement.*;
 import model.statement.file_statements.CloseRFileStatement;
 import model.statement.file_statements.OpenRFileStatement;
 import model.statement.file_statements.ReadFileStatement;
+import model.type.*;
 import model.value.*;
 import controller.*;
 import repository.*;
@@ -19,16 +20,16 @@ List<ProgramState> getHardcodedExpressionsList(){
     List<ProgramState> hardCodedProgramStates = new ArrayList<>();
     var ex1 =
             new CompoundStatement(
-            new VariableDeclarationStatement("v", Type.INTEGER),
+            new VariableDeclarationStatement("v", new IntegerType()),
             new CompoundStatement(
                     new AssignmentStatement("v", new ValueExpression(new IntegerValue(2))),
                     new PrintStatement(new VariableExpression("v"))
             )
     );
     var ex2 = new CompoundStatement(
-            new VariableDeclarationStatement("a", Type.INTEGER),
+            new VariableDeclarationStatement("a", new IntegerType()),
             new CompoundStatement(
-                    new VariableDeclarationStatement("b", Type.INTEGER),
+                    new VariableDeclarationStatement("b", new IntegerType()),
                     new CompoundStatement(
                             new AssignmentStatement(
                                     "a",
@@ -57,9 +58,9 @@ List<ProgramState> getHardcodedExpressionsList(){
             )
     );
     var ex3 = new CompoundStatement(
-            new VariableDeclarationStatement("a", Type.BOOLEAN),
+            new VariableDeclarationStatement("a", new BooleanType()),
             new CompoundStatement(
-                    new VariableDeclarationStatement("v", Type.INTEGER),
+                    new VariableDeclarationStatement("v", new IntegerType()),
                     new CompoundStatement(
                             new AssignmentStatement("a", new ValueExpression(new BooleanValue(true))),
                             new CompoundStatement(
@@ -74,13 +75,13 @@ List<ProgramState> getHardcodedExpressionsList(){
             )
     );
     var ex4 = new CompoundStatement(
-            new VariableDeclarationStatement("varf", Type.STRING),
+            new VariableDeclarationStatement("varf", new StringType()),
             new CompoundStatement(
                     new AssignmentStatement("varf", new ValueExpression(new StringValue("test_files/test.in"))),
                     new CompoundStatement(
                             new OpenRFileStatement(new VariableExpression("varf")),
                             new CompoundStatement(
-                                    new VariableDeclarationStatement("varc", Type.INTEGER),
+                                    new VariableDeclarationStatement("varc", new IntegerType()),
                                     new CompoundStatement(
                                             new ReadFileStatement(new VariableExpression("varf"), "varc"),
                                             new CompoundStatement(
