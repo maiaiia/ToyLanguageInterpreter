@@ -12,6 +12,7 @@ import utils.HardCodedStatements;
 import view.command.Command;
 import view.command.ExitCommand;
 import view.command.RunProgramCommand;
+import view.command.SetDisplayFlagCommand;
 
 import java.io.*;
 import java.util.*;
@@ -32,8 +33,10 @@ public class View  {
                 PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("log" + Integer.toString(i + 1) + ".txt", false)));
                 writer.println();
                 writer.close();
-            } catch (IOException _){
+            } catch (IOException _){}
 
+            if (i == 0){
+                textMenu.addCommand(new SetDisplayFlagCommand("set", "Set the display flag for program 1", controller));
             }
         }
 

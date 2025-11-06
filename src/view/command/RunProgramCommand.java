@@ -2,6 +2,7 @@ package view.command;
 
 import controller.IController;
 import exception.ExecutionStackEmptyException;
+import exception.OutOfBoundsIndexException;
 
 public class RunProgramCommand extends Command {
     private final IController controller;
@@ -15,7 +16,7 @@ public class RunProgramCommand extends Command {
             var program = controller.executeCurrentProgram();
             controller.getWriter().println(program);
             controller.getWriter().flush();
-        } catch (IndexOutOfBoundsException _){
+        } catch (OutOfBoundsIndexException | ExecutionStackEmptyException _){
             throw new ExecutionStackEmptyException();
         }
     }

@@ -1,5 +1,5 @@
 
-void main() {
+void main() { //moved main to view/command/view
 }
 
 
