@@ -62,5 +62,10 @@ public class ReadFileStatement implements IStatement {
     public String toString() {
         return "ReadFile(" + fileNameExpression.toString() + ", " + variableName + ")";
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new ReadFileStatement(fileNameExpression.deepCopy(), variableName);
+    }
 }
 

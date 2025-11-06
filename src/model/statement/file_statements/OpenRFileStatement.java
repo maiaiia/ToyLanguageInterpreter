@@ -46,4 +46,9 @@ public class OpenRFileStatement implements IStatement {
     public String toString() {
         return "OpenRFile(" + expression.toString() + ")";
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new  OpenRFileStatement(expression.deepCopy());
+    }
 }

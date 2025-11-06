@@ -38,4 +38,9 @@ public class CloseRFileStatement implements IStatement {
     public String toString() {
         return "CloseRFile(" + expression.toString() + ")";
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new CloseRFileStatement(expression.deepCopy());
+    }
 }

@@ -33,4 +33,9 @@ public class IfStatement implements IStatement {
     public String toString(){
         return "(If " +  condition.toString() + " Then " + thenStatement.toString() + " Else " + elseStatement.toString() + ");";
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new IfStatement(condition.deepCopy(), thenStatement.deepCopy(), elseStatement.deepCopy());
+    }
 }

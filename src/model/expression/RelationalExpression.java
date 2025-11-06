@@ -42,4 +42,9 @@ public class RelationalExpression implements IExpression {
         };
         return new BooleanValue(result);
     }
+
+    @Override
+    public IExpression deepCopy() {
+        return new  RelationalExpression(left.deepCopy(), right.deepCopy(), operator);
+    }
 }

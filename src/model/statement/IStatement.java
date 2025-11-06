@@ -5,4 +5,5 @@ import state.ProgramState;
 public interface IStatement {
     ProgramState execute(ProgramState programState);
     String toString();
+    IStatement deepCopy();
 }

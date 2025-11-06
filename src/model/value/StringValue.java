@@ -21,6 +21,11 @@ public class StringValue implements IValue {
     }
 
     @Override
+    public IValue deepCopy() {
+        return new StringValue(value);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof StringValue) {
             return value.equals(((StringValue) o).value);

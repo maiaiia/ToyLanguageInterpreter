@@ -53,4 +53,9 @@ public class ArithmeticExpression implements IExpression {
     public String toString() {
         return left.toString() + operator + right.toString();
     }
+
+    @Override
+    public IExpression deepCopy() {
+        return new  ArithmeticExpression(left.deepCopy(), right.deepCopy(), operator);
+    }
 }

@@ -12,4 +12,9 @@ public class NoOperationStatement implements IStatement {
     public String toString(){
         return "";
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new NoOperationStatement();
+    }
 }

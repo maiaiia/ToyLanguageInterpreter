@@ -27,4 +27,9 @@ public class VariableDeclarationStatement implements IStatement {
     public String toString(){
         return variableType.toString() + " " + variableName;
     }
+
+    @Override
+    public IStatement deepCopy() {
+        return new VariableDeclarationStatement(variableName, variableType.deepCopy());
+    }
 }

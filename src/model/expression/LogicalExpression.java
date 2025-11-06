@@ -8,9 +8,15 @@ import model.value.BooleanValue;
 import model.value.IValue;
 
 public class LogicalExpression implements IExpression {
-    IExpression left;
-    IExpression right;
-    String operator;
+    private final IExpression left;
+    private final IExpression right;
+    private final String operator;
+
+    public LogicalExpression(IExpression left, IExpression right, String operator) {
+        this.left = left;
+        this.right = right;
+        this.operator = operator;
+    }
 
     private boolean getBoolValue(IExpression expression, IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
@@ -37,5 +43,10 @@ public class LogicalExpression implements IExpression {
     public String toString()
     {
         return left.toString() + " " + operator + " " + right.toString();
+    }
+
+    @Override
+    public IExpression deepCopy() {
+        return new LogicalExpression(left.deepCopy(), right.deepCopy(), operator);
     }
 }

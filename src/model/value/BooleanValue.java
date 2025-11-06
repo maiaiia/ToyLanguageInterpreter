@@ -25,6 +25,11 @@ public class BooleanValue implements IValue {
     }
 
     @Override
+    public IValue deepCopy() {
+        return new BooleanValue(value);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof BooleanValue) {
             return value == ((BooleanValue) o).value;
