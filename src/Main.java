@@ -5,6 +5,8 @@ import model.expression.ArithmeticExpression;
 import model.expression.ValueExpression;
 import model.expression.VariableExpression;
 import model.statement.*;
+import model.type.BooleanType;
+import model.type.IntegerType;
 import model.value.*;
 import controller.*;
 import repository.*;
@@ -14,16 +16,16 @@ import view.*;
 List<ProgramState> getHardcodedExpressionsList(){
     List<ProgramState> hardCodedProgramStates = new ArrayList<>();
     var ex1 = new CompoundStatement(
-            new VariableDeclarationStatement("v", Type.INTEGER),
+            new VariableDeclarationStatement("v", new IntegerType()),
             new CompoundStatement(
                     new AssignmentStatement("v", new ValueExpression(new IntegerValue(2))),
                     new PrintStatement(new VariableExpression("v"))
             )
     );
     var ex2 = new CompoundStatement(
-            new VariableDeclarationStatement("a", Type.INTEGER),
+            new VariableDeclarationStatement("a", new IntegerType()),
             new CompoundStatement(
-                    new VariableDeclarationStatement("b", Type.INTEGER),
+                    new VariableDeclarationStatement("b", new IntegerType()),
                     new CompoundStatement(
                             new AssignmentStatement(
                                     "a",
@@ -52,9 +54,9 @@ List<ProgramState> getHardcodedExpressionsList(){
             )
     );
     var ex3 = new CompoundStatement(
-            new VariableDeclarationStatement("a", Type.BOOLEAN),
+            new VariableDeclarationStatement("a", new BooleanType()),
             new CompoundStatement(
-                    new VariableDeclarationStatement("v", Type.INTEGER),
+                    new VariableDeclarationStatement("v", new IntegerType()),
                     new CompoundStatement(
                             new AssignmentStatement("a", new ValueExpression(new BooleanValue(true))),
                             new CompoundStatement(

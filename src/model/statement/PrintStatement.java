@@ -4,7 +4,6 @@ import model.expression.IExpression;
 import model.value.IValue;
 import state.ProgramState;
 
-//TODO - exception is thrown for wrong expression? or would that be caught before the print statement is created
 public class PrintStatement implements IStatement {
     private final IExpression expression;
 

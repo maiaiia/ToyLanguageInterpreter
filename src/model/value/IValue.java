@@ -1,7 +1,9 @@
 package model.value;
 
+import model.type.IType;
+
 public interface IValue {
-    public Type getType();
+    public IType getType();
     public String toString();
 
 }

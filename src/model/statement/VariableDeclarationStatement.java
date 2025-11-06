@@ -1,17 +1,14 @@
 package model.statement;
 
 import exception.VariableAlreadyDeclaredException;
-import model.value.BooleanValue;
-import model.value.IValue;
-import model.value.IntegerValue;
-import model.value.Type;
+import model.type.IType;
 import state.ProgramState;
 
 public class VariableDeclarationStatement implements IStatement {
     private final String variableName;
-    private final Type variableType;
+    private final IType variableType;
 
-    public VariableDeclarationStatement(String variableName,  Type variableType) {
+    public VariableDeclarationStatement(String variableName,  IType variableType) {
         this.variableName = variableName;
         this.variableType = variableType;
     }

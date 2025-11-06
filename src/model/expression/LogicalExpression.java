@@ -3,9 +3,9 @@ package model.expression;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
 import model.adt.IDictionary;
+import model.type.BooleanType;
 import model.value.BooleanValue;
 import model.value.IValue;
-import model.value.Type;
 
 public class LogicalExpression implements IExpression {
     IExpression left;
@@ -14,7 +14,7 @@ public class LogicalExpression implements IExpression {
 
     private boolean getBoolValue(IExpression expression, IDictionary<String, IValue> symbolTable) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable);
-        if(! (value.getType() == Type.BOOLEAN)){
+        if(! (value.getType().equals(new BooleanType()))) {
             throw new InvalidOperandTypeException();
         }
         return ((BooleanValue)value).getValue();

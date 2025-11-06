@@ -22,7 +22,7 @@ public class AssignmentStatement implements IStatement {
             throw new VariableNotDefinedException();
         }
         IValue expressionResult = expression.evaluate(programState.getSymbolTable());
-        if (symbolTable.get(symbolName).getType() != expressionResult.getType()) {
+        if (!symbolTable.get(symbolName).getType().equals(expressionResult.getType())) {
             throw new InvalidVariableTypeException();
         }
         programState.getSymbolTable().add(symbolName, expressionResult);
