@@ -102,14 +102,14 @@ List<ProgramState> getHardcodedExpressionsList(){
 
 
     var stk1 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable(), ex1, "log_ex1.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable(), ex1));
     var stk2 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable(), ex2, "log_ex2.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable(), ex2));
     var stk3 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), ex3, "log_ex3.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), ex3));
 
     var stk4 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapFileTable(), ex4,"log_ex4.txt"));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapFileTable(), ex4));
 
     return hardCodedProgramStates;
 }
@@ -128,9 +128,9 @@ void cleanUpLogFiles(){
 }
 
 IRepository getRepository(boolean hardcodedData){
-    if (hardcodedData){cleanUpLogFiles();}
+    //if (hardcodedData){cleanUpLogFiles();}
     return switch (hardcodedData){
-        case true -> new ListRepository(getHardcodedExpressionsList());
+        case true -> new ListRepository(getHardcodedExpressionsList(), "logs.txt");
         case false -> new ListRepository();
     };
 }
@@ -142,3 +142,10 @@ void main() {
 
     view.start();
 }
+
+
+/* TODO
+    - file table should be a dictionary
+    - each program should have its own controller
+    - have a class that manages each program
+ */

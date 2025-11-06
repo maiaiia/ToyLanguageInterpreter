@@ -21,7 +21,7 @@ public class Controller implements IController {
         }
         IStatement statement = executionStack.pop();
         var ret =  statement.execute(programState);
-        programState.logCurrentState();
+        repository.logCurrentState();
         return ret;
     }
 

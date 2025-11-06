@@ -19,15 +19,12 @@ public class ProgramState {
     private final IList<String> output;
     private final IFileTable fileTable;
     private final IStatement originalProgram;
-    private final String logFileName;
-    private final String LOG_FILES_PATH = "log_files/";
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable, IStatement originalProgram, String logFileName) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
         this.fileTable = fileTable;
-        this.logFileName = LOG_FILES_PATH + logFileName;
         this.originalProgram = originalProgram.deepCopy();
         this.executionStack.push(originalProgram);
     }
@@ -51,36 +48,5 @@ public class ProgramState {
                 "\nSymbol Table:\n" + symbolTable.toString() +
                 "\nOutput:\n" + output.toString() +
                 "\nFile Table:\n" + fileTable.toString();
-    }
-
-    public void logCurrentState(){
-        PrintWriter logFile;
-        try {
-            logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFileName, true)));
-        } catch (IOException e) {
-            throw new FileOperationException(e);
-        }
-        logFile.println(this);
-        /*
-        // ----- Execution Stack -----
-        logFile.println("Execution Stack:");
-        logFile.println(executionStack);
-
-        // ------- SymbolTable -------
-        logFile.println("Symbol Table:");
-        logFile.println(symbolTable);
-
-        // --------- Out -----------
-        logFile.println("Output:");
-        logFile.println(output);
-
-        // -------- FileTable --------
-        logFile.println("File Table:");
-        logFile.println(fileTable);
-        */
-
-        logFile.println("***************************");
-
-        logFile.close();
     }
 }

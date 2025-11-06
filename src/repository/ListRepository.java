@@ -1,18 +1,33 @@
 package repository;
 
+import exception.FileOperationException;
 import exception.OutOfBoundsIndexException;
 import state.ProgramState;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListRepository implements IRepository {
-    List<ProgramState> programStates = new ArrayList<>();
+    private final List<ProgramState> programStates;
+    private final String logFileName;
+    private final String LOG_FILES_PATH = "log_files/";
     int currentIndex = 0;
 
-    public ListRepository() {}
-    public ListRepository(List<ProgramState> programStates) {
+    public ListRepository(){
+        this.programStates = new ArrayList<>();
+        this.logFileName = "program_states.txt";
+    }
+    public ListRepository(String logFileName) {
+        this.programStates = new ArrayList<>();
+        this.logFileName = logFileName;
+    }
+    public ListRepository(List<ProgramState> programStates, String logFileName) {
         this.programStates = programStates;
+        this.logFileName = logFileName;
     }
 
     @Override
@@ -43,4 +58,37 @@ public class ListRepository implements IRepository {
         return;
     }
 
+    @Override
+    public void logCurrentState() {
+        PrintWriter logFile;
+        try {
+            logFile = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILES_PATH + logFileName, true)));
+        } catch (IOException e) {
+            throw new FileOperationException(e);
+        }
+        logFile.println(this.getCurrentProgramState());
+        /*
+        // ----- Execution Stack -----
+        logFile.println("Execution Stack:");
+        logFile.println(executionStack);
+
+        // ------- SymbolTable -------
+        logFile.println("Symbol Table:");
+        logFile.println(symbolTable);
+
+        // --------- Out -----------
+        logFile.println("Output:");
+        logFile.println(output);
+
+        // -------- FileTable --------
+        logFile.println("File Table:");
+        logFile.println(fileTable);
+        */
+
+        logFile.println("***************************");
+
+        logFile.close();
+    }
 }
+
+
