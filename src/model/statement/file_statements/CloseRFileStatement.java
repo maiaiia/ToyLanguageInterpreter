@@ -1,7 +1,9 @@
 package model.statement.file_statements;
 
+import exception.FileNotFoundException;
 import exception.FileOperationException;
 import exception.InvalidOperandTypeException;
+import exception.KeyNotInDictionaryException;
 import model.expression.IExpression;
 import model.statement.IStatement;
 import model.type.StringType;
@@ -25,11 +27,13 @@ public class CloseRFileStatement implements IStatement {
         String fileName = fileNameIValue.toString();
 
         try {
-            BufferedReader file = programState.getFileTable().getFile(fileName);
+            BufferedReader file = programState.getFileTable().search(fileName);
             file.close();
             programState.getFileTable().remove(fileName);
         } catch (IOException e) {
             throw new FileOperationException(e);
+        } catch (KeyNotInDictionaryException _){
+            throw new FileNotFoundException(fileName);
         }
         return programState;
     }

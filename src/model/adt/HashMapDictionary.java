@@ -3,6 +3,7 @@ package model.adt;
 import exception.KeyNotInDictionaryException;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     private final HashMap<K, V> map = new HashMap<K, V>();
@@ -57,6 +58,11 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
         }
         if (result.length() != 0) {result = result.substring(0, result.length()-1);}
         return result;
+    }
+
+    @Override
+    public Set<K> keySet() {
+        return map.keySet();
     }
 
 }

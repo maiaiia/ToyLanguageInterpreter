@@ -1,5 +1,6 @@
 import model.adt.DynamicArrayList;
 import model.adt.HashMapDictionary;
+import model.adt.IDictionary;
 import model.adt.Stack;
 import model.expression.ArithmeticExpression;
 import model.expression.ValueExpression;
@@ -12,7 +13,7 @@ import model.type.*;
 import model.value.*;
 import controller.*;
 import repository.*;
-import model.adt.HashMapFileTable;
+
 import state.ProgramState;
 import view.*;
 
@@ -101,15 +102,16 @@ List<ProgramState> getHardcodedExpressionsList(){
     );
 
 
+    /*
     var stk1 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk1, new DynamicArrayList<String>(), new HashMapFileTable(), ex1));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk1, new DynamicArrayList<String>(), new IDictionary<>(), ex1));
     var stk2 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk2, new DynamicArrayList<String>(), new HashMapFileTable(), ex2));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk2, new DynamicArrayList<String>(), new IDictionary<>(), ex2));
     var stk3 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<String, IValue>(), stk3, new DynamicArrayList<String>(), new HashMapFileTable(), ex3));
-
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk3, new DynamicArrayList<String>(), new IDictionary<>(), ex3));
+*/
     var stk4 = new Stack<IStatement>();
-    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapFileTable(), ex4));
+    hardCodedProgramStates.addLast(new ProgramState(new HashMapDictionary<>(), stk4, new DynamicArrayList<>(), new HashMapDictionary<>(), ex4));
 
     return hardCodedProgramStates;
 }
@@ -145,7 +147,7 @@ void main() {
 
 
 /* TODO
-    - file table should be a dictionary
     - each program should have its own controller
     - have a class that manages each program
+    - keep the ability to either only display the initial and final program states or both
  */

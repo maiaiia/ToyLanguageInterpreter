@@ -1,26 +1,21 @@
 package state;
 
-import exception.FileOperationException;
 import model.adt.IDictionary;
-import model.adt.IFileTable;
 import model.adt.IList;
 import model.adt.IStack;
 import model.statement.IStatement;
 import model.value.IValue;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class ProgramState {
     private final IStack<IStatement> executionStack;
     private final IDictionary<String, IValue> symbolTable;
     private final IList<String> output;
-    private final IFileTable fileTable;
+    private final IDictionary<String, BufferedReader> fileTable;
     private final IStatement originalProgram;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IFileTable fileTable, IStatement originalProgram) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IDictionary<String, BufferedReader> fileTable, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
@@ -41,12 +36,17 @@ public class ProgramState {
         return output;
     }
 
-    public IFileTable getFileTable() {return fileTable;}
+    public IDictionary<String, BufferedReader> getFileTable() {return fileTable;}
 
     public String toString() {
-        return "Execution Stack:\n" + executionStack.toString() +
+        String result = "Execution Stack:\n" + executionStack.toString() +
                 "\nSymbol Table:\n" + symbolTable.toString() +
                 "\nOutput:\n" + output.toString() +
-                "\nFile Table:\n" + fileTable.toString();
+                "\nFile Table:\n";
+
+        for (var key: fileTable.keySet()) {
+            result += key + "\n";
+        }
+        return result;
     }
 }

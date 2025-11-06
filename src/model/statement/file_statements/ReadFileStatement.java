@@ -39,11 +39,11 @@ public class ReadFileStatement implements IStatement {
         }
         String fileName = expressionResult.toString();
 
-        if (!programState.getFileTable().isOpened(fileName)) {
+        if (!programState.getFileTable().contains(fileName)) {
             throw new FileNotOpenException(fileName);
         }
 
-        BufferedReader file = programState.getFileTable().getFile(fileName);
+        BufferedReader file = programState.getFileTable().get(fileName);
         try {
             String line = file.readLine();
             int val = Integer.parseInt(line);

@@ -28,7 +28,7 @@ public class OpenRFileStatement implements IStatement {
         String fileNameString = fileName.toString();
 
         var fileTable = programState.getFileTable();
-        if (fileTable.isOpened(fileNameString)){
+        if (fileTable.contains(fileNameString)){
             throw new FileAlreadyOpenedException();
         }
 
