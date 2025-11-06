@@ -30,7 +30,7 @@ public class View  {
             textMenu.addCommand(new RunProgramCommand(Integer.toString(i + 1), statements.get(i).toString(), controller));
 
             try { //clear log files for hard coded programs
-                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("log" + Integer.toString(i + 1) + ".txt", false)));
+                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("log_files/log" + Integer.toString(i + 1) + ".txt", false)));
                 writer.println();
                 writer.close();
             } catch (IOException _){}

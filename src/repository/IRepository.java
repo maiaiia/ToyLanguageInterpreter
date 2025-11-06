@@ -6,7 +6,7 @@ import state.ProgramState;
 public interface IRepository {
     void addState(ProgramState programState);
     ProgramState getCurrentProgramState();
-    ProgramState getNextProgramState() throws OutOfBoundsIndexException; //TODO needs better exception
+    ProgramState getNextProgramState() throws OutOfBoundsIndexException;
     void logCurrentState();
     void logAllPrograms();
 }

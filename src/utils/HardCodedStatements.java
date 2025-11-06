@@ -1,8 +1,6 @@
 package utils;
 
-import model.expression.ArithmeticExpression;
-import model.expression.ValueExpression;
-import model.expression.VariableExpression;
+import model.expression.*;
 import model.statement.*;
 import model.statement.file_statements.CloseRFileStatement;
 import model.statement.file_statements.OpenRFileStatement;
@@ -102,11 +100,30 @@ public class HardCodedStatements {
                         )
                 )
         );
+        /*
+        int a; int b;
+        a = 1; b = 2;
+        Print(a < b)
+         */
+        IStatement ex5 = new CompoundStatement(
+                new VariableDeclarationStatement("a", new IntegerType()),
+                new CompoundStatement(
+                        new VariableDeclarationStatement("b", new IntegerType()),
+                        new CompoundStatement(
+                                new AssignmentStatement("a", new ValueExpression(new IntegerValue(1))),
+                                new CompoundStatement(
+                                        new AssignmentStatement("b", new ValueExpression(new IntegerValue(2))),
+                                        new PrintStatement(new RelationalExpression(new VariableExpression("a"), new VariableExpression("b"), "<"))
+                                )
+                        )
+                )
+        );
 
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
         statements.add(ex4);
+        statements.add(ex5);
     }
 
     public List<IStatement> getStatements() {
