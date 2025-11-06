@@ -1,5 +1,6 @@
 package controller;
 
+import exception.OutOfBoundsIndexException;
 import state.ProgramState;
 
 public interface IController {
@@ -8,5 +9,5 @@ public interface IController {
     ProgramState executeCurrentProgram();
     ProgramState executeAll();
     ProgramState getCurrentProgramState();
-    ProgramState moveToNextProgramState();
+    ProgramState moveToNextProgramState() throws OutOfBoundsIndexException;
 }
