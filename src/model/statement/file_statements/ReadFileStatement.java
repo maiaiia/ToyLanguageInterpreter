@@ -46,7 +46,11 @@ public class ReadFileStatement implements IStatement {
         BufferedReader file = programState.getFileTable().get(fileName);
         try {
             String line = file.readLine();
-            int val = Integer.parseInt(line);
+            int val;
+            if (line == null)
+                val = 0;
+            else
+                val = Integer.parseInt(line);
             IntegerValue value = new IntegerValue(val);
             programState.getSymbolTable().add(variableName, value);
 
