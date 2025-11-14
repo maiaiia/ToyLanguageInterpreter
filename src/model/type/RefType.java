@@ -1,0 +1,36 @@
+package model.type;
+
+import model.value.IValue;
+import model.value.RefValue;
+
+public class RefType implements IType {
+    private final IType innerType;
+    public RefType(IType innerType) {
+        this.innerType = innerType;
+    }
+    IType getInnerType() {return innerType;}
+
+
+    @Override
+    public IValue getDefaultValue() {
+        return new RefValue(0, innerType);
+    }
+
+    @Override
+    public IType deepCopy() {
+        return new RefType(innerType.deepCopy());
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (other instanceof RefType) {
+            return innerType.equals(((RefType)other).innerType);
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Ref(" + innerType.toString() + ")";
+    }
+}
