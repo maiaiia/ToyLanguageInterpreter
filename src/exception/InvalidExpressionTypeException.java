@@ -6,7 +6,7 @@ public class InvalidExpressionTypeException extends RuntimeException {
     public InvalidExpressionTypeException() {
         super("Invalid Expression Type");
     }
-    public InvalidExpressionTypeException(IType type) {
-        super("Expression should evaluate to type " + type.toString());
+    public InvalidExpressionTypeException(IType desiredType) {
+        super("Expression should evaluate to type " + desiredType.toString());
     }
 }

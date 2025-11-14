@@ -118,12 +118,33 @@ public class HardCodedStatements {
                         )
                 )
         );
+        /*
+        int v;
+        v = 4;
+        while (v > 0){
+            print(v);
+            v = v - 1;
+        }
+        print(v)
+        */
+        IStatement ex6 = new CompoundStatement(
+                new VariableDeclarationStatement("v", new IntegerType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v", new ValueExpression(new IntegerValue(4))),
+                        new CompoundStatement(
+                                new WhileStatement(new RelationalExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(0)), ">"),
+                                        new CompoundStatement(new PrintStatement(new VariableExpression("v")), new AssignmentStatement("v", new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(1)), '-')))),
+                                new PrintStatement(new VariableExpression("v"))
+                        )
+                )
+        );
 
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
         statements.add(ex4);
         statements.add(ex5);
+        statements.add(ex6);
     }
 
     public List<IStatement> getStatements() {
