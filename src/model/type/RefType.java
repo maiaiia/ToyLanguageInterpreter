@@ -23,10 +23,7 @@ public class RefType implements IType {
 
     @Override
     public boolean equals(Object other){
-        if (other instanceof RefType) {
-            return innerType.equals(((RefType)other).innerType);
-        }
-        return false;
+        return other instanceof RefType && this.innerType.equals(((RefType)other).innerType);
     }
 
     @Override

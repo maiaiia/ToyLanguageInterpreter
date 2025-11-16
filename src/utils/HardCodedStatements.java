@@ -6,13 +6,13 @@ import model.statement.file_statements.CloseRFileStatement;
 import model.statement.file_statements.OpenRFileStatement;
 import model.statement.file_statements.ReadFileStatement;
 import model.statement.heap_statements.AllocateHeapStatement;
+import model.statement.heap_statements.WriteHeapStatement;
 import model.type.BooleanType;
 import model.type.IntegerType;
 import model.type.RefType;
 import model.type.StringType;
 import model.value.BooleanValue;
 import model.value.IntegerValue;
-import model.value.RefValue;
 import model.value.StringValue;
 
 import java.util.ArrayList;
@@ -197,6 +197,32 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        Ref int v;
+        new(v,20);
+        print(readHeap(v));
+        writeHeap(v, 30);
+        print(readHeap(v) + 5);
+         */
+
+        var ex9 = new CompoundStatement(
+                new VariableDeclarationStatement("v", new RefType(new IntegerType())),
+                new CompoundStatement(
+                        new AllocateHeapStatement("v", new ValueExpression(new IntegerValue(20))),
+                        new CompoundStatement(
+                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v"))),
+                                new CompoundStatement(
+                                        new WriteHeapStatement("v", new ValueExpression(new IntegerValue(30))),
+                                        new PrintStatement(new ArithmeticExpression(
+                                                new ReadHeapExpression(new VariableExpression("v")),
+                                                new ValueExpression(new IntegerValue(5)),
+                                                '+'
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
 
         statements.add(ex1);
         statements.add(ex2);
@@ -206,6 +232,7 @@ public class HardCodedStatements {
         statements.add(ex6);
         statements.add(ex7);
         statements.add(ex8);
+        statements.add(ex9);
     }
 
     public List<IStatement> getStatements() {
