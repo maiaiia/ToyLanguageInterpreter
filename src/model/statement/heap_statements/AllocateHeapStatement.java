@@ -25,7 +25,7 @@ public class AllocateHeapStatement implements IStatement {
             throw new VariableNotDefinedException(variableName);
         }
         IValue variableValue = programState.getSymbolTable().get(variableName);
-        IValue expressionValue = expression.evaluate(programState.getSymbolTable());
+        IValue expressionValue = expression.evaluate(programState.getSymbolTable(), programState.getHeap());
 
         if (!variableValue.getType().equals(new RefType(expressionValue.getType()))) {
             throw new InvalidVariableTypeException(variableName, new RefType(expressionValue.getType()));

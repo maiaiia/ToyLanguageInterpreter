@@ -13,7 +13,7 @@ public class PrintStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        IValue result = expression.evaluate(programState.getSymbolTable());
+        IValue result = expression.evaluate(programState.getSymbolTable(), programState.getHeap());
         //may throw an exception if the expression is not correct
         programState.getOutput().append(result.toString());
         return programState;

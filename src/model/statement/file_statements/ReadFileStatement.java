@@ -33,7 +33,7 @@ public class ReadFileStatement implements IStatement {
         if (! symbolTable.get(variableName).getType().equals(new IntegerType())) {
             throw new InvalidVariableTypeException(variableName, new IntegerType());
         }
-        var expressionResult = fileNameExpression.evaluate(symbolTable);
+        var expressionResult = fileNameExpression.evaluate(symbolTable, programState.getHeap());
         if (!expressionResult.getType().equals(new StringType())) {
             throw new InvalidExpressionTypeException(new StringType());
         }

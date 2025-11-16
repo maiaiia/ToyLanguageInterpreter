@@ -16,7 +16,7 @@ public class WhileStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        var expressionResult = condition.evaluate(programState.getSymbolTable());
+        var expressionResult = condition.evaluate(programState.getSymbolTable(), programState.getHeap());
         if (! expressionResult.getType().equals(new BooleanType())) {
             throw new InvalidExpressionTypeException(new BooleanType());
         }

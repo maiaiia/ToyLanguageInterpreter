@@ -3,6 +3,7 @@ package model.expression;
 
 import model.adt.IDictionary;
 import model.value.IValue;
+import state.heap.IHeap;
 
 public class ValueExpression implements IExpression {
     private final IValue value;
@@ -12,7 +13,7 @@ public class ValueExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(IDictionary<String, IValue> symbolTable) {
+    public IValue evaluate(IDictionary<String, IValue> symbolTable, IHeap heap) {
         return value;
     }
 

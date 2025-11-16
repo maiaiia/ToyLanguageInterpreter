@@ -19,7 +19,7 @@ public class IfStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        IValue conditionValue = condition.evaluate(programState.getSymbolTable());
+        IValue conditionValue = condition.evaluate(programState.getSymbolTable(), programState.getHeap());
         if (!(conditionValue instanceof BooleanValue)) {
             throw new ConditionNotBooleanException();
         }

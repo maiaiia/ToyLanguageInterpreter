@@ -21,7 +21,7 @@ public class CloseRFileStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState programState) {
-        var fileNameIValue = expression.evaluate(programState.getSymbolTable());
+        var fileNameIValue = expression.evaluate(programState.getSymbolTable(), programState.getHeap());
         if (!fileNameIValue.getType().equals(new StringType()))
             throw new InvalidOperandTypeException();
         String fileName = fileNameIValue.toString();

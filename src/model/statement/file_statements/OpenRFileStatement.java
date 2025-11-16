@@ -21,7 +21,7 @@ public class OpenRFileStatement implements IStatement {
     public ProgramState execute(ProgramState programState)
             throws InvalidOperandTypeException, FileAlreadyOpenedException, FileOperationException
     {
-        var fileName = expression.evaluate(programState.getSymbolTable());
+        var fileName = expression.evaluate(programState.getSymbolTable(), programState.getHeap());
         if (! fileName.getType().equals(new StringType())) {
             throw new InvalidOperandTypeException();
         }
