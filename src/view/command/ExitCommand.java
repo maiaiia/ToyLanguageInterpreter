@@ -5,7 +5,7 @@ public class ExitCommand extends Command {
         super(key, description);
     }
     @Override
-    public void execute() throws Exception {
+    public void execute() {
         System.exit(0);
     }
 }

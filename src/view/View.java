@@ -49,21 +49,15 @@ public class View  {
         TextMenu textMenu = getMenu();
 
         while(true){
-            try {
-                textMenu.displayMenu();
-                String userInput = IO.readln("Enter Command: ").strip();
-                Command command = textMenu.getCommand(userInput);
-                if (command == null) {
-                    IO.println("Invalid Command");
-                }
-                else {
-                    command.execute();
-                    IO.println(command.getDescription() + " executed successfully");
-                }
-
+            textMenu.displayMenu();
+            String userInput = IO.readln("Enter Command: ").strip();
+            Command command = textMenu.getCommand(userInput);
+            if (command == null) {
+                IO.println("Invalid Command");
             }
-            catch (Exception e) {
-                IO.println(e.getMessage());
+            else {
+                command.execute();
+                IO.println(command.getDescription() + " executed successfully");
             }
         }
     }

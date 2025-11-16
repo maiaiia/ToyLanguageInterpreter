@@ -11,13 +11,17 @@ public class RunProgramCommand extends Command {
         this.controller = controller;
     }
     @Override
-    public void execute() throws Exception {
+    public void execute(){
         try {
             var program = controller.executeCurrentProgram();
             controller.getWriter().println(program);
             controller.getWriter().flush();
-        } catch (OutOfBoundsIndexException | ExecutionStackEmptyException _){
-            throw new ExecutionStackEmptyException();
+        } catch (OutOfBoundsIndexException _){
+            controller.getWriter().println(new ExecutionStackEmptyException().getMessage());
+            controller.getWriter().flush();
+        } catch (Exception e) {
+            controller.getWriter().println(e.getMessage());
+            controller.getWriter().flush();
         }
     }
 }

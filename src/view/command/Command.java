@@ -6,7 +6,7 @@ public abstract class Command {
         this.key = key;
         this.description = description;
     }
-    public abstract void execute() throws Exception;
+    public abstract void execute();
     public String getKey() { return key; }
     public String getDescription() { return description; }
 }
