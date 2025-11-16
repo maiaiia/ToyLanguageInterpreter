@@ -1,6 +1,7 @@
 package model.value;
 
 import model.type.IType;
+import model.type.RefType;
 
 public class RefValue implements IValue {
     private final int address;
@@ -16,7 +17,7 @@ public class RefValue implements IValue {
 
     @Override
     public IType getType() {
-        return this.type;
+        return new RefType(this.type);
     }
 
     @Override
