@@ -5,11 +5,14 @@ import model.statement.*;
 import model.statement.file_statements.CloseRFileStatement;
 import model.statement.file_statements.OpenRFileStatement;
 import model.statement.file_statements.ReadFileStatement;
+import model.statement.heap_statements.AllocateHeapStatement;
 import model.type.BooleanType;
 import model.type.IntegerType;
+import model.type.RefType;
 import model.type.StringType;
 import model.value.BooleanValue;
 import model.value.IntegerValue;
+import model.value.RefValue;
 import model.value.StringValue;
 
 import java.util.ArrayList;
@@ -139,12 +142,43 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        Ref int v;
+        new(v, 20);
+        Ref Ref int a;
+        new(a, v);
+        print(v);
+        print(a);
+         */
+        IStatement ex7 = new CompoundStatement(
+                new VariableDeclarationStatement("v", new RefType(new IntegerType())),
+                new CompoundStatement(
+                        new AllocateHeapStatement("v", new ValueExpression(new IntegerValue(20))),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("a", new RefType(new RefType(new IntegerType()))),
+                                new CompoundStatement(
+                                        new AllocateHeapStatement("a", new VariableExpression("v")),
+                                        new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new  PrintStatement(new VariableExpression("a"))
+                                        )
+                                )
+                        )
+                )
+        );
+
+
+        /*
+
+         */
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
         statements.add(ex4);
         statements.add(ex5);
         statements.add(ex6);
+        statements.add(ex7);
     }
 
     public List<IStatement> getStatements() {

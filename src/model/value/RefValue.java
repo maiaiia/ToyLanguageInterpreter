@@ -35,6 +35,6 @@ public class RefValue implements IValue {
 
     @Override
     public String toString() {
-        return "RefValue(" + address + ", " + type.toString() + ")";
+        return "(" + address + ", " + type.toString() + ")";
     }
 }
