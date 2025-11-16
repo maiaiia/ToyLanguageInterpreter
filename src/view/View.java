@@ -19,7 +19,7 @@ import java.io.*;
 import java.util.*;
 
 public class View  {
-    static void main(String[] args) {
+    static private TextMenu getMenu() {
         TextMenu textMenu = new TextMenu();
         var statements = new HardCodedStatements().getStatements();
 
@@ -42,6 +42,11 @@ public class View  {
         }
 
         textMenu.addCommand(new ExitCommand("0", "Exit"));
+        return textMenu;
+    }
+
+    static void main(String[] args) {
+        TextMenu textMenu = getMenu();
 
         while(true){
             try {
