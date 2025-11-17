@@ -47,8 +47,8 @@ public class ProgramState {
 
     public String toString() {
         StringBuilder result = new StringBuilder("EXECUTION STACK:\n" + executionStack.toString() +
-                "\nHEAP:\n" + heap.toString() +
                 "\nSYMBOL TABLE:\n" + symbolTable.toString() +
+                "\nHEAP:\n" + heap.toString() +
                 "\nOUTPUT:\n" + output.toString() +
                 "\nFILE TABLE:\n");
 

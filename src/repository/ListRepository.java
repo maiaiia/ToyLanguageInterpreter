@@ -55,6 +55,11 @@ public class ListRepository implements IRepository {
 
     @Override
     public void logCurrentState() {
+        logCurrentState(false);
+    }
+
+    @Override
+    public void logCurrentState(boolean displaySeparator) {
         PrintWriter logFile;
         try {
             logFile = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILES_PATH + logFileName, true)));
@@ -63,9 +68,10 @@ public class ListRepository implements IRepository {
         }
         logFile.println(this.getCurrentProgramState());
 
-        //logFile.println("***************************");
+        if (displaySeparator) {logFile.println("--------------");}
 
         logFile.close();
+
     }
 
     @Override
