@@ -72,7 +72,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public ProgramState moveToNextProgramState() throws OutOfBoundsIndexException { //TODO generic exception is bad :(
+    public ProgramState moveToNextProgramState() throws OutOfBoundsIndexException {
         return repository.getNextProgramState();
     }
 
