@@ -224,6 +224,32 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        Ref int v;
+        new(v, 20);
+        Ref Ref int a;
+        new(a, v);
+        new(v, 30);
+        print(rH(rH(a)));
+         */
+
+        var ex10 = new CompoundStatement(
+                new VariableDeclarationStatement("v", new RefType(new IntegerType())),
+                new CompoundStatement(
+                        new AllocateHeapStatement("v", new ValueExpression(new IntegerValue(20))),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("a", new RefType(new RefType(new IntegerType()))),
+                                new CompoundStatement(
+                                        new AllocateHeapStatement("a", new VariableExpression("v")),
+                                        new CompoundStatement(
+                                                new AllocateHeapStatement("v", new ValueExpression(new IntegerValue(30))),
+                                                new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a"))))
+                                        )
+                                )
+                        )
+                )
+        );
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
@@ -233,6 +259,7 @@ public class HardCodedStatements {
         statements.add(ex7);
         statements.add(ex8);
         statements.add(ex9);
+        statements.add(ex10);
     }
 
     public List<IStatement> getStatements() {
