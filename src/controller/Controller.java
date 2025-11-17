@@ -1,5 +1,6 @@
 package controller;
 
+import controller.garbage_collector.GarbageCollector;
 import exception.ExecutionStackEmptyException;
 import exception.OutOfBoundsIndexException;
 import model.statement.IStatement;
@@ -12,6 +13,7 @@ import java.io.Writer;
 public class Controller implements IController {
     private final IRepository repository;
     private boolean displayFlag = false;
+    private final GarbageCollector garbageCollector =  new GarbageCollector();
     public Controller(IRepository repository) {
         this.repository = repository;
     }
@@ -29,8 +31,11 @@ public class Controller implements IController {
         // since we want every single step to be logged, whenever this function is called
         var ret =  statement.execute(programState);
 
-
         repository.logCurrentState();
+        garbageCollector.runGarbageCollector(programState);
+        repository.logCurrentState();
+
+
         if (displayFlag) {
             writer.println(ret);
             writer.flush();
@@ -44,6 +49,8 @@ public class Controller implements IController {
         while (true){
             try {
                 programState = executeOneStep(programState);
+
+                repository.logCurrentState();
             } catch (ExecutionStackEmptyException e) {
                 break;
             }

@@ -46,15 +46,15 @@ public class ProgramState {
     public IDictionary<String, BufferedReader> getFileTable() {return fileTable;}
 
     public String toString() {
-        StringBuilder result = new StringBuilder("Execution Stack:\n" + executionStack.toString() +
-                "\nSymbol Table:\n" + symbolTable.toString() +
-                "\nOutput:\n" + output.toString() +
-                "\nFile Table:\n");
+        StringBuilder result = new StringBuilder("EXECUTION STACK:\n" + executionStack.toString() +
+                "\nHEAP:\n" + heap.toString() +
+                "\nSYMBOL TABLE:\n" + symbolTable.toString() +
+                "\nOUTPUT:\n" + output.toString() +
+                "\nFILE TABLE:\n");
 
         for (var key: fileTable.keySet()) {
             result.append(key).append("\n");
         }
-        result.append("\nHeap:\n").append(heap.toString());
         return result.toString();
     }
 }

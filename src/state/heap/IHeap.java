@@ -4,6 +4,7 @@ import exception.InvalidAddressException;
 import model.value.IValue;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface IHeap {
     int allocate(IValue value);
@@ -11,5 +12,5 @@ public interface IHeap {
     IValue write(int address, IValue value) throws InvalidAddressException;
     IValue read(int address) throws InvalidAddressException;
 
-    public Map<Integer, IValue> getHeap();
+    Set<Integer> getAddresses();
 }

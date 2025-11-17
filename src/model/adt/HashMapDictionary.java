@@ -2,7 +2,9 @@ package model.adt;
 
 import exception.KeyNotInDictionaryException;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class HashMapDictionary<K, V> implements IDictionary<K, V> {
@@ -63,6 +65,11 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     @Override
     public Set<K> keySet() {
         return map.keySet();
+    }
+
+    @Override
+    public Collection<V> values() {
+        return map.values();
     }
 
 }

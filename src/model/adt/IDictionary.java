@@ -2,6 +2,7 @@ package model.adt;
 
 import exception.KeyNotInDictionaryException;
 
+import java.util.Collection;
 import java.util.Set;
 
 public interface IDictionary<K, V> {
@@ -14,4 +15,5 @@ public interface IDictionary<K, V> {
     boolean isEmpty();
     String toString();
     Set<K> keySet();
+    Collection<V> values();
 }

@@ -5,7 +5,7 @@ import model.adt.HashMapDictionary;
 import model.adt.IDictionary;
 import model.value.IValue;
 
-import java.util.Map;
+import java.util.Set;
 
 public class Heap implements IHeap {
     public final IDictionary<Integer, IValue> heap;
@@ -53,8 +53,8 @@ public class Heap implements IHeap {
     }
 
     @Override
-    public Map<Integer, IValue> getHeap() {
-        return Map.of();
+    public Set<Integer> getAddresses() {
+        return heap.keySet();
     }
 
     @Override
