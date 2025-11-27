@@ -19,11 +19,8 @@ public class RunProgramCommand extends Command {
         } catch (OutOfBoundsIndexException _){
             controller.getWriter().println(new ExecutionStackEmptyException().getMessage());
             controller.getWriter().flush();
-
-        } /*catch (Exception e) {
-            controller.getWriter().println(e.getMessage());
-            controller.getWriter().flush();
-        }*/
-
+            return;
+        }
+        IO.println(this.getDescription() + " executed successfully");
     }
 }

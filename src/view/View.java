@@ -58,7 +58,7 @@ public class View  {
             }
             else {
                 command.execute();
-                IO.println(command.getDescription() + " executed successfully");
+                //IO.println(command.getDescription() + " executed successfully");
             }
         }
     }
