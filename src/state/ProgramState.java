@@ -6,18 +6,19 @@ import model.statement.IStatement;
 import model.value.IValue;
 import state.executionstack.IExecutionStack;
 import state.heap.IHeap;
+import state.output.IOutput;
 
 import java.io.*;
 
 public class ProgramState {
     private final IExecutionStack executionStack;
     private final IDictionary<String, IValue> symbolTable;
-    private final IList<String> output;
+    private final IOutput output;
     private final IDictionary<String, BufferedReader> fileTable;
     private final IHeap heap;
     private final IStatement originalProgram;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IExecutionStack executionStack, IList<String> output, IDictionary<String, BufferedReader> fileTable, IHeap heap, IStatement originalProgram) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IExecutionStack executionStack, IOutput output, IDictionary<String, BufferedReader> fileTable, IHeap heap, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
@@ -35,7 +36,7 @@ public class ProgramState {
         return symbolTable;
     }
 
-    public IList<String> getOutput() {
+    public IOutput getOutput() {
         return output;
     }
 
@@ -49,7 +50,7 @@ public class ProgramState {
         StringBuilder result = new StringBuilder(executionStack.toString() +
                 "\nSYMBOL TABLE:\n" + symbolTable.toString() +
                 "\nHEAP:\n" + heap.toString() +
-                "\nOUTPUT:\n" + output.toString() +
+                "\n"+output.toString() +
                 "\nFILE TABLE:\n");
 
         for (var key: fileTable.keySet()) {

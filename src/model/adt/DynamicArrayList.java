@@ -9,9 +9,9 @@ import java.util.List;
 public class DynamicArrayList<T> implements  IList<T> {
     private final List<T> list =  new ArrayList<T>();
 
-    void checkIndex(int index) throws IndexOutOfBoundsException {
+    void checkIndex(int index) throws OutOfBoundsIndexException {
         if (index < 0 || index > size()) {
-            throw new IndexOutOfBoundsException();
+            throw new OutOfBoundsIndexException();
         }
     }
 
@@ -26,7 +26,7 @@ public class DynamicArrayList<T> implements  IList<T> {
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException {
+    public T get(int index) throws OutOfBoundsIndexException {
         try {
             return list.get(index);
         } catch (IndexOutOfBoundsException e) {
@@ -49,18 +49,18 @@ public class DynamicArrayList<T> implements  IList<T> {
     }
 
     @Override
-    public void insert(int index, T value) throws IndexOutOfBoundsException {
+    public void insert(int index, T value) throws OutOfBoundsIndexException {
         checkIndex(index);
         list.add(index, value);
     }
 
     @Override
-    public T remove(int index) {
+    public T remove(int index) throws OutOfBoundsIndexException {
         try {
             return list.remove(index);
         }
         catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException();
+            throw new OutOfBoundsIndexException();
         }
     }
 
