@@ -31,7 +31,7 @@ public class ExecutionStack implements IExecutionStack{
 
     @Override
     public String toString(){
-        return "EXECUTION STACK\n" + executionStack;
+        return "EXECUTION STACK:\n" + executionStack;
     }
 
 }
