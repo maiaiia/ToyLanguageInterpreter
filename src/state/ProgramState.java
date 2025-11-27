@@ -1,10 +1,10 @@
 package state;
 
 import model.adt.IDictionary;
-import model.adt.IList;
 import model.statement.IStatement;
 import model.value.IValue;
 import state.executionstack.IExecutionStack;
+import state.filetable.IFileTable;
 import state.heap.IHeap;
 import state.output.IOutput;
 
@@ -14,11 +14,11 @@ public class ProgramState {
     private final IExecutionStack executionStack;
     private final IDictionary<String, IValue> symbolTable;
     private final IOutput output;
-    private final IDictionary<String, BufferedReader> fileTable;
+    private final IFileTable fileTable;
     private final IHeap heap;
     private final IStatement originalProgram;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IExecutionStack executionStack, IOutput output, IDictionary<String, BufferedReader> fileTable, IHeap heap, IStatement originalProgram) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
@@ -44,18 +44,14 @@ public class ProgramState {
         return heap;
     }
 
-    public IDictionary<String, BufferedReader> getFileTable() {return fileTable;}
+    public IFileTable getFileTable() {return fileTable;}
 
     public String toString() {
         StringBuilder result = new StringBuilder(executionStack.toString() +
                 "\nSYMBOL TABLE:\n" + symbolTable.toString() +
                 "\nHEAP:\n" + heap.toString() +
-                "\n"+output.toString() +
-                "\nFILE TABLE:\n");
-
-        for (var key: fileTable.keySet()) {
-            result.append(key).append("\n");
-        }
+                "\n" + output.toString() +
+                "\n" + fileTable.toString());
         return result.toString();
     }
 }

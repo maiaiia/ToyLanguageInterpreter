@@ -21,7 +21,7 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     }
 
     @Override
-    public void remove(K key) {
+    public void remove(K key) throws KeyNotInDictionaryException {
         if (!map.containsKey(key)) {
             throw new KeyNotInDictionaryException("Key not in dictionary");
         }
