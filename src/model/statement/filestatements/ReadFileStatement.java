@@ -1,4 +1,4 @@
-package model.statement.file_statements;
+package model.statement.filestatements;
 
 import exception.*;
 import model.adt.IDictionary;

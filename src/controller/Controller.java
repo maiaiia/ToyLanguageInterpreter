@@ -1,6 +1,6 @@
 package controller;
 
-import controller.garbage_collector.GarbageCollector;
+import controller.garbagecollector.GarbageCollector;
 import exception.ExecutionStackEmptyException;
 import exception.OutOfBoundsIndexException;
 import model.statement.IStatement;
@@ -8,7 +8,6 @@ import repository.IRepository;
 import state.ProgramState;
 
 import java.io.PrintWriter;
-import java.io.Writer;
 
 public class Controller implements IController {
     private final IRepository repository;

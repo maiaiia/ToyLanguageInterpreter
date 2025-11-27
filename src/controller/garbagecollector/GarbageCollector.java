@@ -1,4 +1,4 @@
-package controller.garbage_collector;
+package controller.garbagecollector;
 
 import exception.InvalidAddressException;
 import model.value.RefValue;

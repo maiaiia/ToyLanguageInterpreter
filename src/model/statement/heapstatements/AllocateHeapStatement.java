@@ -1,4 +1,4 @@
-package model.statement.heap_statements;
+package model.statement.heapstatements;
 
 import exception.InvalidAddressException;
 import exception.InvalidVariableTypeException;
