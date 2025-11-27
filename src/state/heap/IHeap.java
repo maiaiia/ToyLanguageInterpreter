@@ -3,7 +3,6 @@ package state.heap;
 import exception.InvalidAddressException;
 import model.value.IValue;
 
-import java.util.Map;
 import java.util.Set;
 
 public interface IHeap {

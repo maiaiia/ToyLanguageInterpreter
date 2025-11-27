@@ -13,7 +13,7 @@ public class Stack<T> implements IStack<T> {
     }
 
     @Override
-    public T pop() {
+    public T pop() throws StackEmptyException {
         try {
             return stack.pop();
         } catch (EmptyStackException e) {

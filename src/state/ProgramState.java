@@ -2,22 +2,22 @@ package state;
 
 import model.adt.IDictionary;
 import model.adt.IList;
-import model.adt.IStack;
 import model.statement.IStatement;
 import model.value.IValue;
+import state.executionstack.IExecutionStack;
 import state.heap.IHeap;
 
 import java.io.*;
 
 public class ProgramState {
-    private final IStack<IStatement> executionStack;
+    private final IExecutionStack executionStack;
     private final IDictionary<String, IValue> symbolTable;
     private final IList<String> output;
     private final IDictionary<String, BufferedReader> fileTable;
     private final IHeap heap;
     private final IStatement originalProgram;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IStack<IStatement> executionStack, IList<String> output, IDictionary<String, BufferedReader> fileTable, IHeap heap, IStatement originalProgram) {
+    public ProgramState(IDictionary<String, IValue> symbolTable, IExecutionStack executionStack, IList<String> output, IDictionary<String, BufferedReader> fileTable, IHeap heap, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
@@ -27,7 +27,7 @@ public class ProgramState {
         this.executionStack.push(originalProgram);
     }
 
-    public IStack<IStatement> getExecutionStack() {
+    public IExecutionStack getExecutionStack() {
         return executionStack;
     }
 
@@ -46,7 +46,7 @@ public class ProgramState {
     public IDictionary<String, BufferedReader> getFileTable() {return fileTable;}
 
     public String toString() {
-        StringBuilder result = new StringBuilder("EXECUTION STACK:\n" + executionStack.toString() +
+        StringBuilder result = new StringBuilder(executionStack.toString() +
                 "\nSYMBOL TABLE:\n" + symbolTable.toString() +
                 "\nHEAP:\n" + heap.toString() +
                 "\nOUTPUT:\n" + output.toString() +
