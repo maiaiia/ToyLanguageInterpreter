@@ -26,7 +26,7 @@ public class ReadFileStatement implements IStatement {
     public ProgramState execute(ProgramState programState)
         throws InvalidExpressionTypeException, VariableNotDefinedException, InvalidVariableTypeException
     {
-        IDictionary<String, IValue> symbolTable = programState.getSymbolTable();
+        var symbolTable = programState.getSymbolTable();
         if (!symbolTable.contains(variableName)) {
             throw new VariableNotDefinedException(variableName);
         }

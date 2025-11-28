@@ -8,6 +8,7 @@ import model.value.BooleanValue;
 import model.value.IValue;
 import model.value.IntegerValue;
 import state.heap.IHeap;
+import state.symboltable.ISymbolTable;
 
 public class RelationalExpression implements IExpression {
     private final IExpression left;
@@ -20,7 +21,7 @@ public class RelationalExpression implements IExpression {
         this.operator = operator;
     }
 
-    private int getIntValue(IExpression expression, IDictionary<String, IValue> symbolTable, IHeap heap) throws InvalidOperandTypeException {
+    private int getIntValue(IExpression expression, ISymbolTable symbolTable, IHeap heap) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable, heap);
         if (! value.getType().equals(new IntegerType())) {
             throw new InvalidOperandTypeException();
@@ -29,7 +30,7 @@ public class RelationalExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(IDictionary<String, IValue> symbolTable, IHeap heap) {
+    public IValue evaluate(ISymbolTable symbolTable, IHeap heap) {
         int leftIntValue = getIntValue(left, symbolTable, heap);
         int rightIntValue = getIntValue(right, symbolTable, heap);
         boolean result = switch (operator){

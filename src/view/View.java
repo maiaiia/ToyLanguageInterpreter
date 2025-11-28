@@ -2,7 +2,6 @@ package view;
 
 import controller.Controller;
 import controller.IController;
-import model.adt.HashMapDictionary;
 import repository.IRepository;
 import repository.ListRepository;
 import state.ProgramState;
@@ -10,6 +9,7 @@ import state.executionstack.ExecutionStack;
 import state.filetable.FileTable;
 import state.heap.Heap;
 import state.output.Output;
+import state.symboltable.SymbolTable;
 import utils.HardCodedStatements;
 import view.command.Command;
 import view.command.ExitCommand;
@@ -25,7 +25,7 @@ public class View  {
         var statements = new HardCodedStatements().getStatements();
 
         for (int i = 0; i < statements.size(); i++) {
-            ProgramState p = new ProgramState(new HashMapDictionary<>(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), statements.get(i));
+            ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), statements.get(i));
             IRepository repository = new ListRepository(new ArrayList<>(),"log" + Integer.toString(i + 1) + ".txt" );
             repository.addState(p);
             IController controller = new Controller(repository);

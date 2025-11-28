@@ -7,18 +7,19 @@ import state.executionstack.IExecutionStack;
 import state.filetable.IFileTable;
 import state.heap.IHeap;
 import state.output.IOutput;
+import state.symboltable.ISymbolTable;
 
 import java.io.*;
 
 public class ProgramState {
+    private final ISymbolTable symbolTable;
     private final IExecutionStack executionStack;
-    private final IDictionary<String, IValue> symbolTable;
     private final IOutput output;
     private final IFileTable fileTable;
     private final IHeap heap;
     private final IStatement originalProgram;
 
-    public ProgramState(IDictionary<String, IValue> symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
+    public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
@@ -32,7 +33,7 @@ public class ProgramState {
         return executionStack;
     }
 
-    public IDictionary<String, IValue> getSymbolTable() {
+    public ISymbolTable getSymbolTable() {
         return symbolTable;
     }
 
@@ -48,7 +49,7 @@ public class ProgramState {
 
     public String toString() {
         StringBuilder result = new StringBuilder(executionStack.toString() +
-                "\nSYMBOL TABLE:\n" + symbolTable.toString() +
+                "\n" + symbolTable.toString() +
                 "\nHEAP:\n" + heap.toString() +
                 "\n" + output.toString() +
                 "\n" + fileTable.toString());

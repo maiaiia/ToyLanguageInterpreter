@@ -6,6 +6,7 @@ import model.adt.IDictionary;
 import model.value.IValue;
 import model.value.RefValue;
 import state.heap.IHeap;
+import state.symboltable.ISymbolTable;
 
 public class ReadHeapExpression implements IExpression {
     private final IExpression expression;
@@ -15,7 +16,7 @@ public class ReadHeapExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(IDictionary<String, IValue> symbolTable, IHeap heap) throws InvalidExpressionTypeException, InvalidAddressException {
+    public IValue evaluate(ISymbolTable symbolTable, IHeap heap) throws InvalidExpressionTypeException, InvalidAddressException {
         var expressionResult = expression.evaluate( symbolTable, heap);
         if (! (expressionResult instanceof RefValue)){
             throw new InvalidExpressionTypeException();

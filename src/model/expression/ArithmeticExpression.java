@@ -8,6 +8,7 @@ import model.value.IntegerValue;
 import model.adt.IDictionary;
 import model.value.IValue;
 import state.heap.IHeap;
+import state.symboltable.ISymbolTable;
 
 public class ArithmeticExpression implements IExpression {
     private final IExpression left;
@@ -20,7 +21,7 @@ public class ArithmeticExpression implements IExpression {
         this.operator = operator;
     }
 
-    private int getIntValue(IExpression expression, IDictionary<String, IValue> symbolTable, IHeap heap) throws InvalidOperandTypeException {
+    private int getIntValue(IExpression expression, ISymbolTable symbolTable, IHeap heap) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable, heap);
         if (!value.getType().equals(new IntegerType())) {
             throw new InvalidOperandTypeException();
@@ -29,7 +30,7 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(IDictionary<String, IValue> symbolTable, IHeap heap) throws InvalidOperandTypeException, DivisionByZeroException {
+    public IValue evaluate(ISymbolTable symbolTable, IHeap heap) throws InvalidOperandTypeException, DivisionByZeroException {
         int leftIntValue = getIntValue(left, symbolTable, heap);
         int rightIntValue = getIntValue(right, symbolTable, heap);
         int result = switch (operator){
