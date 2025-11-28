@@ -1,12 +1,10 @@
-package model.statement.filestatements;
+package model.statement.fileStatements;
 
 import exception.*;
-import model.adt.IDictionary;
 import model.expression.IExpression;
 import model.statement.IStatement;
 import model.type.IntegerType;
 import model.type.StringType;
-import model.value.IValue;
 import model.value.IntegerValue;
 import state.ProgramState;
 

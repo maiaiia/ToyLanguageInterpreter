@@ -1,4 +1,4 @@
-package model.statement.filestatements;
+package model.statement.fileStatements;
 
 import exception.FileNotFoundException;
 import exception.FileOperationException;

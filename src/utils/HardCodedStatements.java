@@ -2,11 +2,11 @@ package utils;
 
 import model.expression.*;
 import model.statement.*;
-import model.statement.filestatements.CloseRFileStatement;
-import model.statement.filestatements.OpenRFileStatement;
-import model.statement.filestatements.ReadFileStatement;
-import model.statement.heapstatements.AllocateHeapStatement;
-import model.statement.heapstatements.WriteHeapStatement;
+import model.statement.fileStatements.CloseRFileStatement;
+import model.statement.fileStatements.OpenRFileStatement;
+import model.statement.fileStatements.ReadFileStatement;
+import model.statement.heapStatements.AllocateHeapStatement;
+import model.statement.heapStatements.WriteHeapStatement;
 import model.type.BooleanType;
 import model.type.IntegerType;
 import model.type.RefType;
@@ -81,7 +81,7 @@ public class HardCodedStatements {
         IStatement ex4 = new CompoundStatement(
                 new VariableDeclarationStatement("varf", new StringType()),
                 new CompoundStatement(
-                        new AssignmentStatement("varf", new ValueExpression(new StringValue("testfiles/test.in"))),
+                        new AssignmentStatement("varf", new ValueExpression(new StringValue("testFiles/test.in"))),
                         new CompoundStatement(
                                 new OpenRFileStatement(new VariableExpression("varf")),
                                 new CompoundStatement(
