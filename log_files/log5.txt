@@ -1,1 +1,210 @@
 
+EXECUTION STACK:
+int a
+(int b; (a = 1; (b = 2; Print(a < b))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+int a
+(int b; (a = 1; (b = 2; Print(a < b))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(int b; (a = 1; (b = 2; Print(a < b))))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(int b; (a = 1; (b = 2; Print(a < b))))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+int b
+(a = 1; (b = 2; Print(a < b)))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+int b
+(a = 1; (b = 2; Print(a < b)))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(a = 1; (b = 2; Print(a < b)))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(a = 1; (b = 2; Print(a < b)))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+a = 1
+(b = 2; Print(a < b))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+a = 1
+(b = 2; Print(a < b))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(b = 2; Print(a < b))
+SYMBOL TABLE:
+a --> 1
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(b = 2; Print(a < b))
+SYMBOL TABLE:
+a --> 1
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+b = 2
+Print(a < b)
+SYMBOL TABLE:
+a --> 1
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+b = 2
+Print(a < b)
+SYMBOL TABLE:
+a --> 1
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+Print(a < b)
+SYMBOL TABLE:
+a --> 1
+b --> 2
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+Print(a < b)
+SYMBOL TABLE:
+a --> 1
+b --> 2
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> 1
+b --> 2
+HEAP:
+
+OUTPUT:
+true
+FILE TABLE:
+
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> 1
+b --> 2
+HEAP:
+
+OUTPUT:
+true
+FILE TABLE:
+
+--------------

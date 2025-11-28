@@ -1,1 +1,235 @@
 
+EXECUTION STACK:
+bool a
+(int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+bool a
+(int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
+SYMBOL TABLE:
+a --> false
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
+SYMBOL TABLE:
+a --> false
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+int v
+(a = true; ((If a Then v = 2 Else v = 3); Print(v)))
+SYMBOL TABLE:
+a --> false
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+int v
+(a = true; ((If a Then v = 2 Else v = 3); Print(v)))
+SYMBOL TABLE:
+a --> false
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(a = true; ((If a Then v = 2 Else v = 3); Print(v)))
+SYMBOL TABLE:
+a --> false
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(a = true; ((If a Then v = 2 Else v = 3); Print(v)))
+SYMBOL TABLE:
+a --> false
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+a = true
+((If a Then v = 2 Else v = 3); Print(v))
+SYMBOL TABLE:
+a --> false
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+a = true
+((If a Then v = 2 Else v = 3); Print(v))
+SYMBOL TABLE:
+a --> false
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+((If a Then v = 2 Else v = 3); Print(v))
+SYMBOL TABLE:
+a --> true
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+((If a Then v = 2 Else v = 3); Print(v))
+SYMBOL TABLE:
+a --> true
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(If a Then v = 2 Else v = 3)
+Print(v)
+SYMBOL TABLE:
+a --> true
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(If a Then v = 2 Else v = 3)
+Print(v)
+SYMBOL TABLE:
+a --> true
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+v = 2
+Print(v)
+SYMBOL TABLE:
+a --> true
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+v = 2
+Print(v)
+SYMBOL TABLE:
+a --> true
+v --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+Print(v)
+SYMBOL TABLE:
+a --> true
+v --> 2
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+Print(v)
+SYMBOL TABLE:
+a --> true
+v --> 2
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> true
+v --> 2
+HEAP:
+
+OUTPUT:
+2
+FILE TABLE:
+
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> true
+v --> 2
+HEAP:
+
+OUTPUT:
+2
+FILE TABLE:
+
+--------------

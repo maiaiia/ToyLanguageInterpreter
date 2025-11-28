@@ -1,1 +1,210 @@
 
+EXECUTION STACK:
+int a
+(int b; (a = 2+3*5; (b = a+1; Print(b))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+int a
+(int b; (a = 2+3*5; (b = a+1; Print(b))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(int b; (a = 2+3*5; (b = a+1; Print(b))))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(int b; (a = 2+3*5; (b = a+1; Print(b))))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+int b
+(a = 2+3*5; (b = a+1; Print(b)))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+int b
+(a = 2+3*5; (b = a+1; Print(b)))
+SYMBOL TABLE:
+a --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(a = 2+3*5; (b = a+1; Print(b)))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(a = 2+3*5; (b = a+1; Print(b)))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+a = 2+3*5
+(b = a+1; Print(b))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+a = 2+3*5
+(b = a+1; Print(b))
+SYMBOL TABLE:
+a --> 0
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(b = a+1; Print(b))
+SYMBOL TABLE:
+a --> 17
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(b = a+1; Print(b))
+SYMBOL TABLE:
+a --> 17
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+b = a+1
+Print(b)
+SYMBOL TABLE:
+a --> 17
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+b = a+1
+Print(b)
+SYMBOL TABLE:
+a --> 17
+b --> 0
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+Print(b)
+SYMBOL TABLE:
+a --> 17
+b --> 18
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+Print(b)
+SYMBOL TABLE:
+a --> 17
+b --> 18
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> 17
+b --> 18
+HEAP:
+
+OUTPUT:
+18
+FILE TABLE:
+
+EXECUTION STACK:
+
+SYMBOL TABLE:
+a --> 17
+b --> 18
+HEAP:
+
+OUTPUT:
+18
+FILE TABLE:
+
+--------------
