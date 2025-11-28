@@ -1,0 +1,200 @@
+
+EXECUTION STACK:
+Ref(int) v
+(new(v, 20); (Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+Ref(int) v
+(new(v, 20); (Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5))))
+SYMBOL TABLE:
+
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(new(v, 20); (Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5))))
+SYMBOL TABLE:
+v --> (0, int)
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(new(v, 20); (Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5))))
+SYMBOL TABLE:
+v --> (0, int)
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+new(v, 20)
+(Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5)))
+SYMBOL TABLE:
+v --> (0, int)
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+new(v, 20)
+(Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5)))
+SYMBOL TABLE:
+v --> (0, int)
+HEAP:
+
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5)))
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+(Print(readHeap(v)); (writeHeap(v, 30); Print(readHeap(v)+5)))
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+Print(readHeap(v))
+(writeHeap(v, 30); Print(readHeap(v)+5))
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+
+FILE TABLE:
+
+EXECUTION STACK:
+Print(readHeap(v))
+(writeHeap(v, 30); Print(readHeap(v)+5))
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+(writeHeap(v, 30); Print(readHeap(v)+5))
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+20
+FILE TABLE:
+
+EXECUTION STACK:
+(writeHeap(v, 30); Print(readHeap(v)+5))
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+20
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+writeHeap(v, 30)
+Print(readHeap(v)+5)
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+20
+FILE TABLE:
+
+EXECUTION STACK:
+writeHeap(v, 30)
+Print(readHeap(v)+5)
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 20
+OUTPUT:
+20
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+Print(readHeap(v)+5)
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 30
+OUTPUT:
+20
+FILE TABLE:
+
+EXECUTION STACK:
+Print(readHeap(v)+5)
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 30
+OUTPUT:
+20
+FILE TABLE:
+
+--------------
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 30
+OUTPUT:
+20
+35
+FILE TABLE:
+
+EXECUTION STACK:
+
+SYMBOL TABLE:
+v --> (1, int)
+HEAP:
+1 --> 30
+OUTPUT:
+20
+35
+FILE TABLE:
+
+--------------

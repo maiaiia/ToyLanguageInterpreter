@@ -8,7 +8,7 @@ public class RefType implements IType {
     public RefType(IType innerType) {
         this.innerType = innerType;
     }
-    IType getInnerType() {return innerType;}
+    public IType getInnerType() {return innerType;}
 
 
     @Override

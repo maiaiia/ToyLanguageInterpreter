@@ -1,10 +1,12 @@
 package model.statement.heapstatements;
 
 import exception.InvalidAddressException;
+import exception.InvalidExpressionTypeException;
 import exception.InvalidVariableTypeException;
 import exception.VariableNotDefinedException;
 import model.expression.IExpression;
 import model.statement.IStatement;
+import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
 import state.ProgramState;
@@ -19,7 +21,7 @@ public class WriteHeapStatement implements IStatement {
     }
 
     @Override
-    public ProgramState execute(ProgramState programState) throws VariableNotDefinedException, InvalidVariableTypeException, InvalidAddressException {
+    public ProgramState execute(ProgramState programState) throws VariableNotDefinedException, InvalidVariableTypeException, InvalidAddressException, InvalidExpressionTypeException {
         if (! programState.getSymbolTable().contains(variableName)) {
             throw new VariableNotDefinedException(variableName);
         }
@@ -27,8 +29,17 @@ public class WriteHeapStatement implements IStatement {
         if (!(variableValue instanceof RefValue)) {
             throw new InvalidVariableTypeException();
         }
-        int address = ((RefValue)variableValue).getAddress();
+
+        //check if the type of what's written coincides with the inner type of the ref value
+        var refValue = (RefValue) variableValue;
+        var refType = (RefType)refValue.getType();
+        int address = refValue.getAddress();
+
         IValue expressionResult = expression.evaluate(programState.getSymbolTable(), programState.getHeap());
+        if (!expressionResult.getType().equals(refType.getInnerType())) {
+            throw new InvalidExpressionTypeException();
+        }
+
         programState.getHeap().write(address, expressionResult); //write checks if the address is defined in the heap table
         return programState;
     }
