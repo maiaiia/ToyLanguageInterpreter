@@ -19,35 +19,21 @@ public class Controller implements IController {
     private final PrintWriter writer = new PrintWriter(System.out); //I did this in order to be able to change output dest
 
     @Override
-    public ProgramState executeOneStep(ProgramState programState) {
-        var executionStack = programState.getExecutionStack();
-        if (executionStack.isEmpty()) {
-            throw new ExecutionStackEmptyException();
-        }
-        IStatement statement = executionStack.pop();
-
-        // I know we're supposed to call this from executeProgramState, but it makes more sense to me to do it here,
-        // since we want every single step to be logged, whenever this function is called
-        var ret = statement.execute(programState);
-
-        repository.logCurrentState();
-        garbageCollector.runGarbageCollector(programState);
-        repository.logCurrentState(true);
-
-
-        if (displayFlag) {
-            writer.println(ret);
-            writer.flush();
-        }
-
-        return ret;
-    }
-
-    @Override
     public ProgramState executeProgramState(ProgramState programState) {
         while (true){
             try {
-                programState = executeOneStep(programState);
+                programState = programState.executeOneStep();
+
+                repository.logCurrentState();
+                garbageCollector.runGarbageCollector(programState);
+                repository.logCurrentState(true);
+
+
+                if (displayFlag) {
+                    writer.println(programState);
+                    writer.flush();
+                }
+
             } catch (ExecutionStackEmptyException e) {
                 break;
             }

@@ -6,7 +6,6 @@ import state.ProgramState;
 import java.io.PrintWriter;
 
 public interface IController {
-    ProgramState executeOneStep(ProgramState programState);
     ProgramState executeProgramState(ProgramState programState);
     ProgramState executeCurrentProgram();
     ProgramState getCurrentProgramState();

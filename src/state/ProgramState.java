@@ -1,5 +1,6 @@
 package state;
 
+import exception.ExecutionStackEmptyException;
 import model.adt.IDictionary;
 import model.statement.IStatement;
 import model.value.IValue;
@@ -46,6 +47,17 @@ public class ProgramState {
     }
 
     public IFileTable getFileTable() {return fileTable;}
+
+
+    public ProgramState executeOneStep() throws ExecutionStackEmptyException {
+        var executionStack = this.executionStack;
+        if (executionStack.isEmpty()) {
+            throw new ExecutionStackEmptyException();
+        }
+        IStatement statement = executionStack.pop();
+        return statement.execute(this);
+    }
+
 
     public String toString() {
         StringBuilder result = new StringBuilder(executionStack.toString() +
