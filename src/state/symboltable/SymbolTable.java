@@ -57,6 +57,18 @@ public class SymbolTable implements  ISymbolTable {
     }
 
     @Override
+    public ISymbolTable deepCopy() {
+        // deepcopy for the values
+        ISymbolTable symbolTableCopy = new SymbolTable();
+        var keys = symbolTable.keySet();
+        for (String key : keys) {
+            IValue value = symbolTable.get(key);
+            symbolTableCopy.add(key, value.deepCopy());
+        }
+        return symbolTableCopy;
+    }
+
+    @Override
     public String toString(){
         return "SYMBOL TABLE:\n" + symbolTable;
     }

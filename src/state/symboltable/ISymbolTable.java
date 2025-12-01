@@ -18,4 +18,5 @@ public interface ISymbolTable {
     Collection<IValue> values();
     String toString();
 
+    ISymbolTable deepCopy();
 }
