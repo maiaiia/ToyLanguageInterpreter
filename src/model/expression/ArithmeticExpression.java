@@ -5,21 +5,11 @@ import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
 import model.type.IntegerType;
 import model.value.IntegerValue;
-import model.adt.IDictionary;
 import model.value.IValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
 
-public class ArithmeticExpression implements IExpression {
-    private final IExpression left;
-    private final IExpression right;
-    private final char operator;
-
-    public ArithmeticExpression(IExpression left, IExpression right, char operator) {
-        this.left = left;
-        this.right = right;
-        this.operator = operator;
-    }
+public record ArithmeticExpression(IExpression left, IExpression right, char operator) implements IExpression {
 
     private int getIntValue(IExpression expression, ISymbolTable symbolTable, IHeap heap) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable, heap);
@@ -33,7 +23,7 @@ public class ArithmeticExpression implements IExpression {
     public IValue evaluate(ISymbolTable symbolTable, IHeap heap) throws InvalidOperandTypeException, DivisionByZeroException {
         int leftIntValue = getIntValue(left, symbolTable, heap);
         int rightIntValue = getIntValue(right, symbolTable, heap);
-        int result = switch (operator){
+        int result = switch (operator) {
             case '+' -> leftIntValue + rightIntValue;
             case '-' -> leftIntValue - rightIntValue;
             case '*' -> leftIntValue * rightIntValue;
@@ -44,13 +34,13 @@ public class ArithmeticExpression implements IExpression {
     }
 
     private static int getDivisionResult(int leftIntValue, int rightIntValue) throws DivisionByZeroException {
-        try{
+        try {
             return leftIntValue / rightIntValue;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new DivisionByZeroException();
         }
     }
+
     @Override
     public String toString() {
         return left.toString() + operator + right.toString();
@@ -58,6 +48,6 @@ public class ArithmeticExpression implements IExpression {
 
     @Override
     public IExpression deepCopy() {
-        return new  ArithmeticExpression(left.deepCopy(), right.deepCopy(), operator);
+        return new ArithmeticExpression(left.deepCopy(), right.deepCopy(), operator);
     }
 }

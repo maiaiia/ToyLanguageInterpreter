@@ -2,30 +2,20 @@ package model.expression;
 
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
-import model.adt.IDictionary;
 import model.type.BooleanType;
 import model.value.BooleanValue;
 import model.value.IValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
 
-public class LogicalExpression implements IExpression {
-    private final IExpression left;
-    private final IExpression right;
-    private final String operator;
-
-    public LogicalExpression(IExpression left, IExpression right, String operator) {
-        this.left = left;
-        this.right = right;
-        this.operator = operator;
-    }
+public record LogicalExpression(IExpression left, IExpression right, String operator) implements IExpression {
 
     private boolean getBoolValue(IExpression expression, ISymbolTable symbolTable, IHeap heap) throws InvalidOperandTypeException {
         IValue value = expression.evaluate(symbolTable, heap);
-        if(! (value.getType().equals(new BooleanType()))) {
+        if (!(value.getType().equals(new BooleanType()))) {
             throw new InvalidOperandTypeException();
         }
-        return ((BooleanValue)value).getValue();
+        return ((BooleanValue) value).getValue();
     }
 
     @Override
@@ -42,8 +32,7 @@ public class LogicalExpression implements IExpression {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return left.toString() + " " + operator + " " + right.toString();
     }
 

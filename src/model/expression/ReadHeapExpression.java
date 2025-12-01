@@ -2,26 +2,20 @@ package model.expression;
 
 import exception.InvalidAddressException;
 import exception.InvalidExpressionTypeException;
-import model.adt.IDictionary;
 import model.value.IValue;
 import model.value.RefValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
 
-public class ReadHeapExpression implements IExpression {
-    private final IExpression expression;
-
-    public ReadHeapExpression(IExpression expression) {
-        this.expression = expression;
-    }
+public record ReadHeapExpression(IExpression expression) implements IExpression {
 
     @Override
     public IValue evaluate(ISymbolTable symbolTable, IHeap heap) throws InvalidExpressionTypeException, InvalidAddressException {
-        var expressionResult = expression.evaluate( symbolTable, heap);
-        if (! (expressionResult instanceof RefValue)){
+        var expressionResult = expression.evaluate(symbolTable, heap);
+        if (!(expressionResult instanceof RefValue)) {
             throw new InvalidExpressionTypeException();
         }
-        int address = ((RefValue)expressionResult).getAddress();
+        int address = ((RefValue) expressionResult).getAddress();
         return heap.read(address);
     }
 
@@ -32,7 +26,7 @@ public class ReadHeapExpression implements IExpression {
 
     @Override
     public String toString() {
-        return "readHeap(" +  expression.toString() + ")";
+        return "readHeap(" + expression.toString() + ")";
     }
 
 }

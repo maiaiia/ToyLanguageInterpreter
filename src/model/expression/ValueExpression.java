@@ -1,17 +1,11 @@
 package model.expression;
 
 
-import model.adt.IDictionary;
 import model.value.IValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
 
-public class ValueExpression implements IExpression {
-    private final IValue value;
-
-    public ValueExpression(IValue value) {
-        this.value = value;
-    }
+public record ValueExpression(IValue value) implements IExpression {
 
     @Override
     public IValue evaluate(ISymbolTable symbolTable, IHeap heap) {
@@ -19,8 +13,7 @@ public class ValueExpression implements IExpression {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return value.toString();
     }
 

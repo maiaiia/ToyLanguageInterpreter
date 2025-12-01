@@ -1,16 +1,11 @@
 package model.expression;
 
 import exception.VariableNotDefinedException;
-import model.adt.IDictionary;
 import model.value.IValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
 
-public class VariableExpression implements IExpression {
-    private final String variableName;
-    public VariableExpression(String variableName) {
-        this.variableName = variableName;
-    }
+public record VariableExpression(String variableName) implements IExpression {
     @Override
     public IValue evaluate(ISymbolTable symbolTable, IHeap heap) {
         if (!symbolTable.contains(variableName)) {
@@ -20,8 +15,7 @@ public class VariableExpression implements IExpression {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return variableName;
     }
 

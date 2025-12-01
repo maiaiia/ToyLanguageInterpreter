@@ -22,7 +22,7 @@ public class Controller implements IController {
     public ProgramState executeProgramState(ProgramState programState) {
         while (true){
             try {
-                programState = programState.executeOneStep();
+                programState.executeOneStep();
 
                 repository.logCurrentState();
                 garbageCollector.runGarbageCollector(programState);
@@ -44,7 +44,7 @@ public class Controller implements IController {
     @Override
     public ProgramState executeCurrentProgram() {
         ProgramState programState = getCurrentProgramState();
-        programState = executeProgramState(programState);
+        executeProgramState(programState);
         moveToNextProgramState();
         return programState;
     }
