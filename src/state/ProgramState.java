@@ -70,8 +70,8 @@ public class ProgramState {
         StringBuilder result = new StringBuilder(
                 "PROGRAM STATE " + this.id + ":\n" +
                 executionStack.toString() + "\n" +
-                symbolTable.toString() +
-                "\nHEAP:\n" + heap.toString() + "\n" +
+                symbolTable.toString() + "\n" +
+                heap.toString() + "\n" +
                 output.toString() + "\n" +
                 fileTable.toString());
         return result.toString();

@@ -59,6 +59,6 @@ public class Heap implements IHeap {
 
     @Override
     public String toString() {
-        return heap.toString();
+        return "HEAP:\n" + heap.toString();
     }
 }
