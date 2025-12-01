@@ -57,7 +57,7 @@ public class ReadFileStatement implements IStatement {
         } catch (NumberFormatException e) {
             throw new NotANumberException();
         }
-        return programState;
+        return null;
     }
 
     @Override

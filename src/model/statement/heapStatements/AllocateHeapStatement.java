@@ -34,7 +34,7 @@ public class AllocateHeapStatement implements IStatement {
         int address = programState.getHeap().allocate(expressionValue);
         var newRef = new RefValue(address, expressionValue.getType());
         programState.getSymbolTable().add(variableName, newRef);
-        return programState;
+        return null;
     }
 
     @Override

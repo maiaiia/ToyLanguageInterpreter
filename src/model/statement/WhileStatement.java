@@ -25,7 +25,7 @@ public class WhileStatement implements IStatement {
             programState.getExecutionStack().push(this.deepCopy());
             programState.getExecutionStack().push(this.body);
         }
-        return programState;
+        return null;
     }
 
     @Override

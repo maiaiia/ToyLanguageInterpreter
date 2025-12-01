@@ -35,7 +35,7 @@ public class CloseRFileStatement implements IStatement {
         } catch (KeyNotInDictionaryException _){
             throw new FileNotFoundException(fileName);
         }
-        return programState;
+        return null;
     }
 
     @Override

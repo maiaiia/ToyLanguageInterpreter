@@ -26,7 +26,7 @@ public class AssignmentStatement implements IStatement {
             throw new InvalidVariableTypeException();
         }
         programState.getSymbolTable().add(symbolName, expressionResult);
-        return programState;
+        return null;
     }
 
     @Override

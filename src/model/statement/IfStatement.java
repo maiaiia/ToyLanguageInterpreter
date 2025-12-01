@@ -26,7 +26,7 @@ public class IfStatement implements IStatement {
         boolean conditionBoolean = ((BooleanValue) conditionValue).getValue();
         IStatement chosenStatement = conditionBoolean ? thenStatement : elseStatement;
         programState.getExecutionStack().push(chosenStatement);
-        return programState;
+        return null;
     }
 
     @Override

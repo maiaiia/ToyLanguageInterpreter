@@ -39,7 +39,7 @@ public class OpenRFileStatement implements IStatement {
             throw new FileOperationException(ioException);
         }
 
-        return programState;
+        return null;
     }
 
     @Override

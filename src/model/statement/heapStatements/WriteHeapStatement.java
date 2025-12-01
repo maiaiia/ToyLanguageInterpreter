@@ -41,7 +41,7 @@ public class WriteHeapStatement implements IStatement {
         }
 
         programState.getHeap().write(address, expressionResult); //write checks if the address is defined in the heap table
-        return programState;
+        return null;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class VariableDeclarationStatement implements IStatement {
             throw new VariableAlreadyDeclaredException();
         }
         symbolTable.add(variableName, variableType.getDefaultValue());
-        return programState;
+        return null;
     }
 
     @Override
