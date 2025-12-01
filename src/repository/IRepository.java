@@ -3,6 +3,8 @@ package repository;
 import exception.OutOfBoundsIndexException;
 import state.ProgramState;
 
+import java.util.List;
+
 public interface IRepository {
     void addState(ProgramState programState);
     ProgramState getCurrentProgramState();
@@ -10,4 +12,7 @@ public interface IRepository {
     void logCurrentState();
     void logCurrentState(boolean displaySeparator);
     void logAllPrograms();
+
+    List<ProgramState> getProgramList();
+    void setProgramList(List<ProgramState> programList);
 }

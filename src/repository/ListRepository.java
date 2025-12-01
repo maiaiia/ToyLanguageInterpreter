@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListRepository implements IRepository {
-    private final List<ProgramState> programStates;
+    private List<ProgramState> programStates;
     private final String logFileName;
     private final String LOG_FILES_PATH = "log_files/";
     int currentIndex = 0;
@@ -89,6 +89,17 @@ public class ListRepository implements IRepository {
         }
         logFile.println("***************************");
         logFile.close();
+    }
+
+    @Override
+    public List<ProgramState> getProgramList() {
+        return this.programStates;
+    }
+
+    @Override
+    public void setProgramList(List<ProgramState> programList) {
+        //TODO - check if I'm supposed to copy the content of the programList or just do this
+        this.programStates = programList;
     }
 
 
