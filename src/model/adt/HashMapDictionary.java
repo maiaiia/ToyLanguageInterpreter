@@ -6,9 +6,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class HashMapDictionary<K, V> implements IDictionary<K, V> {
-    private final HashMap<K, V> map = new HashMap<K, V>();
+    private final ConcurrentHashMap<K, V> map = new ConcurrentHashMap<K, V>();
 
     @Override
     public void add(K key, V value) {
@@ -58,7 +59,7 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
         for (K key : map.keySet()){
             result += key.toString() + " --> " + map.get(key) + "\n";
         }
-        if (result.length() != 0) {result = result.substring(0, result.length()-1);}
+        if (!result.isEmpty()) {result = result.substring(0, result.length()-1);}
         return result;
     }
 

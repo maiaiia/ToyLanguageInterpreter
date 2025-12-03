@@ -5,7 +5,7 @@ import exception.StackEmptyException;
 import java.util.EmptyStackException;
 
 public class Stack<T> implements IStack<T> {
-    private final java.util.Stack<T> stack = new java.util.Stack<>();
+    private final java.util.Stack<T> stack = new java.util.Stack<>(); //stack is thread safe
 
     @Override
     public void push(T element) {

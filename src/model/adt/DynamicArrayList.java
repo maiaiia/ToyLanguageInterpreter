@@ -5,9 +5,10 @@ import exception.ValueNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DynamicArrayList<T> implements  IList<T> {
-    private final List<T> list =  new ArrayList<T>();
+    private final List<T> list =  new CopyOnWriteArrayList<>();
 
     void checkIndex(int index) throws OutOfBoundsIndexException {
         if (index < 0 || index > size()) {
@@ -75,11 +76,12 @@ public class DynamicArrayList<T> implements  IList<T> {
 
     @Override
     public String toString(){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (T item : list){
-            result += item.toString() + "\n";
+            result.append(item.toString()).append("\n");
         }
-        if (result.length() != 0) {result = result.substring(0, result.length()-1);}
-        return result;
+        if (result.length() > 0) {
+            result = new StringBuilder(result.substring(0, result.length() - 1));}
+        return result.toString();
     }
 }
