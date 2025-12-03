@@ -9,8 +9,8 @@ public interface IRepository {
     void addState(ProgramState programState);
     ProgramState getCurrentProgramState();
     ProgramState getNextProgramState() throws OutOfBoundsIndexException;
-    void logCurrentState();
-    void logCurrentState(boolean displaySeparator);
+    void logProgramStateExecution(ProgramState programState);
+    void logProgramStateExecution(ProgramState programState, boolean displaySeparator);
     void logAllPrograms();
 
     List<ProgramState> getProgramList();

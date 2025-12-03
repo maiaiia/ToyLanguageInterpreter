@@ -3,7 +3,6 @@ package controller;
 import controller.garbagecollector.GarbageCollector;
 import exception.ExecutionStackEmptyException;
 import exception.OutOfBoundsIndexException;
-import model.statement.IStatement;
 import repository.IRepository;
 import state.ProgramState;
 
@@ -24,9 +23,9 @@ public class Controller implements IController {
             try {
                 programState.executeOneStep();
 
-                repository.logCurrentState();
+                repository.logProgramStateExecution(programState);
                 garbageCollector.runGarbageCollector(programState);
-                repository.logCurrentState(true);
+                repository.logProgramStateExecution(programState, true);
 
 
                 if (displayFlag) {

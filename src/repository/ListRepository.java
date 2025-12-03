@@ -54,19 +54,19 @@ public class ListRepository implements IRepository {
     }
 
     @Override
-    public void logCurrentState() {
-        logCurrentState(false);
+    public void logProgramStateExecution(ProgramState programState) {
+        logProgramStateExecution(programState, false);
     }
 
     @Override
-    public void logCurrentState(boolean displaySeparator) {
+    public void logProgramStateExecution(ProgramState programState, boolean displaySeparator) {
         PrintWriter logFile;
         try {
             logFile = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILES_PATH + logFileName, true)));
         } catch (IOException e) {
             throw new FileOperationException(e);
         }
-        logFile.println(this.getCurrentProgramState());
+        logFile.println(programState.toString());
 
         if (displaySeparator) {logFile.println("--------------");}
 
