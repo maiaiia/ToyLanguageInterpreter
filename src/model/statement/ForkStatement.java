@@ -13,7 +13,8 @@ public record ForkStatement(IStatement program) implements IStatement {
         var heap = programState.getHeap();
         var fileTable = programState.getFileTable();
         var output = programState.getOutput();
-        return new ProgramState(symbolTable, executionStack, output, fileTable, heap, program.deepCopy());
+        var forkedProgram = program.deepCopy();
+        return new ProgramState(symbolTable, executionStack, output, fileTable, heap, forkedProgram);
     }
 
     @Override
