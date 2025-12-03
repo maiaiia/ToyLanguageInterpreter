@@ -46,7 +46,7 @@ public class WriteHeapStatement implements IStatement {
 
     @Override
     public IStatement deepCopy() {
-        return null;
+        return new WriteHeapStatement(variableName, expression.deepCopy());
     }
 
     @Override
