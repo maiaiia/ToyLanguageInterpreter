@@ -35,23 +35,6 @@ public class ListRepository implements IRepository {
         programStates.addLast(programState);
     }
 
-    @Override
-    public ProgramState getCurrentProgramState() throws OutOfBoundsIndexException {
-        try {
-            return programStates.get(currentIndex);
-        } catch(IndexOutOfBoundsException e) {
-            throw new OutOfBoundsIndexException("Index out of bounds");
-        }
-    }
-
-    @Override
-    public ProgramState getNextProgramState() throws OutOfBoundsIndexException {
-        try {
-            return programStates.get(currentIndex++);
-        } catch (IndexOutOfBoundsException e) {
-            throw new OutOfBoundsIndexException("Index out of bounds!");
-        }
-    }
 
     @Override
     public void logProgramStateExecution(ProgramState programState) {
@@ -72,23 +55,6 @@ public class ListRepository implements IRepository {
 
         logFile.close();
 
-    }
-
-    @Override
-    public void logAllPrograms() {
-        PrintWriter logFile;
-        try {
-            logFile = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILES_PATH + logFileName, true)));
-        } catch (IOException e) {
-            throw new FileOperationException(e);
-        }
-
-        for (int i = 0; i < programStates.size(); i++) {
-            logFile.println("Program " + i);
-            logFile.println(programStates.get(i).toString());
-        }
-        logFile.println("***************************");
-        logFile.close();
     }
 
     @Override

@@ -13,13 +13,13 @@ public class RunProgramCommand extends Command {
     @Override
     public void execute(){
         try {
-            var program = controller.executeCurrentProgram();
-            controller.getWriter().println(program);
-            controller.getWriter().flush();
+            controller.allStep();
         } catch (OutOfBoundsIndexException _){
             controller.getWriter().println(new ExecutionStackEmptyException().getMessage());
             controller.getWriter().flush();
             return;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         IO.println(this.getDescription() + " executed successfully");
     }
