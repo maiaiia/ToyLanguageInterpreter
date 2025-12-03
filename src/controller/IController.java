@@ -13,6 +13,4 @@ public interface IController {
 
     PrintWriter getWriter();
     void setDisplayFlag();
-    void resetDisplayFlag();
-    boolean getDisplayFlag();
 }

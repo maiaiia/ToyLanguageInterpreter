@@ -71,7 +71,6 @@ public class ListRepository implements IRepository {
 
     @Override
     public void setProgramList(List<ProgramState> programList) {
-        //TODO - check if I'm supposed to copy the content of the programList or just do this
         this.programStates = programList;
     }
 

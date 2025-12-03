@@ -82,14 +82,4 @@ public class Controller implements IController {
     public void setDisplayFlag() {
         displayFlag = true;
     }
-
-    @Override
-    public void resetDisplayFlag() {
-        displayFlag = false;
-    }
-
-    @Override
-    public boolean getDisplayFlag() {
-        return displayFlag;
-    }
 }
