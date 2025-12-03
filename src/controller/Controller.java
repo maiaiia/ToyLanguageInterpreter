@@ -16,10 +16,11 @@ import java.util.stream.Collectors;
 public class Controller implements IController {
     private final IRepository repository;
     private boolean displayFlag = false;
-    private final GarbageCollector garbageCollector =  new GarbageCollector();
+    private final GarbageCollector garbageCollector;
     private ExecutorService executor;
     public Controller(IRepository repository) {
         this.repository = repository;
+        this.garbageCollector = new GarbageCollector();
     }
     private final PrintWriter writer = new PrintWriter(System.out); //I did this in order to be able to change output dest
 
@@ -46,7 +47,7 @@ public class Controller implements IController {
                     try {
                         return future.get();
                     } catch (InterruptedException | ExecutionException e){
-                        throw new ThreadExecutionException();
+                        throw new ThreadExecutionException(); //TODO Figure out what i'm supposed to do here?
                     }
                 })
                 .filter(Objects::nonNull)
@@ -61,7 +62,7 @@ public class Controller implements IController {
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(repository.getProgramList());
         while (!programList.isEmpty()) {
-            //TODO - garbage collector
+            garbageCollector.runGarbageCollector(programList);
             executeOneStepAllPrograms(programList);
             programList = removeCompletedPrograms(repository.getProgramList());
         }
