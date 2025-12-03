@@ -34,7 +34,7 @@ public class Controller implements IController {
     @Override
     public void executeOneStepAllPrograms(List<ProgramState> programStates) throws InterruptedException, ThreadExecutionException {
         //before the execution, print the program state list into the log file
-        programStates.forEach(repository::logProgramStateExecution);
+        //programStates.forEach(repository::logProgramStateExecution);
 
         //prepare the list of callables
         List<Callable<ProgramState>> callList = programStates.stream()
@@ -54,6 +54,7 @@ public class Controller implements IController {
                 .toList();
         programStates.addAll(newProgramsList);
         programStates.forEach(repository::logProgramStateExecution);
+        repository.addLogSeparator();
         repository.setProgramList(programStates);
     }
 
@@ -61,6 +62,8 @@ public class Controller implements IController {
     public void allStep() throws InterruptedException {
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(repository.getProgramList());
+        //moved the first print here to remove redundant log entries (uncomment the first line in executeOneStepAllPrograms for a more detailed output)
+        programList.forEach(repository::logProgramStateExecution);
         while (!programList.isEmpty()) {
             garbageCollector.runGarbageCollector(programList);
             executeOneStepAllPrograms(programList);

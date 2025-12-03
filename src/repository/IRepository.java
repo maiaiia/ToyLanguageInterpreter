@@ -8,7 +8,7 @@ import java.util.List;
 public interface IRepository {
     void addState(ProgramState programState);
     void logProgramStateExecution(ProgramState programState);
-    void logProgramStateExecution(ProgramState programState, boolean displaySeparator);
+    void addLogSeparator();
 
     List<ProgramState> getProgramList();
     void setProgramList(List<ProgramState> programList);

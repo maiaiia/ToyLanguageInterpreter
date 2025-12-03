@@ -68,7 +68,7 @@ public class ProgramState {
 
     public String toString() {
         StringBuilder result = new StringBuilder(
-                "PROGRAM STATE " + this.id + ":\n" +
+                "Thread " + this.id + ":\n" +
                 executionStack.toString() + "\n" +
                 symbolTable.toString() + "\n" +
                 heap.toString() + "\n" +
