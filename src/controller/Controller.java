@@ -45,12 +45,12 @@ public class Controller implements IController {
     @Override
     public ProgramState executeCurrentProgram() {
         ProgramState programState = getCurrentProgramState();
+        repository.logProgramStateExecution(programState);
         executeProgramState(programState);
         moveToNextProgramState();
         return programState;
     }
 
-    @Override
     public ProgramState getCurrentProgramState() {
         return repository.getCurrentProgramState();
     }

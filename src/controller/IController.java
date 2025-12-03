@@ -9,7 +9,6 @@ import java.util.List;
 public interface IController {
     ProgramState executeProgramState(ProgramState programState);
     ProgramState executeCurrentProgram();
-    ProgramState getCurrentProgramState();
     ProgramState moveToNextProgramState() throws OutOfBoundsIndexException;
     List<ProgramState> removeCompletedPrograms(List<ProgramState> programStates);
 
