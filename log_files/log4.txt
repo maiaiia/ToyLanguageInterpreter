@@ -1,4 +1,5 @@
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 str varf
 (varf = testFiles/test.in; (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))))
@@ -10,6 +11,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 str varf
 (varf = testFiles/test.in; (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))))
@@ -22,6 +24,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (varf = testFiles/test.in; (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))))
 SYMBOL TABLE:
@@ -32,6 +35,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (varf = testFiles/test.in; (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))))
 SYMBOL TABLE:
@@ -43,6 +47,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 varf = testFiles/test.in
 (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))))
@@ -54,6 +59,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 varf = testFiles/test.in
 (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))))
@@ -66,6 +72,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))))
 SYMBOL TABLE:
@@ -76,6 +83,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (OpenRFile(varf); (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))))
 SYMBOL TABLE:
@@ -87,6 +95,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 OpenRFile(varf)
 (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))
@@ -98,6 +107,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 OpenRFile(varf)
 (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))
@@ -110,6 +120,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))
 SYMBOL TABLE:
@@ -121,6 +132,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (int varc; (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))))
 SYMBOL TABLE:
@@ -133,6 +145,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 int varc
 (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))
@@ -145,6 +158,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 int varc
 (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))
@@ -158,6 +172,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))
 SYMBOL TABLE:
@@ -170,6 +185,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (ReadFile(varf, varc); (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))))
 SYMBOL TABLE:
@@ -183,6 +199,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 ReadFile(varf, varc)
 (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))
@@ -196,6 +213,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 ReadFile(varf, varc)
 (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))
@@ -210,6 +228,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))
 SYMBOL TABLE:
@@ -222,6 +241,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (Print(varc); (ReadFile(varf, varc); (Print(varc); CloseRFile(varf))))
 SYMBOL TABLE:
@@ -235,6 +255,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 Print(varc)
 (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))
@@ -248,6 +269,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 Print(varc)
 (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))
@@ -262,6 +284,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))
 SYMBOL TABLE:
@@ -274,6 +297,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (ReadFile(varf, varc); (Print(varc); CloseRFile(varf)))
 SYMBOL TABLE:
@@ -287,6 +311,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 ReadFile(varf, varc)
 (Print(varc); CloseRFile(varf))
@@ -300,6 +325,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 ReadFile(varf, varc)
 (Print(varc); CloseRFile(varf))
@@ -314,6 +340,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 (Print(varc); CloseRFile(varf))
 SYMBOL TABLE:
@@ -326,6 +353,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 (Print(varc); CloseRFile(varf))
 SYMBOL TABLE:
@@ -339,6 +367,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 Print(varc)
 CloseRFile(varf)
@@ -352,6 +381,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 Print(varc)
 CloseRFile(varf)
@@ -366,6 +396,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 CloseRFile(varf)
 SYMBOL TABLE:
@@ -379,6 +410,7 @@ OUTPUT:
 FILE TABLE:
 testFiles/test.in
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 CloseRFile(varf)
 SYMBOL TABLE:
@@ -393,6 +425,7 @@ FILE TABLE:
 testFiles/test.in
 
 --------------
+PROGRAM STATE 3:
 EXECUTION STACK:
 
 SYMBOL TABLE:
@@ -405,6 +438,7 @@ OUTPUT:
 50
 FILE TABLE:
 
+PROGRAM STATE 3:
 EXECUTION STACK:
 
 SYMBOL TABLE:

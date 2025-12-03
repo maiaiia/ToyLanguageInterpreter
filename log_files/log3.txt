@@ -1,4 +1,5 @@
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 bool a
 (int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
@@ -10,6 +11,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 bool a
 (int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
@@ -22,6 +24,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 (int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
 SYMBOL TABLE:
@@ -32,6 +35,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 (int v; (a = true; ((If a Then v = 2 Else v = 3); Print(v))))
 SYMBOL TABLE:
@@ -43,6 +47,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 int v
 (a = true; ((If a Then v = 2 Else v = 3); Print(v)))
@@ -54,6 +59,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 int v
 (a = true; ((If a Then v = 2 Else v = 3); Print(v)))
@@ -66,6 +72,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 (a = true; ((If a Then v = 2 Else v = 3); Print(v)))
 SYMBOL TABLE:
@@ -77,6 +84,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 (a = true; ((If a Then v = 2 Else v = 3); Print(v)))
 SYMBOL TABLE:
@@ -89,6 +97,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 a = true
 ((If a Then v = 2 Else v = 3); Print(v))
@@ -101,6 +110,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 a = true
 ((If a Then v = 2 Else v = 3); Print(v))
@@ -114,6 +124,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 ((If a Then v = 2 Else v = 3); Print(v))
 SYMBOL TABLE:
@@ -125,6 +136,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 ((If a Then v = 2 Else v = 3); Print(v))
 SYMBOL TABLE:
@@ -137,6 +149,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 (If a Then v = 2 Else v = 3)
 Print(v)
@@ -149,6 +162,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 (If a Then v = 2 Else v = 3)
 Print(v)
@@ -162,6 +176,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 v = 2
 Print(v)
@@ -174,6 +189,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 v = 2
 Print(v)
@@ -187,6 +203,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 Print(v)
 SYMBOL TABLE:
@@ -198,6 +215,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 Print(v)
 SYMBOL TABLE:
@@ -210,6 +228,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 2:
 EXECUTION STACK:
 
 SYMBOL TABLE:
@@ -221,6 +240,7 @@ OUTPUT:
 2
 FILE TABLE:
 
+PROGRAM STATE 2:
 EXECUTION STACK:
 
 SYMBOL TABLE:

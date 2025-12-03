@@ -7,6 +7,8 @@ import repository.IRepository;
 import state.ProgramState;
 
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Controller implements IController {
     private final IRepository repository;
@@ -56,6 +58,13 @@ public class Controller implements IController {
     @Override
     public ProgramState moveToNextProgramState() throws OutOfBoundsIndexException {
         return repository.getNextProgramState();
+    }
+
+    @Override
+    public List<ProgramState> removeCompletedPrograms(List<ProgramState> programStates) {
+        return programStates.stream()
+                .filter(ProgramState::isNotCompleted)
+                .collect(Collectors.toList());
     }
 
     @Override

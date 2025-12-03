@@ -1,4 +1,5 @@
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 int a
 (int b; (a = 1; (b = 2; Print(a < b))))
@@ -10,6 +11,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 int a
 (int b; (a = 1; (b = 2; Print(a < b))))
@@ -22,6 +24,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 (int b; (a = 1; (b = 2; Print(a < b))))
 SYMBOL TABLE:
@@ -32,6 +35,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 (int b; (a = 1; (b = 2; Print(a < b))))
 SYMBOL TABLE:
@@ -43,6 +47,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 int b
 (a = 1; (b = 2; Print(a < b)))
@@ -54,6 +59,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 int b
 (a = 1; (b = 2; Print(a < b)))
@@ -66,6 +72,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 (a = 1; (b = 2; Print(a < b)))
 SYMBOL TABLE:
@@ -77,6 +84,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 (a = 1; (b = 2; Print(a < b)))
 SYMBOL TABLE:
@@ -89,6 +97,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 a = 1
 (b = 2; Print(a < b))
@@ -101,6 +110,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 a = 1
 (b = 2; Print(a < b))
@@ -114,6 +124,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 (b = 2; Print(a < b))
 SYMBOL TABLE:
@@ -125,6 +136,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 (b = 2; Print(a < b))
 SYMBOL TABLE:
@@ -137,6 +149,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 b = 2
 Print(a < b)
@@ -149,6 +162,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 b = 2
 Print(a < b)
@@ -162,6 +176,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 Print(a < b)
 SYMBOL TABLE:
@@ -173,6 +188,7 @@ OUTPUT:
 
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 Print(a < b)
 SYMBOL TABLE:
@@ -185,6 +201,7 @@ OUTPUT:
 FILE TABLE:
 
 --------------
+PROGRAM STATE 4:
 EXECUTION STACK:
 
 SYMBOL TABLE:
@@ -196,6 +213,7 @@ OUTPUT:
 true
 FILE TABLE:
 
+PROGRAM STATE 4:
 EXECUTION STACK:
 
 SYMBOL TABLE:
