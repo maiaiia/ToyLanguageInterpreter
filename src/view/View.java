@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import controller.IController;
+import model.adt.HashMapDictionary;
 import repository.IRepository;
 import repository.ListRepository;
 import state.ProgramState;

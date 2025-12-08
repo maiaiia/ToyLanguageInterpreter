@@ -1,6 +1,7 @@
 package state;
 
 import exception.ExecutionStackEmptyException;
+import model.adt.HashMapDictionary;
 import model.statement.IStatement;
 import state.executionstack.IExecutionStack;
 import state.filetable.IFileTable;
@@ -20,6 +21,7 @@ public class ProgramState {
 
 
     public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
+        originalProgram.typecheck(new HashMapDictionary<>());
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
