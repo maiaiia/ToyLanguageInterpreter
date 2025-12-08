@@ -2,7 +2,6 @@ package model.statement;
 
 import state.ProgramState;
 import state.executionstack.ExecutionStack;
-import state.symboltable.SymbolTable;
 
 public record ForkStatement(IStatement program) implements IStatement {
 
