@@ -16,4 +16,6 @@ public interface IDictionary<K, V> {
     String toString();
     Set<K> keySet();
     Collection<V> values();
+
+    IDictionary<K, V> copy();
 }

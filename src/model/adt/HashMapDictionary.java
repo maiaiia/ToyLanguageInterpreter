@@ -32,7 +32,7 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     @Override
     public V search(K key) throws KeyNotInDictionaryException {
         V v = map.get(key);
-        if (v == null){
+        if (v == null) {
             throw new KeyNotInDictionaryException();
         }
         return v;
@@ -71,6 +71,13 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     @Override
     public Collection<V> values() {
         return map.values();
+    }
+
+    @Override
+    public IDictionary<K, V> copy() {
+        var clone = new HashMapDictionary<K, V>();
+        clone.map.putAll(this.map);
+        return clone;
     }
 
 }
