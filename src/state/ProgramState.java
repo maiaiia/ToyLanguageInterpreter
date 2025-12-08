@@ -21,7 +21,7 @@ public class ProgramState {
 
 
     public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
-        originalProgram.typecheck(new HashMapDictionary<>());
+        //originalProgram.typecheck(new HashMapDictionary<>()); WARNING this will break on fork
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;

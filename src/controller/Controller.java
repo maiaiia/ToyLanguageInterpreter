@@ -47,7 +47,7 @@ public class Controller implements IController {
                     try {
                         return future.get();
                     } catch (InterruptedException | ExecutionException e){
-                        throw new ThreadExecutionException(); //TODO Figure out what i'm supposed to do here?
+                        throw new ThreadExecutionException();
                     }
                 })
                 .filter(Objects::nonNull)

@@ -26,6 +26,7 @@ public class View  {
         var statements = new HardCodedStatements().getStatements();
 
         for (int i = 0; i < statements.size(); i++) {
+            statements.get(i).typecheck(new HashMapDictionary<>());
             ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), statements.get(i));
             IRepository repository = new ListRepository(p,"log" + Integer.toString(i + 1) + ".txt" );
             IController controller = new Controller(repository);
