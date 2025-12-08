@@ -1,8 +1,11 @@
 package model.statement;
 
+import exception.InvalidExpressionTypeException;
 import exception.InvalidVariableTypeException;
 import exception.VariableNotDefinedException;
+import model.adt.IDictionary;
 import model.expression.IExpression;
+import model.type.IType;
 import model.value.IValue;
 import state.ProgramState;
 
@@ -37,5 +40,15 @@ public class AssignmentStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new  AssignmentStatement(symbolName, expression.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType variableType = typeEnvironment.search(symbolName);
+        IType expressionType = expression.typecheck(typeEnvironment);
+        if (variableType.equals(expressionType)) {
+            return typeEnvironment;
+        }
+        throw new InvalidExpressionTypeException("Assignment: left and right hand side type mismatch");
     }
 }

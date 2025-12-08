@@ -4,8 +4,10 @@ import exception.InvalidAddressException;
 import exception.InvalidExpressionTypeException;
 import exception.InvalidVariableTypeException;
 import exception.VariableNotDefinedException;
+import model.adt.IDictionary;
 import model.expression.IExpression;
 import model.statement.IStatement;
+import model.type.IType;
 import model.type.RefType;
 import model.value.IValue;
 import model.value.RefValue;
@@ -47,6 +49,16 @@ public class WriteHeapStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new WriteHeapStatement(variableName, expression.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType variableType =  typeEnvironment.search(variableName);
+        IType expressionType = expression.typecheck(typeEnvironment);
+        if (variableType.equals(new RefType(expressionType))) {
+            return typeEnvironment;
+        }
+        throw new InvalidExpressionTypeException("Write Heap: Reference inner type and Expression type mismatch");
     }
 
     @Override

@@ -1,6 +1,8 @@
 package model.statement;
 
+import model.adt.IDictionary;
 import model.expression.IExpression;
+import model.type.IType;
 import model.value.IValue;
 import state.ProgramState;
 
@@ -27,5 +29,11 @@ public class PrintStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new PrintStatement(expression.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        expression.typecheck(typeEnvironment);
+        return typeEnvironment;
     }
 }

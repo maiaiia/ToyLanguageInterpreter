@@ -1,7 +1,10 @@
 package model.statement;
 
 import exception.ConditionNotBooleanException;
+import model.adt.IDictionary;
 import model.expression.IExpression;
+import model.type.BooleanType;
+import model.type.IType;
 import model.value.BooleanValue;
 import model.value.IValue;
 import state.ProgramState;
@@ -37,5 +40,16 @@ public class IfStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new IfStatement(condition.deepCopy(), thenStatement.deepCopy(), elseStatement.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType conditionType = condition.typecheck(typeEnvironment);
+        if (!conditionType.equals(new BooleanType())) {
+            throw new ConditionNotBooleanException();
+        }
+        thenStatement.typecheck(typeEnvironment.copy());
+        elseStatement.typecheck(typeEnvironment.copy());
+        return typeEnvironment;
     }
 }

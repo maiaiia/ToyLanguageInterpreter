@@ -4,8 +4,10 @@ import exception.FileNotFoundException;
 import exception.FileOperationException;
 import exception.InvalidOperandTypeException;
 import exception.KeyNotInDictionaryException;
+import model.adt.IDictionary;
 import model.expression.IExpression;
 import model.statement.IStatement;
+import model.type.IType;
 import model.type.StringType;
 import state.ProgramState;
 
@@ -46,5 +48,13 @@ public class CloseRFileStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new CloseRFileStatement(expression.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType expressionType = expression.typecheck(typeEnvironment);
+        if (!expressionType.equals(new StringType()))
+            throw new InvalidOperandTypeException();
+        return typeEnvironment;
     }
 }

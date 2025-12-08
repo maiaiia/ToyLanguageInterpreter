@@ -1,5 +1,7 @@
 package model.statement;
 
+import model.adt.IDictionary;
+import model.type.IType;
 import state.ProgramState;
 import state.executionstack.ExecutionStack;
 
@@ -19,6 +21,12 @@ public record ForkStatement(IStatement program) implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new ForkStatement(program.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        program.typecheck(typeEnvironment.copy());
+        return typeEnvironment;
     }
 
     @Override

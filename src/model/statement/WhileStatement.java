@@ -1,8 +1,11 @@
 package model.statement;
 
+import exception.ConditionNotBooleanException;
 import exception.InvalidExpressionTypeException;
+import model.adt.IDictionary;
 import model.expression.IExpression;
 import model.type.BooleanType;
+import model.type.IType;
 import model.value.BooleanValue;
 import state.ProgramState;
 
@@ -31,6 +34,16 @@ public class WhileStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new WhileStatement(condition.deepCopy(), body.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType conditionType = condition.typecheck(typeEnvironment);
+        if (!conditionType.equals(new BooleanType())) {
+            throw new ConditionNotBooleanException();
+        }
+        body.typecheck(typeEnvironment.copy());
+        return typeEnvironment;
     }
 
     @Override

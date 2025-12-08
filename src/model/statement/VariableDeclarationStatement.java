@@ -1,6 +1,7 @@
 package model.statement;
 
 import exception.VariableAlreadyDeclaredException;
+import model.adt.IDictionary;
 import model.type.IType;
 import state.ProgramState;
 
@@ -31,5 +32,11 @@ public class VariableDeclarationStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new VariableDeclarationStatement(variableName, variableType.deepCopy());
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        typeEnvironment.add(variableName, variableType);
+        return typeEnvironment;
     }
 }

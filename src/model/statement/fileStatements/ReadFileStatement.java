@@ -1,8 +1,10 @@
 package model.statement.fileStatements;
 
 import exception.*;
+import model.adt.IDictionary;
 import model.expression.IExpression;
 import model.statement.IStatement;
+import model.type.IType;
 import model.type.IntegerType;
 import model.type.StringType;
 import model.value.IntegerValue;
@@ -68,6 +70,19 @@ public class ReadFileStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new ReadFileStatement(fileNameExpression.deepCopy(), variableName);
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType fileNameType = fileNameExpression.typecheck(typeEnvironment);
+        if (!fileNameType.equals(new StringType())) {
+            throw new InvalidExpressionTypeException(new StringType());
+        }
+        IType variableType = typeEnvironment.search(variableName);
+        if (!variableType.equals(new IntegerType())) {
+            throw new InvalidVariableTypeException(variableName, new IntegerType());
+        }
+        return typeEnvironment;
     }
 }
 
