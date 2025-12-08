@@ -1,6 +1,8 @@
 package model.expression;
 
 import exception.VariableNotDefinedException;
+import model.adt.IDictionary;
+import model.type.IType;
 import model.value.IValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
@@ -17,6 +19,11 @@ public record VariableExpression(String variableName) implements IExpression {
     @Override
     public String toString() {
         return variableName;
+    }
+
+    @Override
+    public IType typecheck(IDictionary<String, IType> typeEnvironment) {
+        return typeEnvironment.search(variableName);
     }
 
     @Override

@@ -3,6 +3,8 @@ package model.expression;
 import exception.DivisionByZeroException;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
+import model.adt.IDictionary;
+import model.type.IType;
 import model.type.IntegerType;
 import model.value.IntegerValue;
 import model.value.IValue;
@@ -44,6 +46,20 @@ public record ArithmeticExpression(IExpression left, IExpression right, char ope
     @Override
     public String toString() {
         return left.toString() + operator + right.toString();
+    }
+
+    @Override
+    public IType typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType leftType = left.typecheck(typeEnvironment);
+        if (!leftType.equals(new IntegerType())) {
+            throw new InvalidOperandTypeException("Left operand is not an Integer");
+        }
+        IType rightType = right.typecheck(typeEnvironment);
+        if (!rightType.equals(new IntegerType())) {
+            throw new InvalidOperandTypeException("Right operand is not an Integer");
+        }
+        return new IntegerType();
+
     }
 
     @Override

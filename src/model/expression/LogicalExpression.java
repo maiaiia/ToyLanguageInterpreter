@@ -2,7 +2,9 @@ package model.expression;
 
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
+import model.adt.IDictionary;
 import model.type.BooleanType;
+import model.type.IType;
 import model.value.BooleanValue;
 import model.value.IValue;
 import state.heap.IHeap;
@@ -34,6 +36,19 @@ public record LogicalExpression(IExpression left, IExpression right, String oper
     @Override
     public String toString() {
         return left.toString() + " " + operator + " " + right.toString();
+    }
+
+    @Override
+    public IType typecheck(IDictionary<String, IType> typeEnvironment) {
+        var leftType = left.typecheck(typeEnvironment);
+        if (!leftType.equals(new BooleanType())) {
+            throw new InvalidOperandTypeException("Left operand is not a Boolean");
+        }
+        var rightType = right.typecheck(typeEnvironment);
+        if (!rightType.equals(new BooleanType())) {
+            throw new InvalidOperandTypeException("Right operand is not a Boolean");
+        }
+        return new BooleanType();
     }
 
     @Override
