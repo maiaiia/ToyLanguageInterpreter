@@ -3,6 +3,7 @@ package model.expression;
 import exception.InvalidOperandTypeException;
 import exception.UnknownOperatorException;
 import model.adt.IDictionary;
+import model.type.BooleanType;
 import model.type.IType;
 import model.type.IntegerType;
 import model.value.BooleanValue;
@@ -57,6 +58,6 @@ public record RelationalExpression(IExpression left, IExpression right, String o
         if (!rightType.equals(new IntegerType())) {
             throw new InvalidOperandTypeException("Right type is not Integer");
         }
-        return new IntegerType();
+        return new BooleanType();
     }
 }
