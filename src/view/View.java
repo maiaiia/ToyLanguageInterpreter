@@ -26,8 +26,7 @@ public class View  {
 
         for (int i = 0; i < statements.size(); i++) {
             ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), statements.get(i));
-            IRepository repository = new ListRepository(new ArrayList<>(),"log" + Integer.toString(i + 1) + ".txt" );
-            repository.addState(p);
+            IRepository repository = new ListRepository(p,"log" + Integer.toString(i + 1) + ".txt" );
             IController controller = new Controller(repository);
             textMenu.addCommand(new RunProgramCommand(Integer.toString(i + 1), statements.get(i).toString(), controller));
 

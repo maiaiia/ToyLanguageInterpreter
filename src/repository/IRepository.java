@@ -6,10 +6,9 @@ import state.ProgramState;
 import java.util.List;
 
 public interface IRepository {
-    void addState(ProgramState programState);
+    List<ProgramState> getProgramList();
+    void setProgramList(List<ProgramState> programList);
     void logProgramStateExecution(ProgramState programState);
     void addLogSeparator();
 
-    List<ProgramState> getProgramList();
-    void setProgramList(List<ProgramState> programList);
 }

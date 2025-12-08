@@ -15,26 +15,12 @@ public class ListRepository implements IRepository {
     private List<ProgramState> programStates;
     private final String logFileName;
     private final String LOG_FILES_PATH = "log_files/";
-    int currentIndex = 0;
 
-    public ListRepository(){
+    public ListRepository(ProgramState programState, String logFileName) {
         this.programStates = new ArrayList<>();
-        this.logFileName = "program_states.txt";
-    }
-    public ListRepository(String logFileName) {
-        this.programStates = new ArrayList<>();
+        this.programStates.add(programState);
         this.logFileName = logFileName;
     }
-    public ListRepository(List<ProgramState> programStates, String logFileName) {
-        this.programStates = programStates;
-        this.logFileName = logFileName;
-    }
-
-    @Override
-    public void addState(ProgramState programState) {
-        programStates.addLast(programState);
-    }
-
 
     @Override
     public void logProgramStateExecution(ProgramState programState) {
