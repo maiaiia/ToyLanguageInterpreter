@@ -7,7 +7,7 @@ A Java-based interpreter for a custom imperative language featuring heap memory 
 - **Execution engine**: Stack-based execution with symbol tables, heap, and file management
 - **Memory management**: Heap allocation with automatic garbage collection
 - **Type system**: Static typing with `int`, `bool`, `string`, and reference types (`Ref<T>`)
-- **Concurrency**: Multi-threaded program execution (to be added)
+- **Concurrency**: Multi-threaded program execution 
 - **File operations**: Read/write text files from programs
 - **Control flow**: If statements, while loops, compound statements
 
