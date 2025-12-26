@@ -1,8 +1,6 @@
 package controller;
 
 import controller.garbagecollector.GarbageCollector;
-import exception.ExecutionStackEmptyException;
-import exception.OutOfBoundsIndexException;
 import exception.ThreadExecutionException;
 import repository.IRepository;
 import state.ProgramState;
@@ -15,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class Controller implements IController {
     private final IRepository repository;
-    private boolean displayFlag = false;
     private final GarbageCollector garbageCollector;
     private ExecutorService executor;
     public Controller(IRepository repository) {
@@ -78,8 +75,4 @@ public class Controller implements IController {
         return writer;
     }
 
-    @Override
-    public void setDisplayFlag() {
-        displayFlag = true;
-    }
 }
