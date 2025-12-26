@@ -1,4 +1,4 @@
-package view;
+package ui;
 
 import controller.Controller;
 import controller.IController;
@@ -12,13 +12,12 @@ import state.heap.Heap;
 import state.output.Output;
 import state.symboltable.SymbolTable;
 import utils.HardCodedStatements;
-import view.command.Command;
-import view.command.ExitCommand;
-import view.command.RunProgramCommand;
-import view.command.SetDisplayFlagCommand;
+import ui.command.Command;
+import ui.command.ExitCommand;
+import ui.command.RunProgramCommand;
+import ui.command.SetDisplayFlagCommand;
 
 import java.io.*;
-import java.util.*;
 
 public class View  {
     static private TextMenu getMenu() {

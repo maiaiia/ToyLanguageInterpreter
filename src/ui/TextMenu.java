@@ -1,8 +1,7 @@
-package view;
+package ui;
 
-import view.command.Command;
-import view.command.ExitCommand;
-import view.command.RunProgramCommand;
+import ui.command.Command;
+import ui.command.ExitCommand;
 
 import java.util.HashMap;
 import java.util.Map;

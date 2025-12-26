@@ -1,4 +1,4 @@
-package view.command;
+package ui.command;
 
 import controller.IController;
 
