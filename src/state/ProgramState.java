@@ -1,7 +1,6 @@
 package state;
 
 import exception.ExecutionStackEmptyException;
-import model.adt.HashMapDictionary;
 import model.statement.IStatement;
 import state.executionstack.IExecutionStack;
 import state.filetable.IFileTable;
@@ -54,7 +53,6 @@ public class ProgramState {
 
     public IFileTable getFileTable() {return fileTable;}
 
-
     public ProgramState executeOneStep() throws ExecutionStackEmptyException {
         var executionStack = this.executionStack;
         if (executionStack.isEmpty()) {
@@ -77,5 +75,9 @@ public class ProgramState {
                 output.toString() + "\n" +
                 fileTable.toString());
         return result.toString();
+    }
+
+    public String getOriginalProgram() {
+        return originalProgram.toString();
     }
 }
