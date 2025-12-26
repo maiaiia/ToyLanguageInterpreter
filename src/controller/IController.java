@@ -1,5 +1,6 @@
 package controller;
 
+import repository.IRepository;
 import state.ProgramState;
 
 import java.io.PrintWriter;
@@ -11,4 +12,6 @@ public interface IController {
     void allStep() throws InterruptedException;
 
     PrintWriter getWriter();
+
+    IRepository getRepository();
 }

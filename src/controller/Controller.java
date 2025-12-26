@@ -75,4 +75,9 @@ public class Controller implements IController {
         return writer;
     }
 
+    @Override
+    public IRepository getRepository() {
+        return this.repository;
+    }
+
 }
