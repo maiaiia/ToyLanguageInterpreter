@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="440.0" prefWidth="886.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.gui.controller.ProgramMenuController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <Label text="Select a program:" />
+    <ListView fx:id="programList" VBox.vgrow="ALWAYS" />
+   <Button fx:id="runButton" alignment="BASELINE_CENTER" contentDisplay="CENTER" onAction="#handleRunProgram" text="RUN" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+</VBox>
