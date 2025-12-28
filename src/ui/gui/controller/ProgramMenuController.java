@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import repository.IRepository;
 import ui.gui.service.ProgramService;
 
 import java.io.IOException;
@@ -34,23 +35,29 @@ public class ProgramMenuController {
     @FXML
     public void handleRunProgram() {
         int selectedIndex = programList.getSelectionModel().getSelectedIndex();
+        openExecutionWindow(selectedIndex);
+        /*
         IController controller = programService.getController(selectedIndex);
         String programName = programService.getAllPrograms().get(selectedIndex);
         if (controller!=null) {
-            openExecutionWindow(controller, programName);
+            openExecutionWindow(selectedIndex);
         }
+        */
     }
 
-    private void openExecutionWindow(IController controller, String programName) {
+    private void openExecutionWindow(int selectedIndex) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/gui/views/main-window.fxml"));
             Parent root = loader.load();
 
             MainWindowController mainWindowController = loader.getController();
-            mainWindowController.setController(controller);
+
+            mainWindowController.setController(programService.getController(selectedIndex));
+            mainWindowController.setRepository(programService.getRepository(selectedIndex));
+            mainWindowController.initialize();
 
             Stage stage = new Stage();
-            stage.setTitle("Executing Program " + programName);
+            stage.setTitle("Executing Program " + programService.getAllPrograms().get(selectedIndex));
             stage.setScene(new Scene(root));
             stage.show();
 

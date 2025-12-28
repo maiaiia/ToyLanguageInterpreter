@@ -22,6 +22,7 @@ import java.util.List;
 
 public class ProgramService {
     private final List<IController> controllers = new ArrayList<>();
+    private final List<IRepository> repositories = new ArrayList<>();
     private final List<String> originalPrograms = new ArrayList<>();
 
     public ProgramService() {
@@ -33,13 +34,12 @@ public class ProgramService {
             IController controller = new Controller(repository);
 
             controllers.add(controller);
+            repositories.add(repository);
             originalPrograms.add(p.getOriginalProgram());
-
-            clearLogFile(i);
         }
     }
 
-    private void clearLogFile(int i){
+    private void clearLogFile(int i){ // call this before executing a program
         try { //clear log files for hard coded programs
             PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("log_files/log" + (i + 1) + ".txt", false)));
             writer.println();
@@ -53,5 +53,8 @@ public class ProgramService {
 
     public IController getController(int i) {
         return controllers.get(i);
+    }
+    public IRepository getRepository(int i) {
+        return repositories.get(i);
     }
 }

@@ -15,7 +15,6 @@ import utils.HardCodedStatements;
 import ui.command.Command;
 import ui.command.ExitCommand;
 import ui.command.RunProgramCommand;
-import ui.command.SetDisplayFlagCommand;
 
 import java.io.*;
 
@@ -37,9 +36,6 @@ public class View  {
                 writer.close();
             } catch (IOException _){}
 
-            if (i == 0){
-                textMenu.addCommand(new SetDisplayFlagCommand("set", "Set the display flag for program 1", controller));
-            }
         }
 
         textMenu.addCommand(new ExitCommand("0", "Exit"));
@@ -57,7 +53,12 @@ public class View  {
                 IO.println("Invalid Command");
             }
             else {
-                command.execute();
+                try {
+                    command.execute();
+                }
+                catch (Exception e) {
+                    e.printStackTrace(); //TODO Change this
+                }
                 //IO.println(command.getDescription() + " executed successfully");
             }
         }

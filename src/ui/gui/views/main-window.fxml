@@ -11,7 +11,7 @@
 
     <VBox>
         <HBox alignment="CENTER_LEFT" spacing="10.0">
-            <Label style="-fx-font-weight: bold;" text="Number of Programs:"/>
+            <Label style="-fx-font-weight: bold;" text="Number of Threads:"/>
             <TextField fx:id="programCountField" prefWidth="100.0"/>
         </HBox>
 
@@ -21,7 +21,7 @@
 
         <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Execution Stack"/>
         <ListView fx:id="executionStackList" VBox.vgrow="ALWAYS"/>
-        <Button maxWidth="Infinity" style="-fx-font-size: 14px;" text="RUN ONE STEP"/>
+        <Button fx:id="runOneStepButton" maxWidth="Infinity" style="-fx-font-size: 14px;" text="RUN ONE STEP" onAction="#handleOneStepButtonAction"/>
     </VBox>
 
     <VBox>
@@ -32,8 +32,8 @@
                 <Label text="Heap Table"/>
                 <TableView VBox.vgrow="ALWAYS" fx:id="heapTable">
                     <columns>
-                        <TableColumn prefWidth="100.0" text="Address"/>
-                        <TableColumn prefWidth="150.0" text="Value"/>
+                        <TableColumn fx:id="addressColumn" prefWidth="100.0" text="Address"/>
+                        <TableColumn fx:id="heapValueColumn" prefWidth="150.0" text="Value"/>
                     </columns>
                 </TableView>
             </VBox>
@@ -42,18 +42,18 @@
                 <Label text="Symbol Table"/>
                 <TableView VBox.vgrow="ALWAYS" fx:id="symbolTable">
                     <columns>
-                        <TableColumn prefWidth="150.0" text="Variable Name"/>
-                        <TableColumn prefWidth="100.0" text="Value"/>
+                        <TableColumn fx:id="variableColumn" prefWidth="150.0" text="Variable Name"/>
+                        <TableColumn fx:id="stValueColumn" prefWidth="100.0" text="Value"/>
                     </columns>
                 </TableView>
             </VBox>
         </HBox>
     </TitledPane>
     <TitledPane animated="false" text="File Table" expanded="false">
-        <ListView fx:id="outputList" VBox.vgrow="ALWAYS"/>
+        <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS"/>
     </TitledPane>
     <TitledPane animated="false" text="Output" expanded="false">
-        <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS"/>
+        <ListView fx:id="outputList" VBox.vgrow="ALWAYS"/>
     </TitledPane>
     </VBox>
 </HBox>
