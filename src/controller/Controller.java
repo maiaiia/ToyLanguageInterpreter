@@ -50,6 +50,7 @@ public class Controller implements IController {
                 .filter(Objects::nonNull)
                 .toList();
         programStates.addAll(newProgramsList);
+        garbageCollector.runGarbageCollector(programStates);
         programStates.forEach(repository::logProgramStateExecution);
         repository.addLogSeparator();
         repository.setProgramList(programStates);
@@ -62,7 +63,6 @@ public class Controller implements IController {
         //moved the first print here to remove redundant log entries (uncomment the first line in executeOneStepAllPrograms for a more detailed output)
         programList.forEach(repository::logProgramStateExecution);
         while (!programList.isEmpty()) {
-            garbageCollector.runGarbageCollector(programList);
             executeOneStepAllPrograms(programList);
             programList = removeCompletedPrograms(repository.getProgramList());
         }
@@ -74,10 +74,4 @@ public class Controller implements IController {
     public PrintWriter getWriter() {
         return writer;
     }
-
-    @Override
-    public IRepository getRepository() {
-        return this.repository;
-    }
-
 }

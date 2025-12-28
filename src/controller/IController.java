@@ -12,6 +12,4 @@ public interface IController {
     void allStep() throws InterruptedException;
 
     PrintWriter getWriter();
-
-    IRepository getRepository();
 }
