@@ -13,7 +13,6 @@ import model.type.RefType;
 import model.type.StringType;
 import model.value.BooleanValue;
 import model.value.IntegerValue;
-import model.value.RefValue;
 import model.value.StringValue;
 
 import java.util.ArrayList;
@@ -308,6 +307,28 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        int v;
+        fork(v = 2; v = v + 2; print(v);)
+        fork(v = -1; print(v);)
+        v = 3;
+        print(v);
+         */
+
+        var ex13 = new CompoundStatement(
+                new VariableDeclarationStatement("v", new IntegerType()),
+                new CompoundStatement(
+                        new ForkStatement(new CompoundStatement(
+                                new AssignmentStatement("v", new ValueExpression(new IntegerValue(2))),
+                                new CompoundStatement(new AssignmentStatement("v", new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(2)), '+')),
+                                        new PrintStatement(new VariableExpression("v"))))),
+                        new CompoundStatement(
+                                new ForkStatement(new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntegerValue(-1))), new PrintStatement(new VariableExpression("v")))),
+                                new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntegerValue(3))), new PrintStatement(new VariableExpression("v")))
+                        )
+                )
+        );
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
@@ -320,6 +341,7 @@ public class HardCodedStatements {
         statements.add(ex10);
         statements.add(ex11);
         statements.add(ex12);
+        statements.add(ex13);
     }
 
     public List<IStatement> getStatements() {
