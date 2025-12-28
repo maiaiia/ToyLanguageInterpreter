@@ -70,6 +70,6 @@ public class SymbolTable implements  ISymbolTable {
 
     @Override
     public String toString(){
-        return "SYMBOL TABLE:\n" + symbolTable;
+        return symbolTable.toString();
     }
 }

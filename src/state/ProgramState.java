@@ -53,6 +53,8 @@ public class ProgramState {
 
     public IFileTable getFileTable() {return fileTable;}
 
+    public int getId() {return id;}
+
     public ProgramState executeOneStep() throws ExecutionStackEmptyException {
         var executionStack = this.executionStack;
         if (executionStack.isEmpty()) {
@@ -69,11 +71,11 @@ public class ProgramState {
     public String toString() {
         StringBuilder result = new StringBuilder(
                 "Thread " + this.id + ":\n" +
-                executionStack.toString() + "\n" +
-                symbolTable.toString() + "\n" +
-                heap.toString() + "\n" +
-                output.toString() + "\n" +
-                fileTable.toString());
+                "EXECUTION STACK:\n" + executionStack.toString() + "\n" +
+                "SYMBOL TABLE:\n" + symbolTable.toString() + "\n" +
+                "HEAP:\n" + heap.toString() + "\n" +
+                "OUTPUT:\n" + output.toString() + "\n" +
+                "FILE TABLE:\n" + fileTable.toString());
         return result.toString();
     }
 

@@ -34,6 +34,6 @@ public class Output implements IOutput{
 
     @Override
     public String toString() {
-        return "OUTPUT:\n" + output;
+        return output.toString();
     }
 }

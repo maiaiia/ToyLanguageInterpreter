@@ -68,7 +68,7 @@ public class FileTable implements IFileTable {
 
     @Override
     public String toString() {
-        String result = "FILE TABLE:\n";
+        String result = "";
         for (var key: fileTable.keySet()) {
             result += key + "\n";
         }
