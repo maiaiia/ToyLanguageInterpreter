@@ -113,7 +113,7 @@ public class MainWindowController {
         ObservableList<SymbolTableCell> symbolTableCells = FXCollections.observableArrayList(
                 Arrays.stream(data.toString().split("\n"))
                         .filter(line -> !line.isEmpty())
-                        .map(pair -> new SymbolTableCell(pair.split(" --> ")[0], pair.split(" --> ")[1]))
+                        .map(pair -> new SymbolTableCell(pair.split(" --> ")[0], (pair.split(" --> ").length > 1 ? pair.split(" --> ")[1] : "")))
                         .toList()
         );
 
