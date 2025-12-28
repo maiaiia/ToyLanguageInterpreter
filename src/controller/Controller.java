@@ -33,6 +33,7 @@ public class Controller implements IController {
         //before the execution, print the program state list into the log file
         //programStates.forEach(repository::logProgramStateExecution);
 
+        executor = Executors.newFixedThreadPool(2);
         //prepare the list of callables
         List<Callable<ProgramState>> callList = programStates.stream()
                 .map((ProgramState program) -> (Callable<ProgramState>)(program::executeOneStep))
@@ -50,6 +51,7 @@ public class Controller implements IController {
                 .filter(Objects::nonNull)
                 .toList();
         programStates.addAll(newProgramsList);
+        executor.shutdownNow();
         garbageCollector.runGarbageCollector(programStates);
         programStates.forEach(repository::logProgramStateExecution);
         repository.addLogSeparator();
@@ -58,7 +60,6 @@ public class Controller implements IController {
 
     @Override
     public void allStep() throws InterruptedException {
-        executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programList = removeCompletedPrograms(repository.getProgramList());
         //moved the first print here to remove redundant log entries (uncomment the first line in executeOneStepAllPrograms for a more detailed output)
         programList.forEach(repository::logProgramStateExecution);
@@ -66,8 +67,7 @@ public class Controller implements IController {
             executeOneStepAllPrograms(programList);
             programList = removeCompletedPrograms(repository.getProgramList());
         }
-        executor.shutdownNow();
-        repository.setProgramList(programList);
+
     }
 
     @Override
