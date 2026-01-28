@@ -6,6 +6,7 @@ import model.statement.fileStatements.CloseRFileStatement;
 import model.statement.fileStatements.OpenRFileStatement;
 import model.statement.fileStatements.ReadFileStatement;
 import model.statement.heapStatements.AllocateHeapStatement;
+import model.statement.heapStatements.ConditionalAssignmentStatement;
 import model.statement.heapStatements.WriteHeapStatement;
 import model.type.BooleanType;
 import model.type.IntegerType;
@@ -17,6 +18,7 @@ import model.value.StringValue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class HardCodedStatements {
     private final List<IStatement> statements = new ArrayList<>();
@@ -329,6 +331,66 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        Ref int a; Ref int b; int v;
+        new(a,0); new(b,0);
+        wh(a, 1); wh(b, 2);
+        v=(rh(a) < rh(b))>100:200;
+        print(v)
+        v=((rh(b)-2)>rh(a))?100:200;
+        print(v);
+        // output should be 100 200
+        */
+        var ex14 = new CompoundStatement(
+                new VariableDeclarationStatement("a", new RefType(new IntegerType())),
+                new CompoundStatement(
+                        new VariableDeclarationStatement("b", new RefType(new IntegerType())),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("v", new IntegerType()),
+                                new CompoundStatement(
+                                        new AllocateHeapStatement("a", new ValueExpression(new IntegerValue(0))),
+                                        new CompoundStatement(
+                                                new AllocateHeapStatement("b", new ValueExpression(new IntegerValue(0))),
+                                                new CompoundStatement(
+                                                        new WriteHeapStatement("a", new ValueExpression(new IntegerValue(1))),
+                                                        new CompoundStatement(
+                                                                new WriteHeapStatement("b", new ValueExpression(new IntegerValue(2))),
+                                                                new CompoundStatement(
+                                                                    new ConditionalAssignmentStatement(
+                                                                            "v",
+                                                                            new RelationalExpression(
+                                                                                    new ReadHeapExpression(new VariableExpression("a")),
+                                                                                    new ReadHeapExpression(new VariableExpression("b")),
+                                                                                    "<"
+                                                                            ),
+                                                                            new ValueExpression(new IntegerValue(100)),
+                                                                            new ValueExpression(new IntegerValue(200))
+                                                                    ),
+                                                                    new CompoundStatement(
+                                                                            new PrintStatement(new VariableExpression("v")),
+                                                                            new CompoundStatement(
+                                                                                    new ConditionalAssignmentStatement(
+                                                                                            "v",
+                                                                                            new RelationalExpression(
+                                                                                                    new ArithmeticExpression(new ReadHeapExpression(new VariableExpression("b")), new ValueExpression(new IntegerValue(2)), '-'),
+                                                                                                    new ReadHeapExpression(new VariableExpression("a")),
+                                                                                                    ">"
+                                                                                            ),
+                                                                                            new ValueExpression(new IntegerValue(100)),
+                                                                                            new ValueExpression(new IntegerValue(200))
+                                                                                    ),
+                                                                                    new PrintStatement(new VariableExpression("v"))
+                                                                            )
+                                                                    )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
@@ -342,6 +404,7 @@ public class HardCodedStatements {
         statements.add(ex11);
         statements.add(ex12);
         statements.add(ex13);
+        statements.add(ex14);
     }
 
     public List<IStatement> getStatements() {
