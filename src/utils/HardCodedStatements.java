@@ -1,6 +1,5 @@
 package utils;
 
-import com.sun.jdi.Value;
 import model.expression.*;
 import model.statement.*;
 import model.statement.fileStatements.CloseRFileStatement;
@@ -430,6 +429,38 @@ public class HardCodedStatements {
                 )
 
         );
+        /*
+        Ref int a; new(a, 20);
+        (for (v = 0; v < 3; v = v + 1) fork(print(v); v = v * rh(a));
+        print(rh(a))
+         */
+        var ex16 = new CompoundStatement(
+                new CompoundStatement(
+                        new VariableDeclarationStatement("a", new RefType(new IntegerType())),
+                        new AllocateHeapStatement("a", new ValueExpression(new IntegerValue(20)))
+                ),
+                new CompoundStatement(
+                        new ForStatement(
+                                new ValueExpression(new IntegerValue(0)),
+                                new ValueExpression(new IntegerValue(3)),
+                                new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(1)), '+'),
+                                new ForkStatement(
+                                        new CompoundStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new AssignmentStatement(
+                                                        "v",
+                                                        new ArithmeticExpression(
+                                                                new VariableExpression("v"),
+                                                                new ReadHeapExpression(new VariableExpression("a")),
+                                                                '*'
+                                                        )
+                                                )
+                                        )
+                                )
+                        ),
+                        new PrintStatement(new ReadHeapExpression(new VariableExpression("a")))
+                )
+        );
 
 
         statements.add(ex1);
@@ -447,6 +478,7 @@ public class HardCodedStatements {
         statements.add(ex13);
         statements.add(ex14);
         statements.add(ex15);
+        statements.add(ex16);
     }
 
     public List<IStatement> getStatements() {
