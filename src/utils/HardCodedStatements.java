@@ -1,12 +1,13 @@
 package utils;
 
+import com.sun.jdi.Value;
 import model.expression.*;
 import model.statement.*;
 import model.statement.fileStatements.CloseRFileStatement;
 import model.statement.fileStatements.OpenRFileStatement;
 import model.statement.fileStatements.ReadFileStatement;
 import model.statement.heapStatements.AllocateHeapStatement;
-import model.statement.heapStatements.ConditionalAssignmentStatement;
+import model.statement.ConditionalAssignmentStatement;
 import model.statement.heapStatements.WriteHeapStatement;
 import model.type.BooleanType;
 import model.type.IntegerType;
@@ -18,7 +19,6 @@ import model.value.StringValue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class HardCodedStatements {
     private final List<IStatement> statements = new ArrayList<>();
@@ -391,6 +391,47 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        int a; int b; int c;
+        a = 1; b = 2; c = 5;
+        switch(a*10)
+            (case (b * c) : print(a); print(b))
+            (case (10) : print(100); print(200))
+            (default : print(300))
+        print(300);
+         */
+        var ex15 = new CompoundStatement(
+                new CompoundStatement(
+                        new VariableDeclarationStatement("a", new IntegerType()),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("b", new IntegerType()),
+                                new VariableDeclarationStatement("c", new IntegerType())
+                        )
+                ),
+                new CompoundStatement(
+                        new CompoundStatement(
+                                new AssignmentStatement("a", new ValueExpression(new IntegerValue(1))),
+                                new CompoundStatement(
+                                        new AssignmentStatement("b", new ValueExpression(new IntegerValue(2))),
+                                        new AssignmentStatement("c", new ValueExpression(new IntegerValue(5)))
+                                )
+                        ),
+                        new CompoundStatement(
+                                new SwitchStatement(
+                                        new ArithmeticExpression(new VariableExpression("a"), new ValueExpression(new IntegerValue(10)), '*'),
+                                        new ArithmeticExpression(new VariableExpression("b"), new VariableExpression("c"), '*'),
+                                        new CompoundStatement(new PrintStatement(new VariableExpression("a")), new PrintStatement(new VariableExpression("b"))),
+                                        new ValueExpression(new IntegerValue(10)),
+                                        new CompoundStatement(new PrintStatement(new ValueExpression(new IntegerValue(100))), new PrintStatement(new ValueExpression(new IntegerValue(200)))),
+                                        new PrintStatement(new ValueExpression(new IntegerValue(300)))
+                                ),
+                                new PrintStatement(new ValueExpression(new IntegerValue(300)))
+                        )
+                )
+
+        );
+
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
@@ -405,6 +446,7 @@ public class HardCodedStatements {
         statements.add(ex12);
         statements.add(ex13);
         statements.add(ex14);
+        statements.add(ex15);
     }
 
     public List<IStatement> getStatements() {
