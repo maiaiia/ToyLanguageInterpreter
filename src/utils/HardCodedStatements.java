@@ -462,6 +462,56 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        int v; int x; int y; v = 0;
+        (repeat (fork(print(v);v=v-1);v=v+1) until v==3)
+        x1 = 1; nop; y = 3; nop;
+        print(v*10);
+         */
+        var ex17 = new CompoundStatement(
+                new CompoundStatement(
+                        new VariableDeclarationStatement("v", new IntegerType()),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("x", new IntegerType()),
+                                new CompoundStatement(
+                                        new VariableDeclarationStatement("y", new IntegerType()),
+                                        new AssignmentStatement("v", new ValueExpression(new IntegerValue(0)))
+                                )
+                        )
+                ),
+                new CompoundStatement(
+                        new RepeatUntilStatement(
+                                new CompoundStatement(
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                                new PrintStatement(new VariableExpression("v")),
+                                                                new AssignmentStatement(
+                                                                        "v",
+                                                                        new ArithmeticExpression(new VariableExpression("v"),
+                                                                                new ValueExpression(new IntegerValue(1)),
+                                                                                '-')
+                                                                )
+                                                        )
+                                                ),
+                                        new AssignmentStatement("v", new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(1)), '+'))
+                                ),
+                                new RelationalExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(3)), "==")
+                        ),
+                        new CompoundStatement(
+                                new CompoundStatement(
+                                        new AssignmentStatement("x", new ValueExpression(new IntegerValue(1))),
+                                        new CompoundStatement(
+                                                new NoOperationStatement(),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("y", new ValueExpression(new IntegerValue(3))),
+                                                        new NoOperationStatement()
+                                                )
+                                        )
+                                ),
+                                new PrintStatement(new ArithmeticExpression(new VariableExpression("v"), new ValueExpression(new IntegerValue(10)),'*'))
+                        )
+                )
+        );
 
         statements.add(ex1);
         statements.add(ex2);
@@ -479,6 +529,7 @@ public class HardCodedStatements {
         statements.add(ex14);
         statements.add(ex15);
         statements.add(ex16);
+        statements.add(ex17);
     }
 
     public List<IStatement> getStatements() {
