@@ -512,6 +512,20 @@ public class HardCodedStatements {
                         )
                 )
         );
+        var  ex18 = new CompoundStatement(
+                new CompoundStatement(
+                        new VariableDeclarationStatement("v", new IntegerType()),
+                        new AssignmentStatement("v", new ValueExpression(new IntegerValue(20)))
+                ),
+                new CompoundStatement(
+                        new WaitStatement(10),
+                        new PrintStatement(new ArithmeticExpression(
+                                new VariableExpression("v"),
+                                new ValueExpression(new IntegerValue(10)),
+                                '*'
+                        ))
+                )
+        );
 
         statements.add(ex1);
         statements.add(ex2);
@@ -530,6 +544,7 @@ public class HardCodedStatements {
         statements.add(ex15);
         statements.add(ex16);
         statements.add(ex17);
+        statements.add(ex18);
     }
 
     public List<IStatement> getStatements() {
