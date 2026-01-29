@@ -9,12 +9,7 @@ import model.value.IValue;
 import state.heap.IHeap;
 import state.symboltable.ISymbolTable;
 
-public class NotExpression implements IExpression {
-    private final IExpression expression;
-
-    public NotExpression(IExpression expression) {
-        this.expression = expression;
-    }
+public record NotExpression(IExpression expression) implements IExpression {
 
     @Override
     public IValue evaluate(ISymbolTable symbolTable, IHeap heap) {
