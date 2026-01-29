@@ -2,6 +2,7 @@ package model.statement;
 
 import exception.InvalidExpressionTypeException;
 import model.adt.IDictionary;
+import model.expression.EqualsExpression;
 import model.expression.IExpression;
 import model.expression.RelationalExpression;
 import model.type.IType;
@@ -24,10 +25,10 @@ public class SwitchStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState programState) {
         IfStatement equivalentStatement = new IfStatement(
-                new RelationalExpression(switchExpression.deepCopy(), case1Expression.deepCopy(), "=="),
+                new EqualsExpression(switchExpression.deepCopy(), case1Expression.deepCopy()),
                 statement1.deepCopy(),
                 new IfStatement(
-                        new RelationalExpression(switchExpression.deepCopy(), case2Expression.deepCopy(), "=="),
+                        new EqualsExpression(switchExpression.deepCopy(), case2Expression.deepCopy()),
                         statement2.deepCopy(),
                         statement1.deepCopy()
                 )
@@ -44,14 +45,13 @@ public class SwitchStatement implements IStatement {
     @Override
     public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
         IType switchType = switchExpression.typecheck(typeEnvironment);
-        if (!switchType.equals(new IntegerType())) {
-            throw new InvalidExpressionTypeException("Switch expression type is not integer");
+        IType case1Type = case1Expression.typecheck(typeEnvironment);
+        IType case2Type = case2Expression.typecheck(typeEnvironment);
+        if (!switchType.equals(case1Type)) {
+            throw new InvalidExpressionTypeException("Case one expression type does not match switch expression type");
         }
-        if (!case1Expression.typecheck(typeEnvironment).equals(new IntegerType())) {
-            throw new InvalidExpressionTypeException("Case one expression type is not integer");
-        }
-        if (!case2Expression.typecheck(typeEnvironment).equals(new IntegerType())) {
-            throw new InvalidExpressionTypeException("Case two expression type is not integer");
+        if (!switchType.equals(case2Type)) {
+            throw new InvalidExpressionTypeException("Case two expression type does not match switch expression type");
         }
         statement1.typecheck(typeEnvironment.copy());
         statement2.typecheck(typeEnvironment.copy());
