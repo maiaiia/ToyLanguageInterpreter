@@ -13,7 +13,7 @@ public class SymbolTable implements  ISymbolTable {
 
     @Override
     public void add(String key, IValue value) {
-        symbolTable.add(key, value);
+        symbolTable.put(key, value);
     }
 
     @Override

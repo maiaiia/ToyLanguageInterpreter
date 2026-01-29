@@ -12,7 +12,7 @@ public class HashMapDictionary<K, V> implements IDictionary<K, V> {
     private final ConcurrentHashMap<K, V> map = new ConcurrentHashMap<K, V>();
 
     @Override
-    public void add(K key, V value) {
+    public void put(K key, V value) {
         map.put(key, value);
     }
 

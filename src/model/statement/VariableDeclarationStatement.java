@@ -36,7 +36,7 @@ public class VariableDeclarationStatement implements IStatement {
 
     @Override
     public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
-        typeEnvironment.add(variableName, variableType);
+        typeEnvironment.put(variableName, variableType);
         return typeEnvironment;
     }
 }

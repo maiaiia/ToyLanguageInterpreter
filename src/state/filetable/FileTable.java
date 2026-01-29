@@ -15,7 +15,7 @@ public class FileTable implements IFileTable {
 
     @Override
     public void add(String key, BufferedReader value) {
-        fileTable.add(key, value);
+        fileTable.put(key, value);
     }
 
     @Override

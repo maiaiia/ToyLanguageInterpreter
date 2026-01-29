@@ -18,7 +18,7 @@ public class Heap implements IHeap {
 
     @Override
     public int allocate(IValue value) {
-        heap.add(nextFree, value);
+        heap.put(nextFree, value);
         nextFree++;
         return nextFree - 1;
     }
@@ -40,7 +40,7 @@ public class Heap implements IHeap {
             throw new InvalidAddressException(address);
         }
         IValue oldValue = heap.get(address);
-        heap.add(address, value);
+        heap.put(address, value);
         return oldValue;
     }
 
