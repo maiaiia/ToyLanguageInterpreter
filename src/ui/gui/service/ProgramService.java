@@ -9,6 +9,7 @@ import state.ProgramState;
 import state.executionstack.ExecutionStack;
 import state.filetable.FileTable;
 import state.heap.Heap;
+import state.lockTable.LockTable;
 import state.output.Output;
 import state.symboltable.SymbolTable;
 import utils.HardCodedStatements;
@@ -29,7 +30,7 @@ public class ProgramService {
         var statements = new HardCodedStatements().getStatements();
         for (int i = 0; i < statements.size(); i++) {
             statements.get(i).typecheck(new HashMapDictionary<>());
-            ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), statements.get(i));
+            ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), new LockTable(), statements.get(i));
             IRepository repository = new ListRepository(p,"log" + (i + 1) + ".txt" );
             IController controller = new Controller(repository);
 

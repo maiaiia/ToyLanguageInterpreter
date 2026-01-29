@@ -33,7 +33,7 @@ public class LockTable implements ILockTable{
     }
 
     @Override
-    public void acquireLock(int lockId, int processId) {
+    public synchronized void acquireLock(int lockId, int processId) {
         if (this.getLockOwner(lockId) == -1) {
             this.lockTable.put(lockId, processId);
         }
@@ -43,7 +43,7 @@ public class LockTable implements ILockTable{
     }
 
     @Override
-    public void releaseLock(int lockId) {
+    public synchronized void releaseLock(int lockId) {
         if (!this.contains(lockId)) {
             throw new LockNotFoundException(lockId);
         }
