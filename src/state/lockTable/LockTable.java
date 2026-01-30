@@ -33,7 +33,7 @@ public class LockTable implements ILockTable{
     }
 
     @Override
-    public synchronized void acquireLock(int lockId, int processId) {
+    public synchronized void acquireLock(int lockId, int processId) throws LockUnavailableException {
         if (this.getLockOwner(lockId) == -1) {
             this.lockTable.put(lockId, processId);
         }
