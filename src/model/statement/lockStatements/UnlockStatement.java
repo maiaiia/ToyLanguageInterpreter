@@ -21,7 +21,7 @@ public class UnlockStatement implements IStatement {
         if (!programState.getSymbolTable().contains(lockName)) {
             throw new VariableNotDefinedException(lockName);
         }
-        if (programState.getSymbolTable().get(lockName).getType().equals(new IntegerType())) {
+        if (!programState.getSymbolTable().get(lockName).getType().equals(new IntegerType())) {
             throw new InvalidVariableTypeException(lockName, new IntegerType());
         }
         int lockIndex = ((IntegerValue) programState.getSymbolTable().get(lockName)).getValue();

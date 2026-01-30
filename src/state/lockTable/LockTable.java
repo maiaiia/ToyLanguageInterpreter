@@ -6,17 +6,13 @@ import model.adt.HashMapDictionary;
 import model.adt.IDictionary;
 
 public class LockTable implements ILockTable{
-    public final IDictionary<Integer, Integer> lockTable;
+    public final IDictionary<Integer, Integer> lockTable = new HashMapDictionary<>();
     private int nextFreeLocation = 0;
-
-    public LockTable() {
-        lockTable  = new HashMapDictionary<>();
-    }
 
     @Override
     public synchronized int addLock() {
         lockTable.put(++nextFreeLocation, -1);
-        return nextFreeLocation - 1;
+        return nextFreeLocation;
     }
 
     @Override
@@ -50,5 +46,9 @@ public class LockTable implements ILockTable{
         if (this.getLockOwner(lockId) == processId) {
             this.lockTable.put(lockId, -1);
         }
+    }
+    @Override
+    public String toString() {
+        return lockTable.toString();
     }
 }

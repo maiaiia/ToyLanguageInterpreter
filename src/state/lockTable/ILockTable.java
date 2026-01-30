@@ -8,4 +8,5 @@ public interface ILockTable {
     int getLockOwner(int lockId);
     void acquireLock(int lockId, int processId) throws LockUnavailableException;
     void releaseLock(int lockId, int processId);
+    String toString();
 }

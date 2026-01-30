@@ -154,7 +154,7 @@ public class MainWindowController {
         updateThreadsList();
         updateHeapTable();
         updateOutputList();
-        //updateLockTable();
+        updateLockTable();
     }
 
     private void changeThread(){
@@ -180,7 +180,7 @@ public class MainWindowController {
             alert.setHeaderText("Error");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-            updateAll();
+            //updateAll();
             return;
         }
         updateAll();

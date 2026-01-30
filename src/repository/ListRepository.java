@@ -20,6 +20,19 @@ public class ListRepository implements IRepository {
         this.programStates = new ArrayList<>();
         this.programStates.add(programState);
         this.logFileName = logFileName;
+        clearLogFile();
+    }
+
+    void clearLogFile() {
+        PrintWriter logFile;
+        try {
+            logFile = new PrintWriter(new BufferedWriter(new FileWriter(LOG_FILES_PATH + logFileName, false)));
+        } catch (IOException e) {
+            throw new FileOperationException(e);
+        }
+        logFile.println();
+
+        logFile.close();
     }
 
     @Override
