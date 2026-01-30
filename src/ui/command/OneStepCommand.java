@@ -6,6 +6,7 @@ import repository.IRepository;
 import state.ProgramState;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class OneStepCommand extends Command{
     private final IController controller;
@@ -29,7 +30,7 @@ public class OneStepCommand extends Command{
         try {
             controller.executeOneStepAllPrograms(programList);
         }
-        catch (InterruptedException e) {
+        catch (InterruptedException | ExecutionException e) {
             //
         }
         programList = controller.removeCompletedPrograms(repository.getProgramList());

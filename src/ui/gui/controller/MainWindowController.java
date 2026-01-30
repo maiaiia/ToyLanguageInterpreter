@@ -150,6 +150,16 @@ public class MainWindowController {
         catch (ExecutionCompletedException e) {
             runOneStepButton.setDisable(true);
         }
+        catch (Exception e) {
+            runOneStepButton.setDisable(true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            updateAll();
+            return;
+        }
         updateAll();
     }
 }

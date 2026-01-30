@@ -29,7 +29,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public void executeOneStepAllPrograms(List<ProgramState> programStates) throws InterruptedException, ThreadExecutionException {
+    public void executeOneStepAllPrograms(List<ProgramState> programStates) throws InterruptedException {
         //before the execution, print the program state list into the log file
         //programStates.forEach(repository::logProgramStateExecution);
 
@@ -45,7 +45,7 @@ public class Controller implements IController {
                     try {
                         return future.get();
                     } catch (InterruptedException | ExecutionException e){
-                        throw new ThreadExecutionException();
+                        throw new ThreadExecutionException(e.getMessage());
                     }
                 })
                 .filter(Objects::nonNull)
