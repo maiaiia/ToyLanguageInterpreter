@@ -15,7 +15,8 @@ public record ForkStatement(IStatement program) implements IStatement {
         var fileTable = programState.getFileTable();
         var output = programState.getOutput();
         var forkedProgram = program.deepCopy();
-        return new ProgramState(symbolTable, executionStack, output, fileTable, heap, forkedProgram);
+        var semaphoreTable = programState.getSemaphoreTable();
+        return new ProgramState(symbolTable, executionStack, output, fileTable, heap, semaphoreTable, forkedProgram);
     }
 
     @Override

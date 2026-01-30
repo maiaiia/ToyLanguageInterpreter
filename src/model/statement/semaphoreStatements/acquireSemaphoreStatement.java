@@ -1,0 +1,57 @@
+package model.statement.semaphoreStatements;
+
+import exception.InvalidVariableTypeException;
+import exception.SemaphoreFullException;
+import exception.SemaphoreNotFoundException;
+import model.adt.IDictionary;
+import model.statement.IStatement;
+import model.type.IType;
+import model.type.IntegerType;
+import model.value.IValue;
+import model.value.IntegerValue;
+import state.ProgramState;
+
+public class acquireSemaphoreStatement implements IStatement {
+    private final String semaphoreName;
+
+    public acquireSemaphoreStatement(String semaphoreName) {
+        this.semaphoreName = semaphoreName;
+    }
+
+    @Override
+    public ProgramState execute(ProgramState programState) {
+        if (!programState.getSymbolTable().contains(semaphoreName)) {
+            throw new SemaphoreNotFoundException(semaphoreName);
+        }
+        IValue semaphoreId = programState.getSymbolTable().get(semaphoreName);
+        if (!semaphoreId.getType().equals(new IntegerType())) {
+            throw new SemaphoreNotFoundException(semaphoreName);
+        }
+        try{
+            programState.getSemaphoreTable().acquireSemaphore(((IntegerValue)semaphoreId).getValue(), programState.getId());
+        }
+        catch (SemaphoreFullException _){
+            programState.getExecutionStack().push(this.deepCopy());
+        }
+        return null;
+    }
+
+    @Override
+    public IStatement deepCopy() {
+        return new acquireSemaphoreStatement(semaphoreName);
+    }
+
+    @Override
+    public IDictionary<String, IType> typecheck(IDictionary<String, IType> typeEnvironment) {
+        IType semaphoreType = typeEnvironment.get(semaphoreName);
+        if (!semaphoreType.equals(new IntegerType())){
+            throw new InvalidVariableTypeException(semaphoreName, new IntegerType());
+        }
+        return typeEnvironment;
+    }
+
+    @Override
+    public String toString() {
+        return "Acquire(" +  semaphoreName + ")";
+    }
+}
