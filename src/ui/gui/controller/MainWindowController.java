@@ -138,7 +138,7 @@ public class MainWindowController {
         ObservableList<SemaphoreTableCell> semaphoreCells = FXCollections.observableArrayList(
                 Arrays.stream(data.toString().split("\n"))
                         .filter(s -> !s.isEmpty())
-                        .map(pair -> new SemaphoreTableCell(pair.split(" --> ")[0], pair.split(" --> ")[1], pair.split(" --> ")[2]))
+                        .map(tup -> new SemaphoreTableCell(tup.split(" --> ")[0], tup.split(" --> ")[1], (tup.split(" --> ").length > 2 ? tup.split(" --> ")[2] : "")))
                         .toList()
         );
 
@@ -182,7 +182,7 @@ public class MainWindowController {
             alert.setHeaderText("Error");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-            updateAll();
+            //updateAll();
             return;
         }
         updateAll();

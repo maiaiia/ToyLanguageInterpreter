@@ -8,6 +8,9 @@ import model.statement.fileStatements.ReadFileStatement;
 import model.statement.heapStatements.AllocateHeapStatement;
 import model.statement.ConditionalAssignmentStatement;
 import model.statement.heapStatements.WriteHeapStatement;
+import model.statement.semaphoreStatements.AcquireSemaphoreStatement;
+import model.statement.semaphoreStatements.CreateSemaphoreStatement;
+import model.statement.semaphoreStatements.ReleaseSemaphoreStatement;
 import model.type.BooleanType;
 import model.type.IntegerType;
 import model.type.RefType;
@@ -527,6 +530,78 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        Ref int v1; int cnt;
+        new(v1, 1); createSemaphore(cnt, rH(v1));
+        fork(Acquire(cnt); wh(v1, rh(v1)*10); Print(rh(v1)); Release(cnt));
+        fork(Acquire(cnt); wh(v1, rh(v1) * 10); wh(v1, rh(v1) * 2); print(rh(v1)); release(cnt));
+        Acquire(cnt);
+        print(rh(v1)-1);
+        release(cnt);
+         */
+        var ex19 = new CompoundStatement(
+                new CompoundStatement(
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("v1", new RefType(new IntegerType())),
+                                new VariableDeclarationStatement("cnt", new IntegerType())
+                        ),
+                        new CompoundStatement(
+                                new AllocateHeapStatement("v1", new ValueExpression(new IntegerValue(1))),
+                                new CreateSemaphoreStatement("cnt", new ReadHeapExpression(new VariableExpression("v1")))
+                        )
+                ),
+                new CompoundStatement(
+                        new CompoundStatement(
+                                new ForkStatement(new CompoundStatement(
+                                        new AcquireSemaphoreStatement("cnt"),
+                                        new CompoundStatement(
+                                                new WriteHeapStatement("v1", new ArithmeticExpression(
+                                                        new ReadHeapExpression(new VariableExpression("v1")),
+                                                        new ValueExpression(new IntegerValue(10)),
+                                                        '*'
+                                                )),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new ReadHeapExpression(new VariableExpression("v1"))),
+                                                        new ReleaseSemaphoreStatement("cnt")
+                                                )
+                                        )
+                                )),
+                                new ForkStatement(new CompoundStatement(
+                                        new AcquireSemaphoreStatement("cnt"),
+                                        new CompoundStatement(
+                                                new WriteHeapStatement("v1", new ArithmeticExpression(
+                                                        new ReadHeapExpression(new VariableExpression("v1")),
+                                                        new ValueExpression(new IntegerValue(10)),
+                                                        '*'
+                                                )),
+                                                new CompoundStatement(
+                                                        new WriteHeapStatement("v1", new ArithmeticExpression(
+                                                                new ReadHeapExpression(new VariableExpression("v1")),
+                                                                new ValueExpression(new IntegerValue(2)),
+                                                                '*'
+                                                        )),
+                                                        new CompoundStatement(
+                                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v1"))),
+                                                                new ReleaseSemaphoreStatement("cnt")
+                                                        )
+                                                )
+                                        )
+                                ))
+                        ),
+                        new CompoundStatement(
+                                new AcquireSemaphoreStatement("cnt"),
+                                new CompoundStatement(
+                                        new PrintStatement(new ArithmeticExpression(
+                                                new ReadHeapExpression(new VariableExpression("v1")),
+                                                new ValueExpression(new IntegerValue(1)),
+                                                '-'
+                                        )),
+                                        new ReleaseSemaphoreStatement("cnt")
+                                )
+                        )
+                )
+        );
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
@@ -545,6 +620,7 @@ public class HardCodedStatements {
         statements.add(ex16);
         statements.add(ex17);
         statements.add(ex18);
+        statements.add(ex19);
     }
 
     public List<IStatement> getStatements() {

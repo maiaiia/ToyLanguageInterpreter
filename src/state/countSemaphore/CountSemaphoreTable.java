@@ -41,7 +41,7 @@ public class CountSemaphoreTable implements ISemaphoreTable {
         }
         var semaphoreData = semaphoreTable.get(semaphoreId);
         if (semaphoreData.getValue().contains(threadId)) {
-            semaphoreData.getValue().remove(threadId);
+            semaphoreData.getValue().remove(semaphoreData.getValue().indexOf(threadId));
         }
     }
 
