@@ -12,6 +12,7 @@ import repository.IRepository;
 import ui.command.Command;
 import ui.command.OneStepCommand;
 import utils.HeapCell;
+import utils.LockTableCell;
 import utils.SymbolTableCell;
 
 import java.util.Arrays;
@@ -26,6 +27,8 @@ public class MainWindowController {
     @FXML
     public TableView<HeapCell> heapTable;
     @FXML
+    public TableView<LockTableCell> lockTableView;
+    @FXML
     public TableView<SymbolTableCell> symbolTable;
     @FXML
     public ListView<String> outputList;
@@ -37,6 +40,8 @@ public class MainWindowController {
     public TableColumn<HeapCell, String > heapValueColumn;
     public TableColumn<SymbolTableCell, String> variableColumn;
     public TableColumn<SymbolTableCell, String> stValueColumn;
+    public TableColumn<LockTableCell, String> lockIdColumn;
+    public TableColumn<LockTableCell, String> threadIdColumn;
 
     private IController controller;
     private IRepository repository;
@@ -58,11 +63,15 @@ public class MainWindowController {
         heapValueColumn.setEditable(false);
         variableColumn.setEditable(false);
         stValueColumn.setEditable(false);
+        lockIdColumn.setEditable(false);
+        threadIdColumn.setEditable(false);
 
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         heapValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         variableColumn.setCellValueFactory(new PropertyValueFactory<>("variableName"));
         stValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        lockIdColumn.setCellValueFactory(new PropertyValueFactory<>("lockId"));
+        threadIdColumn.setCellValueFactory(new PropertyValueFactory<>("threadId"));
 
         oneStepCommand = new OneStepCommand(controller, repository, "", "");
         threadsList.getSelectionModel().selectedItemProperty().addListener((_, _, _) -> changeThread());
@@ -125,6 +134,19 @@ public class MainWindowController {
         var data = repository.getProgramList().get(currentProgram).getFileTable();
         fileTableList.getItems().clear();
         fileTableList.setItems(FXCollections.observableArrayList(Arrays.stream(data.toString().split("\n")).toList()));
+    }
+
+    private void updateLockTable(){
+        var lockTable = repository.getProgramList().getFirst().getLockTable();
+        lockTableView.getItems().clear();
+
+        ObservableList<LockTableCell> lockTableCells = FXCollections.observableArrayList(
+                Arrays.stream(lockTable.toString().split("\n"))
+                        .filter(line->!line.isEmpty())
+                        .map(pair -> new LockTableCell(pair.split(" --> ")[0], pair.split(" --> ")[1]))
+                        .toList()
+        );
+        lockTableView.setItems(lockTableCells);
     }
 
     private void updateAll(){

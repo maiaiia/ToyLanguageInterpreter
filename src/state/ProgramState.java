@@ -80,7 +80,8 @@ public class ProgramState {
                 "SYMBOL TABLE:\n" + symbolTable.toString() + "\n" +
                 "HEAP:\n" + heap.toString() + "\n" +
                 "OUTPUT:\n" + output.toString() + "\n" +
-                "FILE TABLE:\n" + fileTable.toString());
+                "FILE TABLE:\n" + fileTable.toString() + "\n" +
+                "LOCK TABLE:\n" + lockTable.toString());
         return result.toString();
     }
 

@@ -50,7 +50,7 @@
         </Button>
     </VBox>
 
-    <!-- RIGHT PANEL: Memory, Variables, Files, Output -->
+    <!-- RIGHT PANEL: Memory, Variables, Files, LockTable, Output -->
     <VBox spacing="10.0" HBox.hgrow="ALWAYS">
 
         <!-- Memory and Variables (Heap + Symbol Table) -->
@@ -89,9 +89,21 @@
                 </VBox>
             </HBox>
         </TitledPane>
-        <TitledPane animated="false" text="File Table">
+        <TitledPane animated="false" text="File Table" VBox.vgrow="ALWAYS">
             <!-- File Table -->
-             <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+                <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+        </TitledPane>
+        <TitledPane animated="false" text="Lock Table" VBox.vgrow="ALWAYS">
+            <!-- Lock Table -->
+            <TableView fx:id="lockTableView" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="lockIdColumn"
+                                 text="LockID"/>
+
+                    <TableColumn fx:id="threadIdColumn"
+                                 text="ThreadID"/>
+                </columns>
+            </TableView>
         </TitledPane>
             <!-- Output -->
         <TitledPane animated="false" text="Output">
