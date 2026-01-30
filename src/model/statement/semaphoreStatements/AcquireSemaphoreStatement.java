@@ -1,6 +1,7 @@
 package model.statement.semaphoreStatements;
 
 import exception.InvalidVariableTypeException;
+import exception.SemaphoreFullException;
 import exception.SemaphoreNotFoundException;
 import model.adt.IDictionary;
 import model.statement.IStatement;
@@ -10,10 +11,10 @@ import model.value.IValue;
 import model.value.IntegerValue;
 import state.ProgramState;
 
-public class releaseSemaphoreStatement implements IStatement {
+public class AcquireSemaphoreStatement implements IStatement {
     private final String semaphoreName;
 
-    public releaseSemaphoreStatement(String semaphoreName) {
+    public AcquireSemaphoreStatement(String semaphoreName) {
         this.semaphoreName = semaphoreName;
     }
 
@@ -26,13 +27,18 @@ public class releaseSemaphoreStatement implements IStatement {
         if (!semaphoreId.getType().equals(new IntegerType())) {
             throw new SemaphoreNotFoundException(semaphoreName);
         }
-        programState.getSemaphoreTable().releaseSemaphore(((IntegerValue)semaphoreId).getValue(), programState.getId());
+        try{
+            programState.getSemaphoreTable().acquireSemaphore(((IntegerValue)semaphoreId).getValue(), programState.getId());
+        }
+        catch (SemaphoreFullException _){
+            programState.getExecutionStack().push(this.deepCopy());
+        }
         return null;
     }
 
     @Override
     public IStatement deepCopy() {
-        return new releaseSemaphoreStatement(semaphoreName);
+        return new AcquireSemaphoreStatement(semaphoreName);
     }
 
     @Override
@@ -46,6 +52,6 @@ public class releaseSemaphoreStatement implements IStatement {
 
     @Override
     public String toString() {
-        return "Release(" +  semaphoreName + ")";
+        return "Acquire(" +  semaphoreName + ")";
     }
 }

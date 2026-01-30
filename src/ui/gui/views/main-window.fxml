@@ -91,7 +91,23 @@
         </TitledPane>
         <TitledPane animated="false" text="File Table">
             <!-- File Table -->
-             <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+        </TitledPane>
+        <TitledPane animated="false" text="File Table">
+            <!-- Semaphore Table -->
+            <TableView fx:id="semaphoreTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="semaphoreId"
+                                 minWidth="100.0"
+                                 text="Variable" />
+                    <TableColumn fx:id="size"
+                                 minWidth="100.0"
+                                 text="Value" />
+                    <TableColumn fx:id="threads"
+                                 minWidth="100.0"
+                                 text="Value" />
+                </columns>
+            </TableView>
         </TitledPane>
             <!-- Output -->
         <TitledPane animated="false" text="Output">

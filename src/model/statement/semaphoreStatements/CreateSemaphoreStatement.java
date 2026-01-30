@@ -12,11 +12,11 @@ import model.value.IValue;
 import model.value.IntegerValue;
 import state.ProgramState;
 
-public class createSemaphoreStatement implements IStatement {
+public class CreateSemaphoreStatement implements IStatement {
     private final String semaphoreName;
     private final IExpression semaphoreSize;
 
-    public createSemaphoreStatement(String semaphoreName, IExpression semaphoreSize) {
+    public CreateSemaphoreStatement(String semaphoreName, IExpression semaphoreSize) {
         this.semaphoreName = semaphoreName;
         this.semaphoreSize = semaphoreSize;
     }
@@ -40,7 +40,7 @@ public class createSemaphoreStatement implements IStatement {
 
     @Override
     public IStatement deepCopy() {
-        return new createSemaphoreStatement(semaphoreName, semaphoreSize.deepCopy());
+        return new CreateSemaphoreStatement(semaphoreName, semaphoreSize.deepCopy());
     }
 
     @Override

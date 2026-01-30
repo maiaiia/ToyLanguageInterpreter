@@ -12,6 +12,7 @@ import repository.IRepository;
 import ui.command.Command;
 import ui.command.OneStepCommand;
 import utils.HeapCell;
+import utils.SemaphoreTableCell;
 import utils.SymbolTableCell;
 
 import java.util.Arrays;
@@ -37,6 +38,10 @@ public class MainWindowController {
     public TableColumn<HeapCell, String > heapValueColumn;
     public TableColumn<SymbolTableCell, String> variableColumn;
     public TableColumn<SymbolTableCell, String> stValueColumn;
+    public TableView<SemaphoreTableCell> semaphoreTable;
+    public TableColumn<SemaphoreTableCell, String> semaphoreId;
+    public TableColumn<SemaphoreTableCell, String> size;
+    public TableColumn<SemaphoreTableCell, String> threads;
 
     private IController controller;
     private IRepository repository;
@@ -58,11 +63,17 @@ public class MainWindowController {
         heapValueColumn.setEditable(false);
         variableColumn.setEditable(false);
         stValueColumn.setEditable(false);
+        semaphoreId.setEditable(false);
+        size.setEditable(false);
+        threads.setEditable(false);
 
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         heapValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         variableColumn.setCellValueFactory(new PropertyValueFactory<>("variableName"));
         stValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        size.setCellValueFactory(new PropertyValueFactory<>("size"));
+        threads.setCellValueFactory(new PropertyValueFactory<>("threads"));
+        semaphoreId.setCellValueFactory(new PropertyValueFactory<>("semaphoreId"));
 
         oneStepCommand = new OneStepCommand(controller, repository, "", "");
         threadsList.getSelectionModel().selectedItemProperty().addListener((_, _, _) -> changeThread());
@@ -121,6 +132,19 @@ public class MainWindowController {
 
     }
 
+    private void updateSemaphoreTable() {
+        var data = repository.getProgramList().getFirst().getSemaphoreTable();
+        semaphoreTable.getItems().clear();
+        ObservableList<SemaphoreTableCell> semaphoreCells = FXCollections.observableArrayList(
+                Arrays.stream(data.toString().split("\n"))
+                        .filter(s -> !s.isEmpty())
+                        .map(pair -> new SemaphoreTableCell(pair.split(" --> ")[0], pair.split(" --> ")[1], pair.split(" --> ")[2]))
+                        .toList()
+        );
+
+        semaphoreTable.setItems(semaphoreCells);
+    }
+
     private void updateFileList(int currentProgram) {
         var data = repository.getProgramList().get(currentProgram).getFileTable();
         fileTableList.getItems().clear();
@@ -132,6 +156,7 @@ public class MainWindowController {
         updateThreadsList();
         updateHeapTable();
         updateOutputList();
+        updateSemaphoreTable();
     }
 
     private void changeThread(){
