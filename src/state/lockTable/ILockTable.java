@@ -7,5 +7,5 @@ public interface ILockTable {
     boolean contains(int lockId);
     int getLockOwner(int lockId);
     void acquireLock(int lockId, int processId) throws LockUnavailableException;
-    void releaseLock(int lockId);
+    void releaseLock(int lockId, int processId);
 }
