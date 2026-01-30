@@ -8,10 +8,10 @@ import model.type.IntegerType;
 import model.value.IntegerValue;
 import state.ProgramState;
 
-public class newLockStatement implements IStatement {
+public class NewLockStatement implements IStatement {
     private final String variableName;
 
-    public newLockStatement(String variableName) {
+    public NewLockStatement(String variableName) {
         this.variableName = variableName;
     }
 
@@ -28,7 +28,7 @@ public class newLockStatement implements IStatement {
 
     @Override
     public IStatement deepCopy() {
-        return new newLockStatement(this.variableName);
+        return new NewLockStatement(this.variableName);
     }
 
     @Override

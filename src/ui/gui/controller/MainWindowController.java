@@ -137,11 +137,11 @@ public class MainWindowController {
     }
 
     private void updateLockTable(){
-        var lockTable = repository.getProgramList().getFirst().getLockTable();
+        var data = repository.getProgramList().getFirst().getLockTable();
         lockTableView.getItems().clear();
 
         ObservableList<LockTableCell> lockTableCells = FXCollections.observableArrayList(
-                Arrays.stream(lockTable.toString().split("\n"))
+                Arrays.stream(data.toString().split("\n"))
                         .filter(line->!line.isEmpty())
                         .map(pair -> new LockTableCell(pair.split(" --> ")[0], pair.split(" --> ")[1]))
                         .toList()
@@ -154,6 +154,7 @@ public class MainWindowController {
         updateThreadsList();
         updateHeapTable();
         updateOutputList();
+        //updateLockTable();
     }
 
     private void changeThread(){
