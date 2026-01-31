@@ -2,6 +2,7 @@ package state;
 
 import exception.ExecutionStackEmptyException;
 import model.statement.IStatement;
+import state.barrierTable.IBarrierTable;
 import state.executionstack.IExecutionStack;
 import state.filetable.IFileTable;
 import state.heap.IHeap;
@@ -14,18 +15,26 @@ public class ProgramState {
     private final IOutput output;
     private final IFileTable fileTable;
     private final IHeap heap;
+    private final IBarrierTable barrierTable;
     private final IStatement originalProgram;
     private final int id;
     static private int nextId = 0;
 
 
-    public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
+    public ProgramState(ISymbolTable symbolTable,
+                        IExecutionStack executionStack,
+                        IOutput output,
+                        IFileTable fileTable,
+                        IHeap heap,
+                        IBarrierTable barrierTable,
+                        IStatement originalProgram) {
         //originalProgram.typecheck(new HashMapDictionary<>()); WARNING this will break on fork
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
         this.fileTable = fileTable;
         this.heap = heap;
+        this.barrierTable = barrierTable;
         this.originalProgram = originalProgram.deepCopy();
         this.executionStack.push(originalProgram);
         this.id = getNextId();
@@ -53,6 +62,8 @@ public class ProgramState {
 
     public IFileTable getFileTable() {return fileTable;}
 
+    public IBarrierTable getBarrierTable() {return barrierTable;}
+
     public int getId() {return id;}
 
     public ProgramState executeOneStep() throws ExecutionStackEmptyException {
@@ -75,7 +86,8 @@ public class ProgramState {
                 "SYMBOL TABLE:\n" + symbolTable.toString() + "\n" +
                 "HEAP:\n" + heap.toString() + "\n" +
                 "OUTPUT:\n" + output.toString() + "\n" +
-                "FILE TABLE:\n" + fileTable.toString());
+                "FILE TABLE:\n" + fileTable.toString() + "\n" +
+                "BARRIER TABLE:\n" +  barrierTable.toString());
         return result.toString();
     }
 

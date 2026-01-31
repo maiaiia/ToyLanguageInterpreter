@@ -6,6 +6,7 @@ import model.adt.HashMapDictionary;
 import repository.IRepository;
 import repository.ListRepository;
 import state.ProgramState;
+import state.barrierTable.BarrierTable;
 import state.executionstack.ExecutionStack;
 import state.filetable.FileTable;
 import state.heap.Heap;
@@ -25,7 +26,7 @@ public class View  {
 
         for (int i = 0; i < statements.size(); i++) {
             statements.get(i).typecheck(new HashMapDictionary<>());
-            ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), statements.get(i));
+            ProgramState p = new ProgramState(new SymbolTable(), new ExecutionStack(), new Output(), new FileTable(), new Heap(), new BarrierTable(), statements.get(i));
             IRepository repository = new ListRepository(p,"log" + Integer.toString(i + 1) + ".txt" );
             IController controller = new Controller(repository);
             textMenu.addCommand(new RunProgramCommand(Integer.toString(i + 1), statements.get(i).toString(), controller));
