@@ -2,6 +2,8 @@ package utils;
 
 import model.expression.*;
 import model.statement.*;
+import model.statement.barrierStatements.AwaitBarrierStatement;
+import model.statement.barrierStatements.NewBarrierStatement;
 import model.statement.fileStatements.CloseRFileStatement;
 import model.statement.fileStatements.OpenRFileStatement;
 import model.statement.fileStatements.ReadFileStatement;
@@ -329,6 +331,80 @@ public class HardCodedStatements {
                 )
         );
 
+        /*
+        Ref int v1; Ref int v2; Ref int v3; int cnt;
+        new(v1,2);new(v2,3);new(v3,4);newBarrier(cnt,rH(v2));
+        fork( await(cnt);wh(v1,rh(v1)*10);print(rh(v1)) );
+        fork( await(cnt);wh(v2,rh(v2)*10);wh(v2,rh(v2)*10);print(rh(v2)) );
+        await(cnt);
+        print(rH(v3))
+         */
+        var ex14 = new CompoundStatement(
+                new CompoundStatement( //Ref int v1; Ref int v2; Ref int v3; int cnt;
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("v1", new RefType(new IntegerType())),
+                                new VariableDeclarationStatement("v2", new RefType(new IntegerType()))
+                        ),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement("v3", new RefType(new IntegerType())),
+                                new VariableDeclarationStatement("cnt", new IntegerType())
+                        )
+                ),
+                new CompoundStatement(
+                        new CompoundStatement( //new(v1,2);new(v2,3);new(v3,4);newBarrier(cnt,rH(v2));
+                                new CompoundStatement(
+                                        new CompoundStatement(
+                                                new AllocateHeapStatement("v1", new ValueExpression(new IntegerValue(2))),
+                                                new AllocateHeapStatement("v2", new ValueExpression(new IntegerValue(3)))
+                                        ),
+                                        new AllocateHeapStatement("v3", new ValueExpression(new IntegerValue(4)))
+                                ),
+                                new NewBarrierStatement("cnt", new ReadHeapExpression(new VariableExpression("v2")))
+                        ),
+                        new CompoundStatement(
+                                new CompoundStatement( //forks
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new AwaitBarrierStatement("cnt"),
+                                                        new CompoundStatement(
+                                                                new WriteHeapStatement("v1", new ArithmeticExpression(
+                                                                        new ReadHeapExpression(new VariableExpression("v1")),
+                                                                        new ValueExpression(new IntegerValue(10)),
+                                                                        '*'
+                                                                )),
+                                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v1")))
+                                                        )
+                                                )
+                                        ),
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new CompoundStatement(
+                                                                new AwaitBarrierStatement("cnt"),
+                                                                new WriteHeapStatement("v2", new ArithmeticExpression(
+                                                                        new ReadHeapExpression(new VariableExpression("v2")),
+                                                                        new ValueExpression(new IntegerValue(10)),
+                                                                        '*'
+                                                                ))
+                                                        ),
+                                                        new CompoundStatement(
+                                                                new WriteHeapStatement("v2", new ArithmeticExpression(
+                                                                        new ReadHeapExpression(new VariableExpression("v2")),
+                                                                        new ValueExpression(new IntegerValue(10)),
+                                                                        '*'
+                                                                )),
+                                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v2")))
+                                                        )
+                                                )
+                                        )
+                                ),
+                                new CompoundStatement(
+                                        new AwaitBarrierStatement("cnt"),
+                                        new PrintStatement(new ReadHeapExpression(new VariableExpression("v3")))
+                                )
+                        )
+                )
+        );
+
         statements.add(ex1);
         statements.add(ex2);
         statements.add(ex3);
@@ -342,6 +418,7 @@ public class HardCodedStatements {
         statements.add(ex11);
         statements.add(ex12);
         statements.add(ex13);
+        statements.add(ex14);
     }
 
     public List<IStatement> getStatements() {
