@@ -12,6 +12,7 @@ import repository.IRepository;
 import ui.command.Command;
 import ui.command.OneStepCommand;
 import utils.HeapCell;
+import utils.LatchTableCell;
 import utils.SymbolTableCell;
 
 import java.util.Arrays;
@@ -37,6 +38,9 @@ public class MainWindowController {
     public TableColumn<HeapCell, String > heapValueColumn;
     public TableColumn<SymbolTableCell, String> variableColumn;
     public TableColumn<SymbolTableCell, String> stValueColumn;
+    public TableView<LatchTableCell> latchTable;
+    public TableColumn<LatchTableCell, String> latchIdColumn;
+    public TableColumn<LatchTableCell, String> latchCountColumn;
 
     private IController controller;
     private IRepository repository;
@@ -58,11 +62,15 @@ public class MainWindowController {
         heapValueColumn.setEditable(false);
         variableColumn.setEditable(false);
         stValueColumn.setEditable(false);
+        latchIdColumn.setEditable(false);
+        latchCountColumn.setEditable(false);
 
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         heapValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         variableColumn.setCellValueFactory(new PropertyValueFactory<>("variableName"));
         stValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        latchIdColumn.setCellValueFactory(new PropertyValueFactory<>("latchId"));
+        latchCountColumn.setCellValueFactory(new PropertyValueFactory<>("latchCount"));
 
         oneStepCommand = new OneStepCommand(controller, repository, "", "");
         threadsList.getSelectionModel().selectedItemProperty().addListener((_, _, _) -> changeThread());
@@ -127,11 +135,23 @@ public class MainWindowController {
         fileTableList.setItems(FXCollections.observableArrayList(Arrays.stream(data.toString().split("\n")).toList()));
     }
 
+    private void updateLatchTable() {
+        var data = repository.getProgramList().getFirst().getLatchTable();
+        latchTable.getItems().clear();
+        latchTable.setItems(FXCollections.observableArrayList(
+                Arrays.stream(data.toString().split("\n"))
+                        .filter(line -> !line.isEmpty())
+                        .map(pair -> new LatchTableCell(pair.split(" --> ")[0], pair.split(" --> ")[1]))
+                        .toList()
+        ));;
+    }
+
     private void updateAll(){
         updateProgramCount();
         updateThreadsList();
         updateHeapTable();
         updateOutputList();
+        updateLatchTable();
     }
 
     private void changeThread(){

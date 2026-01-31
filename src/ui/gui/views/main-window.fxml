@@ -91,8 +91,23 @@
         </TitledPane>
         <TitledPane animated="false" text="File Table">
             <!-- File Table -->
-             <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
         </TitledPane>
+        <TitledPane animated="false" text="File Table">
+            <!-- Latch Table -->
+            <TableView fx:id="latchTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="latchIdColumn"
+                                 minWidth="100.0"
+                                 text="Latch ID" />
+                    <TableColumn fx:id="latchCountColumn"
+                                 minWidth="100.0"
+                                 text="Count" />
+                </columns>
+            </TableView>
+
+        </TitledPane>
+
             <!-- Output -->
         <TitledPane animated="false" text="Output">
             <ListView fx:id="outputList" VBox.vgrow="ALWAYS" />
