@@ -91,7 +91,27 @@
         </TitledPane>
         <TitledPane animated="false" text="File Table">
             <!-- File Table -->
-             <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="fileTableList" VBox.vgrow="ALWAYS" />
+        </TitledPane>
+        <TitledPane animated="false" text="Barrier Table">
+            <!-- Barrier Table -->
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-weight: bold;" text="Symbol Table" />
+                <TableView fx:id="barrierTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="barrierID"
+                                     minWidth="100.0"
+                                     text="id" />
+                        <TableColumn fx:id="barrierSize"
+                                     minWidth="100.0"
+                                     text="size" />
+                        <TableColumn fx:id="barrierThreads"
+                                     minWidth="100.0"
+                                     text="threads" />
+
+                    </columns>
+                </TableView>
+            </VBox>
         </TitledPane>
             <!-- Output -->
         <TitledPane animated="false" text="Output">

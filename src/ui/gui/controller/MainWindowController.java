@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import repository.IRepository;
 import ui.command.Command;
 import ui.command.OneStepCommand;
+import utils.BarrierTableCell;
 import utils.HeapCell;
 import utils.SymbolTableCell;
 
@@ -37,6 +38,10 @@ public class MainWindowController {
     public TableColumn<HeapCell, String > heapValueColumn;
     public TableColumn<SymbolTableCell, String> variableColumn;
     public TableColumn<SymbolTableCell, String> stValueColumn;
+    public TableView<BarrierTableCell> barrierTable;
+    public TableColumn<BarrierTableCell, String> barrierID;
+    public TableColumn<BarrierTableCell, String> barrierSize;
+    public TableColumn<BarrierTableCell, String> barrierThreads;
 
     private IController controller;
     private IRepository repository;
@@ -58,11 +63,17 @@ public class MainWindowController {
         heapValueColumn.setEditable(false);
         variableColumn.setEditable(false);
         stValueColumn.setEditable(false);
+        barrierID.setEditable(false);
+        barrierSize.setEditable(false);
+        barrierThreads.setEditable(false);
 
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         heapValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         variableColumn.setCellValueFactory(new PropertyValueFactory<>("variableName"));
         stValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+        barrierID.setCellValueFactory(new PropertyValueFactory<>("barrierId"));
+        barrierSize.setCellValueFactory(new PropertyValueFactory<>("barrierSize"));
+        barrierThreads.setCellValueFactory(new PropertyValueFactory<>("threads"));
 
         oneStepCommand = new OneStepCommand(controller, repository, "", "");
         threadsList.getSelectionModel().selectedItemProperty().addListener((_, _, _) -> changeThread());
@@ -120,6 +131,19 @@ public class MainWindowController {
         symbolTable.setItems(symbolTableCells);
 
     }
+    private void updateBarrierTable() {
+        var data = repository.getProgramList().getFirst().getBarrierTable();
+        barrierTable.getItems().clear();
+
+        ObservableList<BarrierTableCell> barrierTableCells = FXCollections.observableArrayList(
+                Arrays.stream(data.toString().split("\n"))
+                        .filter(line -> !line.isEmpty())
+                        .map(pair -> new BarrierTableCell(pair.split(" --> ")[0], pair.split( " --> ")[1], (pair.split(" --> ").length > 2 ? pair.split(" --> ")[2] : "")))
+                        .toList()
+        );
+
+        barrierTable.setItems(barrierTableCells);
+    }
 
     private void updateFileList(int currentProgram) {
         var data = repository.getProgramList().get(currentProgram).getFileTable();
@@ -132,6 +156,7 @@ public class MainWindowController {
         updateThreadsList();
         updateHeapTable();
         updateOutputList();
+        updateBarrierTable();
     }
 
     private void changeThread(){
