@@ -5,6 +5,7 @@ import model.statement.IStatement;
 import state.executionstack.IExecutionStack;
 import state.filetable.IFileTable;
 import state.heap.IHeap;
+import state.latchTable.ILatchTable;
 import state.output.IOutput;
 import state.symboltable.ISymbolTable;
 
@@ -15,17 +16,19 @@ public class ProgramState {
     private final IFileTable fileTable;
     private final IHeap heap;
     private final IStatement originalProgram;
+    private final ILatchTable latchTable;
     private final int id;
     static private int nextId = 0;
 
 
-    public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, IStatement originalProgram) {
+    public ProgramState(ISymbolTable symbolTable, IExecutionStack executionStack, IOutput output, IFileTable fileTable, IHeap heap, ILatchTable latchTable, IStatement originalProgram) {
         //originalProgram.typecheck(new HashMapDictionary<>()); WARNING this will break on fork
         this.symbolTable = symbolTable;
         this.executionStack = executionStack;
         this.output = output;
         this.fileTable = fileTable;
         this.heap = heap;
+        this.latchTable = latchTable;
         this.originalProgram = originalProgram.deepCopy();
         this.executionStack.push(originalProgram);
         this.id = getNextId();
@@ -52,6 +55,8 @@ public class ProgramState {
     }
 
     public IFileTable getFileTable() {return fileTable;}
+
+    public ILatchTable getLatchTable() {return latchTable;}
 
     public int getId() {return id;}
 
