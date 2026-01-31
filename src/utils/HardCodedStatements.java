@@ -2,6 +2,9 @@ package utils;
 
 import model.expression.*;
 import model.statement.*;
+import model.statement.countDownLatchStatements.AwaitLatchStatement;
+import model.statement.countDownLatchStatements.CountDownLatchStatement;
+import model.statement.countDownLatchStatements.NewLatchStatement;
 import model.statement.fileStatements.CloseRFileStatement;
 import model.statement.fileStatements.OpenRFileStatement;
 import model.statement.fileStatements.ReadFileStatement;
@@ -328,6 +331,99 @@ public class HardCodedStatements {
                         )
                 )
         );
+        /*
+        Ref int v1; Ref int v2; Ref int v3; int cnt;
+        new(v1,2);new(v2,3);new(v3,4);newLatch(cnt,rH(v2));
+        fork(wh(v1,rh(v1)*10);print(rh(v1));countDown(cnt);
+            fork(wh(v2,rh(v2)*10);print(rh(v2));countDown(cnt);
+                fork(wh(v3,rh(v3)*10);print(rh(v3));countDown(cnt))
+            )
+        );
+        await(cnt);
+        print(100);
+        countDown(cnt);
+        print(100)
+         */
+        var ex14 = new CompoundStatement(
+                new CompoundStatement(
+                        new CompoundStatement( //Ref int v1; Ref int v2; Ref int v3; int cnt;
+                                new CompoundStatement(
+                                        new VariableDeclarationStatement("v1", new RefType(new IntegerType())),
+                                        new VariableDeclarationStatement("v2", new RefType(new IntegerType()))
+                                ),
+                                new CompoundStatement(
+                                        new VariableDeclarationStatement("v3", new RefType(new IntegerType())),
+                                        new VariableDeclarationStatement("cnt", new IntegerType())
+                                )
+                        ),
+                        new CompoundStatement( //new(v1,2);new(v2,3);new(v3,4);newLatch(cnt,rH(v2));
+                                new CompoundStatement(
+                                        new AllocateHeapStatement("v1", new ValueExpression(new IntegerValue(2))),
+                                        new AllocateHeapStatement("v2", new ValueExpression(new IntegerValue(3)))
+                                ),
+                                new CompoundStatement(
+                                        new AllocateHeapStatement("v3", new ValueExpression(new IntegerValue(4))),
+                                        new NewLatchStatement("cnt", new ReadHeapExpression(new VariableExpression("v2")))
+                                )
+                        )
+                ),
+                new CompoundStatement(
+                        new ForkStatement(
+                                new CompoundStatement(
+                                        new CompoundStatement(
+                                                new WriteHeapStatement("v1", new ArithmeticExpression(
+                                                        new ReadHeapExpression(new VariableExpression("v1")),
+                                                        new ValueExpression(new IntegerValue(10)),
+                                                        '*'
+                                                )),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new ReadHeapExpression(new VariableExpression("v1"))),
+                                                        new CountDownLatchStatement("cnt")
+                                                )
+                                        ),
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new CompoundStatement(
+                                                                new WriteHeapStatement("v2", new ArithmeticExpression(
+                                                                        new ReadHeapExpression(new VariableExpression("v2")),
+                                                                        new ValueExpression(new IntegerValue(10)),
+                                                                        '*'
+                                                                )),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new ReadHeapExpression(new VariableExpression("v2"))),
+                                                                        new CountDownLatchStatement("cnt")
+                                                                )
+                                                        ),
+                                                        new ForkStatement(
+                                                                new CompoundStatement(
+                                                                        new WriteHeapStatement("v3", new ArithmeticExpression(
+                                                                                new ReadHeapExpression(new VariableExpression("v3")),
+                                                                                new ValueExpression(new IntegerValue(10)),
+                                                                                '*'
+                                                                        )),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v3"))),
+                                                                                new CountDownLatchStatement("cnt")
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        ),
+                        new CompoundStatement(
+                                new CompoundStatement(
+                                        new AwaitLatchStatement("cnt"),
+                                        new PrintStatement(new ValueExpression(new IntegerValue(100)))
+                                ),
+                                new CompoundStatement(
+                                        new CountDownLatchStatement("cnt"),
+                                        new PrintStatement(new ValueExpression(new IntegerValue(100)))
+                                )
+                        )
+
+                )
+        );
 
         statements.add(ex1);
         statements.add(ex2);
@@ -342,6 +438,7 @@ public class HardCodedStatements {
         statements.add(ex11);
         statements.add(ex12);
         statements.add(ex13);
+        statements.add(ex14);
     }
 
     public List<IStatement> getStatements() {
