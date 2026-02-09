@@ -17,7 +17,7 @@ Built using **MVC pattern** with:
 - **Model**: Statements, expressions, types, values, generic ADT implementations (Stack, Dictionary, List, Heap)
 - **Repository**: Program state management with execution logging
 - **Controller**: Step-by-step execution and garbage collection
-- **View**: Text-based menu for program selection and execution (GUI to be added)
+- **View**: Built using JavaFX
 
 ---
 
